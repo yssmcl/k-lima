@@ -1,0 +1,18 @@
+1. Implementar sistema
+2. Análise do sistema
+3. Implementar relatórios em PDF
+4. Implementar mapas
+5. Estudar código fonte atual
+6. Criar ambiente de desenvolvimento
+7. Criar ambient de testes/homologação
+8. Avaliar servidor do laboratório do Pantaleão
+9. Criar projeto no GitHub
+10. Definir arquitetura de desenvolvimento (classes, DAOs, BD, nomenclatura)
+11. Especificar requisitos
+12. Especificar user stories
+13. Prototipar telas
+14. Definir assinatura dos serviços
+15. Dividir as equipes
+16. Integração do código (continuous integration)
+17. Implementar classes de teste
+18. Criar projeto no Trello
