@@ -1,0 +1,10 @@
+IDE: NetBeans 8.2
+Servidor de aplicação: Tomcat 8.5.5
+SGBD: MariaDB 10.1.23
+Framework web: Bootstrap 3.3.7
+Framework de persistência: Hibernate 4.1.4
+Gráficos: Highcharts 5.0.1
+Documentação: Google Docs
+Modelagem: Astah Community 7.1 e MySQL Workbench 6.3
+Biblioteca para exportação de PDFs: JasperReports 6.3.1
+JSF 2.0
