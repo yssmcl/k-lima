@@ -1,0 +1,76 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto';
+
+body{
+    font-family: 'Roboto', sans-serif;
+    margin: 0px;
+    padding: 0px;
+
+    /*Width mínima*/
+    min-width:740px; /* suppose you want minimun width of 1000px */
+    width: auto !important;  /* Firefox will set width as auto */
+    width:740px; /**/
+}
+
+.icon_g {
+    width: 32px;
+    height: 32px;
+    float: left;
+    margin-right: 10px;
+    margin-top: -5px;
+}
+
+.navbar{
+    margin-bottom: 0px !important;
+}
+
+.chart{
+    width: 550px;
+    height: 400px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.chart-lg{
+    width: 650px;
+    height: 400px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.row {
+    margin: 0px !important;
+    display: inline-block !important;
+    text-align: center !important;
+    padding: auto;
+    margin: auto;
+}
+
+.charts {
+    display: inline-block
+    padding: auto;
+    margin: auto;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.charts-body {
+    margin-bottom: 80px;
+}
+
+.fonte {
+    font-size: 12px;
+    text-align: center;
+    margin: 0px;
+    padding-bottom: 5px;
+}
+
+.chart-border {
+    margin: 10px !important;
+    padding: 0px !important;
+}
+
+.title{
+    border-bottom: 1px solid #CCCCCC;
+    margin: 20px;
+    text-align: left;
+}

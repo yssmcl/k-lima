@@ -1,0 +1,40 @@
+Prezados alunos,
+
+As avaliações finais da disciplina de Tópicos ocorrerão em fevereiro de 2017. De acordo com o plano de ensino, teremos um trabalho e um prova.
+
+A) TRABALHO
+
+A nota do trabalho será composta por uma apresentação e um artigo. O tema será o trabalho realizado durante todo o semestre. 
+
+Os itens a serem abordados no trabalho são:
+a) planejamento e descrição da solução;
+b) sprints (cerimônias, resultados, planejamento, etc.);
+c) resultados alcançados;
+d) reuniões com PO's;
+e) aspectos positivos e negativos do trabalho;
+
+O artigo deve ser feito em MS-Word e obedecer as regras da SBC: http://www.sbc.org.br/documentos-da-sbc/summary/169-templates-para-artigos-e-capitulos-de-livros/878-modelosparapublicaodeartigos
+
+O artigo e a apresentação devem conter fotos do trabalho: Link das fotos:
+https://drive.google.com/open?id=0BzC0Rkem8G9FeUlHOGhHWGhqYWM
+
+Na apresentação deve ser demostrado o trabalho e a solução final.
+
+Tempo da apresentação: 20 a 30 minutos
+
+Entrega do artigo e apresentação do trabalho: 01/2/17
+
+B) PROVA
+
+A prova bimestral será no 06/2/17.
+
+Conteúdo da prova:
+
+A prova será baseada nos itens I até IV definidos no arquivo a seguir:
+https://www.scrumalliance.org/scrum/media/ScrumAllianceMedia/Files%20and%20PDFs/Certifications/CSM/CSM-Content-Outline-Learning-Objectives.pdf
+
+Sugestão de referência de estudo:
+Scrum Guide: http://www.scrumguides.org/docs/scrumguide/v1/Scrum-Guide-Portuguese-BR.pdf
+
+Grato,
+Prof. Willian Francisco

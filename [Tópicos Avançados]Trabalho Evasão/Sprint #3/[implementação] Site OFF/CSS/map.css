@@ -1,0 +1,29 @@
+.map_div{
+    margin: 0px !important;
+    text-align: center !important;
+    padding: auto;
+    margin: auto;
+    width: 100%;
+}
+
+.map {
+    border: 0px;
+}
+
+.mdl-shadow--4dp {
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+    margin: 20px;
+    padding: 20px;
+}
+
+.mdl-card {
+    font-size: 16px;
+    font-weight: 400;
+    min-height: 200px;
+    overflow: hidden;
+    width: 330px;
+    z-index: 1;
+    background: #fff;
+    border-radius: 2px;
+    box-sizing: border-box;
+}

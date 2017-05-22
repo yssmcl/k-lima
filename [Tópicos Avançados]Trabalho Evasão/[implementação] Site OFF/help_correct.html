@@ -1,0 +1,155 @@
+<html>
+    <head>
+
+        <title>Controle de Evasão</title>
+
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+        <link rel="manifest" href="favicon/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
+        <!-- JQuery JavaScript 2.2.2 -->
+        <script type="text/javascript" src="jquery/2.2.2/js/jquery.js"></script>
+
+        <!-- Bootstrap 3.3.6 -->
+        <link rel="stylesheet" href="bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap/3.3.6/css/bootstrap-theme.min.css">
+        <script src="bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <!-- Awesome tables -->
+        <script src="https://awesome-table.com/AwesomeTableInclude.js"></script>
+
+        <!-- My style -->
+        <link rel="stylesheet" type="text/css" href="CSS/style.css"/>
+        <link rel="stylesheet" type="text/css" href="CSS/map.css"/>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <!-- My JS -->
+        <script src="JS/functions.js"></script>
+        <script src="JS/dinamic_charts.js"></script>
+
+    </head>
+ 
+    <body>
+        <nav class="navbar navbar-default navbar-static-top">
+          <div class="container"> 
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html"><img src="favicon/ms-icon-310x310.png" class="icon_g"></img>Controle de Evasão</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="charts.html">Gráficos</a></li>                
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Gráficos Dinâmicos <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="dinamic_charts.html">Alunos do CECE</a></li>
+                            <li><a href="approved_charts.html">Aprovados</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Ajuda <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="active"><a href="help_correct.html">Corrigir a pontuação</a></li>
+                            <li><a href="help_dinamic_chart.html">Gráficos Dinâmicos</a></li>               
+                        </ul>
+                    </li>           
+                </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </nav>
+
+       <h2 class="title">Correção da Acentuação e Pontuação</h2>
+       <h3>Por que fazer a correção?</h3>
+       <h4>Ao fazer o download da tabela, o sistema terá problemas para ler alguns caractéres. O tutorial a seguir ajudará a configurar o arquivo corretamente.</h4>
+       
+       <div class="map_div">
+            Para realizar a expotação (fazer download) da tabela, clique no ícone destacado em vermelho na figura abaixo.
+            <br>
+            <br>
+            <br> 
+            <img src='image/print_clique_no_icone.png' height='461' width='910'>
+            <br>
+            Ao terminar o download (você poderá observar o andamento do download em seu navegador), o arquivo estará na pasta "downloads", como mostra a figura a seguir. O nome do arquivo será "export.csv"
+            <br>
+            <br>
+            <br> 
+            <img src='image/esboco1.png' height='461' width='910'>
+            <br> 
+            <br> 
+            <br>
+            Vá até a pasta "Downloads" e clique com o botão direito do mouse sobre o arquivo denominado "export.csv", vá ate a opção "Abrir Com" (número 1 na imagem) e selecione "Bloco de notas" (número 2 na imagem).
+            <br> 
+            <br>
+            <br>
+            <br>
+            <img src='image/esboco2.png' height='590' width='960'>
+            <br>
+            <br>
+            <br>
+            O arquivo "export.csv" será aberto no bloco de notas. Clique em "Arquivo", como indica o passo 1 da imagem e em seguida, clique em "Salvar", como indica o passo 2. Há o atalho do teclado com as teclas: "Ctrl + S" que tem a mesma finalidade descrita anteriormente.
+            <br>
+            <br>
+            <br>
+            <img src='image/esboco3.png' height='500' width='1060'>
+            <br>
+            <br>
+            <br>
+            Feche o bloco de notas e abra o Excel. Clique em "Abrir Outros(as) Pastas de Trabalho", como indica a imagem a seguir. Geralmente é a última opção da lista.
+            <br>
+            <br>
+            <br>
+            <img src='image/esboco4.png' height='700' width='370'>
+            <br>
+            <br>
+            <br>
+            Ao clicar na opção "Abrir outros(as) Pastas de Trabalho", o Excel abrirá uma tela de navegação pelas pastas, onde o arquivo "export.csv" salvo anteriormente deverá ser aberto. Para isto, navegue até a pasta "downloads", como ilustra o passo 1 da imagem. Para que os arquivos certos apareçam, teremos que mandar o windows apresentar eles. No passo 2 é selecionado a opção de tipos de arquivos que o windows mostrará. O campo "Todos os arquivos" deverá ser selecionado, assim como o passo 3 da imagem. Agora nosso arquivo "export.csv" já está presente na lista de seleção. Selecione-o e clique em "abrir".
+            <br>
+            <br>
+            <br>
+            <img src='image/esboco5.png' height='768' width='1366'>
+            <br>
+            <br>
+            <br>
+            Será aberto uma janela com opções para a organização das colunas do arquivos.<br>Clique na opção "Avançar"
+            <br>
+            <br>
+            <br>
+            <img src='image/esboco6.png' height='430' width='640'>
+            <br>
+            <br>
+            <br>
+            Desmarque a opção "Tabulação" e marque a opção "Virgula" e clique em "concluir".
+            <br>
+            <br>
+            <br>
+            <img src='image/esboco7.png' height='430' width='640'>
+       </div>
+
+    </body>
+</html>

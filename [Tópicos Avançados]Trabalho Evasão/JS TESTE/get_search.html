@@ -1,0 +1,100 @@
+<html>
+  <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="https://code.jquery.com/jquery-3.0.0-alpha1.js"></script>
+    <script src="tableToXLS.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="http://files.codepedia.info/uploads/iScripts/html2canvas.js"></script>
+	<script src="src/jquery.table2excel.js"></script>
+
+  </head>
+
+  <body>
+  <input type="button" id="btnExport" value=" Export Table data into Excel " />
+    <div id="html-content-holder" style="background-color: #F0F0F1; color: #00cc65; width: 500px;
+        padding-left: 25px; padding-top: 10px;">
+      <table border="1" id="list"></table>
+    </div>
+    <script>
+      var sheetsuUrl = "https://sheetsu.com/apis/v1.0/7f21ab898df9";
+      var searchQuery = "/search?Curso=Matemática&Situacao_atual=Cursando";
+
+      $.ajax({
+        url: sheetsuUrl + searchQuery,
+        dataType: 'json',
+        type: 'GET',
+
+        // place for handling successful response
+        success: function(data) {
+          addCharacters(data);
+        },
+
+        // handling error response
+        error: function(data) {
+          console.log(data);
+        }
+      });
+
+      addCharacters = function(characters) {
+        var list = $('#list');
+        var html = "";      
+        for(var i=0; i<characters.length; i+=1) {
+          char = characters[i];
+          html = "<tr>" 
+           		+ "<td>" + char.Nome 			+ "</td>"
+           		+ "<td>" + char.Curso 			+ "</td>"
+           		+ "<td>" + char.Situacao_atual 	+ "</td>"
+           		+ "<td>" + char.Ano_letivo 		+ "</td>"           		
+           		+ "<td>" + char.Ano_de_entrada 	+ "</td>" 
+           		+ "</tr>";
+
+          list.append(html);
+        }        
+      }
+
+      $("#btnExport").click(function (e) {
+        onclick=tableToXLS('list');
+        //onclick=window.open('data:application/vnd.ms-excel,'+document.documentElement.innerHTML);
+        console.log("teste");
+      });
+
+    </script>
+    
+    <input id="btn-Preview-Image" type="button" value="Preview"/>
+    <a id="btn-Convert-Html2Image" href="#">Download</a>
+    <h2>Preview :</h2>
+    <div id="previewImage">
+    </div>
+<script>
+$(document).ready(function(){
+	
+var ExcelToJSON = function() {
+
+this.parseExcel = function(file){
+    var reader = new FileReader();
+
+    reader.onload = function(e){
+        var data = e.target.result();
+        var workbook = XLSX.read(data, {type : 'binary'});
+
+        workbook.SheetNames.forEach(function(sheetName){
+            // Here is your object
+            var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+            var json_object = JSON.stringify(XL_row_object);
+            console.log(json_object);
+
+        })
+
+    };
+
+    reader.onerror = function(ex){
+        console.log(ex);
+    };
+
+    reader.readAsBinaryString(file);
+};};
+
+</script>
+
+  </body>
+</html>
