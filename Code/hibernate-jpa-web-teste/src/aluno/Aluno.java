@@ -4,6 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/*
+Anotações Hibernate:
+https://docs.jboss.org/hibernate/stable/annotations/reference/en/html/
+https://docs.jboss.org/hibernate/orm/5.2/javadocs/org/hibernate/annotations/package-summary.html
+*/
+
 @Entity
 public class Aluno {
     @Id
