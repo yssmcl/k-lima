@@ -20,3 +20,7 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/Code/hibernate-jpa-web-teste/nbproject/private/
+/Code/hibernate-jpa-web-teste/build/
+/Code/K-lima/nbproject/private/
+/Code/K-lima/build/
