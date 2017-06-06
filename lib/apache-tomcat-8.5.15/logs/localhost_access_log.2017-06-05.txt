@@ -1849,3 +1849,9 @@
 127.0.0.1 - - [05/Jun/2017:20:54:25 -0300] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
 127.0.0.1 - root [05/Jun/2017:20:54:25 -0300] "GET /manager/text/ HTTP/1.1" 200 38
 127.0.0.1 - root [05/Jun/2017:20:54:25 -0300] "GET /manager/text/list HTTP/1.1" 200 196
+127.0.0.1 - - [05/Jun/2017:20:58:55 -0300] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
+127.0.0.1 - root [05/Jun/2017:20:58:55 -0300] "GET /manager/text/ HTTP/1.1" 200 38
+127.0.0.1 - - [05/Jun/2017:20:58:55 -0300] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
+127.0.0.1 - root [05/Jun/2017:20:58:55 -0300] "GET /manager/text/ HTTP/1.1" 200 38
+127.0.0.1 - - [05/Jun/2017:20:58:55 -0300] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
+127.0.0.1 - root [05/Jun/2017:20:58:55 -0300] "GET /manager/text/ HTTP/1.1" 200 38
