@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
@@ -138,5 +139,24 @@ public class AlunoDAO {
 			session.close();
 		}
 	}
+	
+	public void deletarTabelaAluno() {
+		Session session = HibernateUtil.getSessionFactory().openSession();	
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+					
+			String sql = "DROP TABLE Aluno";
+			SQLQuery query = session.createSQLQuery(sql);
+			query.executeUpdate();
 
+			transaction.commit();
+		} catch (HibernateException e) {
+			if (transaction != null) transaction.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+	
 }

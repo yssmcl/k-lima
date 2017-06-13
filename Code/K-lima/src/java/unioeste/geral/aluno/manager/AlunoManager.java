@@ -48,5 +48,9 @@ public class AlunoManager {
     public void removerAluno(Aluno aluno) {
 		new AlunoDAO().deletarAluno(aluno);
 	}
+	
+	public void removerTabelaAluno() {
+		new AlunoDAO().deletarTabelaAluno();
+	}
 
 }
