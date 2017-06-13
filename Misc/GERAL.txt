@@ -1,0 +1,145 @@
+﻿GERAL
+--------
+
+Use tipicamente arrastando chaves em toda parte (se, mais, funções, estruturas, typedefs, definições de classe, etc.)
+
+If (x) {
+	CODIGO
+}
+
+
+A instrução else começa na mesma linha que a última chave de fecho.
+
+If (x) {
+	CODIGO
+} Else {
+	CODIGO
+}
+
+para expressões, parênteses com sem espaços
+
+If (x) {
+	CODIGO
+}
+
+Ao invés de
+
+If ( x ) {
+	CODIGO
+}
+
+E
+
+X = (y * 0,5f);
+
+Ao invés de
+
+X = ( y * 0,5f );
+
+Use especificação de precisão para valores de ponto float, a menos que haja uma necessidade explícita de um duplo.
+
+Flutuador f = 0,5f;
+
+Ao invés de
+
+float f = 0,5; 
+
+Ou
+
+float f = 1.f;
+
+usar:
+
+float f = 1,0f;
+
+Os nomes das funções começam com uma minúscula:
+
+public void function (void voidling); /* HUEaster egg
+
+
+Em nomes de função multi-palavra cada palavra começa com uma minúscula:
+
+public Void thisFunctionDoesSomething (void nameOfThisVariable);
+
+
+O cabeçalho padrão para funções é:
+
+--------
+====================
+functionName
+
+  Descrição
+
+====================
+--------
+
+
+Os nomes das variáveis ​​começam com um caractere minúsculo.
+
+Float x;
+
+Em nomes de variáveis ​​de várias palavras, a primeira palavra começa com um caractere minúsculo e cada palavra sucessiva começa com uma maiúscula.
+
+Float maxDistanceFromPlane;
+
+Os nomes das funções recursivas terminam com "_r"
+
+Void WalkBSP_r (node int);
+
+
+CLASSES
+--------
+
+O cabeçalho padrão para uma classe é:
+
+--------
+===================================================================================== =============================
+
+	Descrição
+
+===================================================================================== =============================
+--------
+
+Os nomes das classes começam com maiúsculas.
+
+Class Vec3;
+
+
+Variáveis ​​de classe têm a mesma convenção de nomenclatura como variáveis.
+
+Class Vec3 {
+	Float x;
+	Float y;
+	Float z;
+}
+
+
+Métodos de classe têm a mesma convenção de nomenclatura como funções.
+
+Class Vec3 {
+	Comprimento do flutuador (void);	
+}
+
+Recorte os nomes das variáveis ​​de classe e métodos de classe para fazer colunas agradáveis. O tipo de variável ou tipo de retorno do método está na primeira coluna eo nome da variável ou nome do método está na segunda coluna.
+
+Class Vec3 {
+	Float x;
+	Float y;
+	Float z;
+	Comprimento do flutuador (vazio);
+	Float constante toFloat (void);
+}
+
+
+
+As variáveis ​​e métodos de classe devem ser os seguintes:
+
+1. lista de classes de amigos
+2. variáveis ​​públicas
+3. métodos públicos
+4. variáveis ​​protegidas
+5. Métodos protegidos
+6. variáveis ​​privadas
+7. Métodos privados
+
+Isso permite que a interface pública seja facilmente encontrada no início da classe.
