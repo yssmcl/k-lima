@@ -1,16 +1,17 @@
 
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
 import unioeste.geral.aluno.bo.Aluno;
-import unioeste.geral.aluno.dao.AlunoDAO;
 import unioeste.geral.aluno.manager.AlunoManager;
 
 public class Main {
 
     public static void main(String[] args) {
-		AlunoDAO alunoDAO = new AlunoDAO();
+		AlunoManager alunoManager = new AlunoManager();
+		
+		Aluno aluno = new Aluno();
+		aluno.setNome("asd");
+		aluno.setCentro("CECE");
+		alunoManager.salvarAluno(aluno);
+		alunoManager.salvarAluno(aluno);
 		
 //		for (int i = 0; i < 50; i++) {
 //			Aluno aluno = new Aluno();
@@ -23,10 +24,10 @@ public class Main {
 //		condicao.put("nome", "asd");
 //		condicao.put("centro", "CECE");
 //		
-//		List<Aluno> alunos = new AlunoManager().recuperarAlunosPorAtributos(condicao);
+//		List<Aluno> alunos = alunoManager.recuperarAlunosPorAtributos(condicao);
 //		System.out.println(alunos.size());
 //		
-//		long qtdAlunos = new AlunoManager().recuperarQtdAlunosPorAtributos(condicao);
+//		long qtdAlunos = alunoManager.recuperarQtdAlunosPorAtributos(condicao);
 //		System.out.println(qtdAlunos);
 		
 //		long qtd = alunoDAO.buscarQtdAlunosPorAtributo("nome", "asd");
