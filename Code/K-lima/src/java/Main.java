@@ -8,13 +8,15 @@ public class Main {
 
     public static void main(String[] args) {
 		AlunoDAO alunoDAO = new AlunoDAO();
-		List<Aluno> alunos = alunoDAO.buscarAlunoPorAtributo("nome", "aluno1239812");
+		alunoDAO.inserirAluno(new Aluno("assssssshasdj"));
+                System.out.println("o======================================================i");
+                // List<Aluno> alunos = alunoDAO.buscarAlunoPorAtributo("nome", "aluno1239812");
 		// Aluno aluno = alunos.get(0);
 		// alunoDAO.deletarAluno(aluno);
-		alunos = alunoDAO.buscarTodosAlunos();
-		for (Aluno aluno1 : alunos) {
-			System.out.println(aluno1.getNome());
-		}
+		// alunos = alunoDAO.buscarTodosAlunos();
+		// for (Aluno aluno1 : alunos) {
+		// 	System.out.println(aluno1.getNome());
+		// }
 		
 		/* JPA */	
 		// AlunoDAO alunoDAO = new AlunoDAO();
