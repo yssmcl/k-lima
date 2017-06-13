@@ -2,18 +2,12 @@ package unioeste.geral.aluno.bo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
-import org.hibernate.annotations.GenericGenerator;
+
 
 @Entity
 public class Aluno {
-	// @GenericGenerator(name="generator", strategy="increment")
-    // @GeneratedValue(generator="generator")
 	@Id
-	// @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue
     private Long id;
 
@@ -27,11 +21,11 @@ public class Aluno {
     
     private String turno;
     
-    private int ano_atual;
+    private int anoAtual;
     
-    private String unidade_federativa;
+    private String unidadeFederativa;
     
-    private String situacao_atual;
+    private String situacaoAtual;
     
     private String cep;
     
@@ -43,158 +37,160 @@ public class Aluno {
     
     private String cidade;
     
-    private int ano_letivo;
+    private int anoLetivo;
 	
-	private String endereco_completo;
+	private String enderecoCompleto;
     
     private String latitude;
     
     private String longitude;
+	
+	public Aluno() {
 		
-    public Aluno() {
-    }
+	}
 
-    public String getCurso() {
-        return curso;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setCurso(String curso) {
-        this.curso = curso;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getCentro() {
-        return centro;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setCentro(String centro) {
-        this.centro = centro;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public String getModalidade() {
-        return modalidade;
-    }
+	public String getCurso() {
+		return curso;
+	}
 
-    public void setModalidade(String modalidade) {
-        this.modalidade = modalidade;
-    }
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
 
-    public String getTurno() {
-        return turno;
-    }
+	public String getCentro() {
+		return centro;
+	}
 
-    public void setTurno(String turno) {
-        this.turno = turno;
-    }
+	public void setCentro(String centro) {
+		this.centro = centro;
+	}
 
-    public int getAno_atual() {
-        return ano_atual;
-    }
+	public String getModalidade() {
+		return modalidade;
+	}
 
-    public void setAno_atual(int ano_atual) {
-        this.ano_atual = ano_atual;
-    }
+	public void setModalidade(String modalidade) {
+		this.modalidade = modalidade;
+	}
 
-    public String getUnidade_federativa() {
-        return unidade_federativa;
-    }
+	public String getTurno() {
+		return turno;
+	}
 
-    public void setUnidade_federativa(String unidade_federativa) {
-        this.unidade_federativa = unidade_federativa;
-    }
+	public void setTurno(String turno) {
+		this.turno = turno;
+	}
 
-    public String getSituacao_atual() {
-        return situacao_atual;
-    }
+	public int getAnoAtual() {
+		return anoAtual;
+	}
 
-    public void setSituacao_atual(String situacao_atual) {
-        this.situacao_atual = situacao_atual;
-    }
+	public void setAnoAtual(int anoAtual) {
+		this.anoAtual = anoAtual;
+	}
 
-    public String getCep() {
-        return cep;
-    }
+	public String getUnidadeFederativa() {
+		return unidadeFederativa;
+	}
 
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
+	public void setUnidadeFederativa(String unidadeFederativa) {
+		this.unidadeFederativa = unidadeFederativa;
+	}
 
-    public String getRua() {
-        return rua;
-    }
+	public String getSituacaoAtual() {
+		return situacaoAtual;
+	}
 
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
+	public void setSituacaoAtual(String situacaoAtual) {
+		this.situacaoAtual = situacaoAtual;
+	}
 
-    public int getNumero() {
-        return numero;
-    }
+	public String getCep() {
+		return cep;
+	}
 
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
 
-    public String getBairro() {
-        return bairro;
-    }
+	public String getRua() {
+		return rua;
+	}
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
 
-    public String getCidade() {
-        return cidade;
-    }
+	public int getNumero() {
+		return numero;
+	}
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
 
-    public int getAno_letivo() {
-        return ano_letivo;
-    }
+	public String getBairro() {
+		return bairro;
+	}
 
-    public void setAno_letivo(int ano_letivo) {
-        this.ano_letivo = ano_letivo;
-    }
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
 
-    public String getEndereco_completo() {
-        return endereco_completo;
-    }
+	public String getCidade() {
+		return cidade;
+	}
 
-    public void setEndereco_completo(String endereco_completo) {
-        this.endereco_completo = endereco_completo;
-    }
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
 
-    public String getLatitude() {
-        return latitude;
-    }
+	public int getAnoLetivo() {
+		return anoLetivo;
+	}
 
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
+	public void setAnoLetivo(int anoLetivo) {
+		this.anoLetivo = anoLetivo;
+	}
 
-    public String getLongitude() {
-        return longitude;
-    }
+	public String getEnderecoCompleto() {
+		return enderecoCompleto;
+	}
 
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
+	public void setEnderecoCompleto(String enderecoCompleto) {
+		this.enderecoCompleto = enderecoCompleto;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public String getLatitude() {
+		return latitude;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public String getLongitude() {
+		return longitude;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+	
 }
