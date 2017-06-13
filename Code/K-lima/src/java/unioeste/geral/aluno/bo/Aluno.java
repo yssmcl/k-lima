@@ -182,10 +182,6 @@ public class Aluno {
         this.longitude = longitude;
     }
 
-    public Aluno(String nome) {
-        this.nome = nome;
-    }
-
     public Long getId() {
         return id;
     }
