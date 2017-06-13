@@ -1,5 +1,5 @@
-IDE: NetBeans 8.0.2
-Servidor de aplicação: Tomcat 8.5.15
+IDE: NetBeans 8.2
+Servidor de aplicação: Tomcat 8.5.5
 SGBD: MariaDB 10.1.23
 Framework web: Foundation 6.2.1
 Framework de persistência: Hibernate 4.3.1
