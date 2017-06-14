@@ -45,6 +45,8 @@ public class Aluno {
     
     private String longitude;
 	
+	private int anoEntrada;
+
 	public Aluno() {
 		
 	}
@@ -191,6 +193,14 @@ public class Aluno {
 
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
+	}
+	
+	public int getAnoEntrada() {
+		return anoEntrada;
+	}
+
+	public void setAnoEntrada(int anoEntrada) {
+		this.anoEntrada = anoEntrada;
 	}
 	
 }
