@@ -140,8 +140,8 @@ public class AlunoDAO {
 		}
 	}
 	
-	public void deletarTabelaAluno() {
-		Session session = HibernateUtil.getSessionFactory().openSession();	
+	public void deletarTodosAlunos() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
