@@ -6,11 +6,11 @@ public class Main {
 
     public static void main(String[] args) {
 		
-		Aluno aluno = new Aluno();
-		aluno.setNome("asd");
-		aluno.setCentro("CECE");
-		alunoManager.salvarAluno(aluno);
-		alunoManager.salvarAluno(aluno);
+	//	Aluno aluno = new Aluno();
+	//	aluno.setNome("asd");
+	//	aluno.setCentro("CECE");
+	//	alunoManager.salvarAluno(aluno);
+	//	alunoManager.salvarAluno(aluno);
 		
 //		for (int i = 0; i < 50; i++) {
 //			Aluno aluno = new Aluno();

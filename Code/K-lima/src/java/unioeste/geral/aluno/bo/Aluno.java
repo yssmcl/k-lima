@@ -39,7 +39,7 @@ public class Aluno {
     
     private int anoLetivo;
 	
-	private String enderecoCompleto;
+    private String enderecoCompleto;
     
     private String latitude;
     

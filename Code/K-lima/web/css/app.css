@@ -1,0 +1,193 @@
+/* ******************************************************************************************************
+GENERAL
+******************************************************************************************************** */
+
+* {
+	outline: none;
+}
+
+.wrap{
+	width: 90%;
+	max-width: 1300px;
+	margin: 0 auto;
+}
+
+
+.off-canvas-wrapper{
+	/*background-color: #206caa;*/
+	
+}
+
+label{
+	font-weight: bold;
+	font-size: 17px;
+}
+
+
+
+
+
+/* ******************************************************************************************************
+NAV - MOBILE
+******************************************************************************************************** */
+
+.title-bar {
+	background-color: #206caa;
+	height: 60px;
+	padding-top: 17px;
+}
+
+#mobile-menu {
+	background-color: #206caa;
+	padding: 10px;
+}
+
+#mobile-menu li {
+	list-style: none;
+}
+
+#mobile-menu a {
+	color: rgba(255,255,255, 0.6);
+	font-weight: bold;
+	line-height: 2;
+}
+
+#mobile-menu a:hover {
+	color: rgba(255,255,255, 0.8);
+}
+
+.js-off-canvas-exit {
+	/*background: rgba(0, 0, 0, 0.5); escurece um pouco a tela que nÃ£o seja o menu*/
+	background: transparent;
+}
+
+.menu-mobile-opcao{
+	color: white;
+	font-weight: bold;	
+}
+
+/* ******************************************************************************************************
+NAV - DESKTOP
+******************************************************************************************************** */
+.nav-desktop{
+	background-color: #206caa;
+	height: 50px;
+	padding: 0;
+}
+
+.site-logo{
+	color: white;
+	line-height: 50px;
+}
+
+.nav-desktop .menu-desktop{
+	line-height: 50px;
+	background-color: transparent;
+}
+
+.menu > li > a{
+	display: inline-block;
+	line-height: 50px;
+	padding-top: 0;
+	padding-bottom: 0;
+	color: white;
+	width: 100%;
+}
+
+.menu > li > a:hover{
+	background-color: rgba(255,255,255, 0.5);
+}
+
+
+.is-submenu-item {
+	background-color: #206caa;
+
+/* ******************************************************************************************************
+HERO
+******************************************************************************************************** */
+.hero{
+	background: #999;
+	padding: 80px 0px;
+	background-image: url("../image.png");
+}
+
+.hero h1,
+.hero p{
+	color: rgba(255,255,255, 0.8);
+	width: 70%; /* max-width: 70%; */
+}
+
+
+.button.success{
+	background-color: purple;
+	margin-left: 20px;
+}
+
+
+
+/* ******************************************************************************************************
+MAIN SECTION
+******************************************************************************************************** */
+.main{
+	padding: 80px 0px;
+}
+
+/*.errorlist {
+	.alert;
+	.callout;
+}*/
+
+
+/* ******************************************************************************************************
+FOOTER
+******************************************************************************************************** */
+footer{
+	background-color: #222; 
+	padding: 80px 0px;
+}
+
+footer h4 {
+	color: rgba(255,255,255,0.8);
+	font-size: 25px;
+}
+
+footer hr{
+	/*border: 1px solid red;*/
+	border-color: rgba(255,255,255,0.1);
+	margin: 10px
+}
+
+footer a {
+	display: block;
+	color: rgba(255,255,255,0.6);
+	font-size: 14px;
+}
+
+footer a span{
+	font-weight: bold;
+	color: rgba(255,255,255,0.3);
+}
+
+footer a:hover {
+	color: rgba(255,255,255,0.8);
+}
+
+
+
+/* ******************************************************************************************************
+MEDIA QUERY
+******************************************************************************************************** */
+@media (max-width: 700px){
+	
+	.nav-desktop{
+		display: none;
+	}
+
+}
+
+@media (max-width: 875px){
+	.hero h1,
+	.hero p{
+		width: 100%;
+	}
+}
