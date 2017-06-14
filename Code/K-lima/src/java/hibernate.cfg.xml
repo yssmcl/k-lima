@@ -51,6 +51,8 @@ Contributor(s):
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory</property>
 	<property name="hibernate.hbm2ddl.auto">update</property>
+	
 	<mapping class="unioeste.geral.aluno.bo.Aluno"/>
+	<mapping class="unioeste.geral.autenticacao.bo.Usuario"/>
   </session-factory>
 </hibernate-configuration>
