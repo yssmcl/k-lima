@@ -146,7 +146,7 @@ public class AlunoDAO {
 		try {
 			transaction = session.beginTransaction();
 					
-			String sql = "DROP TABLE Aluno";
+			String sql = "DELETE FROM Aluno";
 			SQLQuery query = session.createSQLQuery(sql);
 			query.executeUpdate();
 

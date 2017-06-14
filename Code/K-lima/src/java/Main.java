@@ -5,19 +5,16 @@ import unioeste.geral.aluno.manager.AlunoManager;
 public class Main {
 
     public static void main(String[] args) {
-		
-	//	Aluno aluno = new Aluno();
-	//	aluno.setNome("asd");
-	//	aluno.setCentro("CECE");
-	//	alunoManager.salvarAluno(aluno);
-	//	alunoManager.salvarAluno(aluno);
-		
+//		AlunoManager alunoManager = new AlunoManager();
+	
 //		for (int i = 0; i < 50; i++) {
 //			Aluno aluno = new Aluno();
 //			aluno.setNome("asd");
 //			aluno.setCentro("CECE");
-//			alunoDAO.inserirAluno(aluno);
+//			alunoManager.salvarAluno(aluno);
 //		}
+
+//		alunoManager.removerTodosAlunos();
 //		
 //		HashMap<String, Object> condicao = new HashMap<>();
 //		condicao.put("nome", "asd");

@@ -56,7 +56,7 @@ public class AlunoManager {
 		new AlunoDAO().deletarAluno(aluno);
 	}
 	
-    public void removerTabelaAluno() {
+    public void removerTodosAlunos() {
 	new AlunoDAO().deletarTabelaAluno();
     }
     
@@ -98,7 +98,7 @@ public class AlunoManager {
             Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return alunos;
+//        return alunos;
         
     }
 
