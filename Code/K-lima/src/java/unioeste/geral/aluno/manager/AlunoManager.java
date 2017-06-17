@@ -57,7 +57,7 @@ public class AlunoManager {
 	}
 	
     public void removerTodosAlunos() {
-	new AlunoDAO().deletarTabelaAluno();
+	new AlunoDAO().deletarTodosAlunos();
     }
     
     public void carregarCSV() throws IOException{
