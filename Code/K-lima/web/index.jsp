@@ -5,7 +5,6 @@
 --%>
 
 <%@page import="java.util.List"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="unioeste.geral.aluno.bo.Aluno"%>
 <%@page import="unioeste.geral.aluno.manager.AlunoManager"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
@@ -86,18 +85,6 @@
           <div class="row centralizado">
               
           <h1>Alunos CSV</h1>
-		<!--  
-            <form action="BuscaAlunosServlet" method="post">		  
-                  
-                <label class="titulo">Código de barras do Produto:</label>                  
-                <input id="codBarras" name="codBarras" type="text"/> 
-                <br />
-                <br />                         
-                <input type="submit" value="Consultar" />
-
-               </div>
-             </form> 
-            -->
             <hr />
             <table id="example" class="display">
                 <thead>
@@ -106,12 +93,16 @@
                         <th>Curso</th>
                         <th>Situação atual</th>
                         <th>Ano letivo</th>
+                        <th>Ano Entrada</th>
                     </tr>
                 </thead>
                 <tbody>                    
                     <%
+                    AlunoManager manager = new AlunoManager();
                     List<Aluno> alunos = new AlunoManager().recuperarTodosAlunos();
-                             
+                    
+                    //manager.carregarCSV();
+                    
                     //out.write(alunos.get(1).getNome());
                     %>
                     <%for(int i=0; i < alunos.size(); i++){
@@ -121,6 +112,7 @@
                             out.write("<td>" + alunos.get(i).getCurso() + "</td>");
                             out.write("<td>" + alunos.get(i).getSituacaoAtual() + "</td>");
                             out.write("<td>" + alunos.get(i).getAnoLetivo() + "</td>");
+                            out.write("<td>" + alunos.get(i).getAnoEntrada()+ "</td>");
                         out.write("</tr>");
                          
                     }%>

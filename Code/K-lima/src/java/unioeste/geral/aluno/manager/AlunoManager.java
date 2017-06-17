@@ -63,15 +63,20 @@ public class AlunoManager {
     public void carregarCSV() throws IOException{
         
         BufferedReader br;
-        List<Aluno> alunos = new ArrayList<Aluno>();
+        
+        //TODO - Arrumar o problema de algumas linhas virem com informações faltantes!!
         
         try {
+            
             br = new BufferedReader(new FileReader("C:/Users/Leandro Ensina/Documents/Unioeste/4 ano/Sistemas de Informação/export.csv"));
             br.readLine(); //elimina a primeira linha, que não é importante
                         
+            removerTodosAlunos(); //remove todos os alunos do banco antes de inserir os novos dados do arquivo CSV
+            
             while(br.ready()){
                 
                 String linha = br.readLine(); //lê uma linha do arquivo
+                linha = br.readLine(); //lê uma linha do arquivo
                 String campos[] = linha.split(";"); // separa cada campo do arquivo em vetores de string
                                 
                 Aluno aluno = new Aluno();
@@ -88,8 +93,12 @@ public class AlunoManager {
                 aluno.setNumero(Integer.parseInt(campos[10]));
                 aluno.setBairro(campos[11]);
                 aluno.setCidade(campos[12]);
+                aluno.setAnoEntrada(Integer.parseInt(campos[13]));
+                aluno.setEnderecoCompleto(campos[14]);
+                //aluno.setLatitude(campos[15]);
+               //aluno.setLongitude(campos[16]);
                 
-                alunos.add(aluno);
+                salvarAluno(aluno);
             }
             
             br.close();
@@ -98,7 +107,6 @@ public class AlunoManager {
             Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-//        return alunos;
         
     }
 
