@@ -21,7 +21,7 @@ public class Aluno {
     
     private String turno;
     
-    private int anoAtual;
+    private String anoAtual;
     
     private String unidadeFederativa;
     
@@ -31,13 +31,13 @@ public class Aluno {
     
     private String rua;
     
-    private int numero;
+    private String numero;
     
     private String bairro;
     
     private String cidade;
     
-    private int anoLetivo;
+    private String anoLetivo;
 	
     private String enderecoCompleto;
     
@@ -45,7 +45,7 @@ public class Aluno {
     
     private String longitude;
 	
-	private int anoEntrada;
+	private String anoEntrada;
 
 	public Aluno() {
 		
@@ -99,11 +99,11 @@ public class Aluno {
 		this.turno = turno;
 	}
 
-	public int getAnoAtual() {
+	public String getAnoAtual() {
 		return anoAtual;
 	}
 
-	public void setAnoAtual(int anoAtual) {
+	public void setAnoAtual(String anoAtual) {
 		this.anoAtual = anoAtual;
 	}
 
@@ -139,11 +139,11 @@ public class Aluno {
 		this.rua = rua;
 	}
 
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
@@ -163,11 +163,11 @@ public class Aluno {
 		this.cidade = cidade;
 	}
 
-	public int getAnoLetivo() {
+	public String getAnoLetivo() {
 		return anoLetivo;
 	}
 
-	public void setAnoLetivo(int anoLetivo) {
+	public void setAnoLetivo(String anoLetivo) {
 		this.anoLetivo = anoLetivo;
 	}
 
@@ -195,11 +195,11 @@ public class Aluno {
 		this.longitude = longitude;
 	}
 	
-	public int getAnoEntrada() {
+	public String getAnoEntrada() {
 		return anoEntrada;
 	}
 
-	public void setAnoEntrada(int anoEntrada) {
+	public void setAnoEntrada(String anoEntrada) {
 		this.anoEntrada = anoEntrada;
 	}
 	

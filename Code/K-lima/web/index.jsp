@@ -91,27 +91,29 @@
                     <tr>
                         <th>Nome</th>
                         <th>Curso</th>
+                        <th>Centro</th>
                         <th>Situação atual</th>
-                        <th>Ano letivo</th>
                         <th>Ano Entrada</th>
                     </tr>
                 </thead>
                 <tbody>                    
                     <%
                     AlunoManager manager = new AlunoManager();
+                    
+                    manager.carregarCSV();
+                    
                     List<Aluno> alunos = new AlunoManager().recuperarTodosAlunos();
                     
-                    //manager.carregarCSV();
-                    
                     //out.write(alunos.get(1).getNome());
+                   
                     %>
                     <%for(int i=0; i < alunos.size(); i++){
                         
                         out.write("<tr>");                            
                             out.write("<td>" + alunos.get(i).getNome() + "</td>");
                             out.write("<td>" + alunos.get(i).getCurso() + "</td>");
+                            out.write("<td>" + alunos.get(i).getCentro()+ "</td>");
                             out.write("<td>" + alunos.get(i).getSituacaoAtual() + "</td>");
-                            out.write("<td>" + alunos.get(i).getAnoLetivo() + "</td>");
                             out.write("<td>" + alunos.get(i).getAnoEntrada()+ "</td>");
                         out.write("</tr>");
                          

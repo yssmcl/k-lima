@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import unioeste.geral.aluno.bo.Aluno;
 import unioeste.geral.aluno.dao.AlunoDAO;
 
@@ -66,17 +67,19 @@ public class AlunoManager {
         
         //TODO - Arrumar o problema de algumas linhas virem com informações faltantes!!
         
-        try {
-            
-            br = new BufferedReader(new FileReader("C:/Users/Leandro Ensina/Documents/Unioeste/4 ano/Sistemas de Informação/export.csv"));
-            br.readLine(); //elimina a primeira linha, que não é importante
-                        
+        try {            
             removerTodosAlunos(); //remove todos os alunos do banco antes de inserir os novos dados do arquivo CSV
             
+            br = new BufferedReader(new FileReader("C:/Users/Leandro Ensina/Documents/Unioeste/4 ano/Sistemas de Informação/export.csv"));
+            br.readLine(); //junto com a linha abaixo, elimina as duas primeiras linhas do arquivo que não são importantes
+            br.readLine(); 
+                                              
             while(br.ready()){
                 
                 String linha = br.readLine(); //lê uma linha do arquivo
-                linha = br.readLine(); //lê uma linha do arquivo
+                
+                linha = padronizarLinhaCSV(linha); //Verifica a linha para evitar que não tenha valores faltantes
+                
                 String campos[] = linha.split(";"); // separa cada campo do arquivo em vetores de string
                                 
                 Aluno aluno = new Aluno();
@@ -84,30 +87,54 @@ public class AlunoManager {
                 aluno.setCentro(campos[1]);
                 aluno.setModalidade(campos[2]);
                 aluno.setTurno(campos[3]);
-                aluno.setAnoAtual(Integer.parseInt(campos[4]));
+                aluno.setAnoAtual(campos[4]);
                 aluno.setNome(campos[5]);
                 aluno.setUnidadeFederativa(campos[6]);
                 aluno.setSituacaoAtual(campos[7]);
                 aluno.setCep(campos[8]);
                 aluno.setRua(campos[9]);
-                aluno.setNumero(Integer.parseInt(campos[10]));
+                aluno.setNumero(campos[10]);
                 aluno.setBairro(campos[11]);
                 aluno.setCidade(campos[12]);
-                aluno.setAnoEntrada(Integer.parseInt(campos[13]));
+                aluno.setAnoEntrada(campos[13]);
                 aluno.setEnderecoCompleto(campos[14]);
-                //aluno.setLatitude(campos[15]);
-               //aluno.setLongitude(campos[16]);
+                aluno.setLatitude(campos[15]);
+                aluno.setLongitude(campos[16]);
                 
                 salvarAluno(aluno);
             }
-            
+            JOptionPane.showMessageDialog(null, "FIM");
             br.close();
         
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+                
+    }
+    
+    //Verifica a linha para evitar que não tenha valores faltantes
+    public String padronizarLinhaCSV(String linha){
         
+        char pontoVirgula = ';';
         
+        while(linha.contains("  ")){
+            linha = linha.replaceAll("  ", " ");
+        }
+        
+        while(linha.contains("; ;")){
+            linha = linha.replaceAll("; ;", ";0;");
+        }
+        
+        while(linha.contains(";;")){
+            linha = linha.replaceAll(";;", ";0;");
+        }
+        
+        char ultimo_char = linha.charAt(linha.length()-1);
+        if(ultimo_char == pontoVirgula){
+            linha = linha + "0";
+        }
+        
+        return linha;
     }
 
 }
