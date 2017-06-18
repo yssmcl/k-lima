@@ -7,7 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import unioeste.geral.aluno.bo.Aluno;
-import unioeste.geral.aluno.dao.HibernateUtil;
+import unioeste.geral.util.HibernateUtil;
 import unioeste.geral.autenticacao.bo.Usuario;
 
 public class UsuarioDAO {

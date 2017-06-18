@@ -1,5 +1,6 @@
 package unioeste.geral.aluno.dao;
 
+import unioeste.geral.util.HibernateUtil;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
