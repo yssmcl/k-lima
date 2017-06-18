@@ -1,15 +1,13 @@
 package unioeste.geral.aluno.manager;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import unioeste.geral.aluno.bo.Aluno;
 import unioeste.geral.aluno.dao.AlunoDAO;
 
@@ -62,21 +60,17 @@ public class AlunoManager {
     }
     
     public void carregarCSV() throws IOException{
-        
-        BufferedReader br;
-        
-        //TODO - Arrumar o problema de algumas linhas virem com informações faltantes!!
-        
+         
         try {            
             removerTodosAlunos(); //remove todos os alunos do banco antes de inserir os novos dados do arquivo CSV
             
-            br = new BufferedReader(new FileReader("C:/Users/Leandro Ensina/Documents/Unioeste/4 ano/Sistemas de Informação/export.csv"));
-            br.readLine(); //junto com a linha abaixo, elimina as duas primeiras linhas do arquivo que não são importantes
-            br.readLine(); 
+            Scanner scanner = new Scanner(new FileReader("C:/Users/Leandro Ensina/Documents/Unioeste/4 ano/Sistemas de Informação/export.csv"));
+            scanner.nextLine(); //junto com a linha abaixo, elimina as duas primeiras linhas do arquivo que não são importantes
+            scanner.nextLine(); 
                                               
-            while(br.ready()){
+            while(scanner.hasNext()){
                 
-                String linha = br.readLine(); //lê uma linha do arquivo
+                String linha = scanner.nextLine(); //lê uma linha do arquivo
                 
                 linha = padronizarLinhaCSV(linha); //Verifica a linha para evitar que não tenha valores faltantes
                 
@@ -103,8 +97,8 @@ public class AlunoManager {
                 
                 salvarAluno(aluno);
             }
-            JOptionPane.showMessageDialog(null, "FIM");
-            br.close();
+            
+            scanner.close();
         
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
