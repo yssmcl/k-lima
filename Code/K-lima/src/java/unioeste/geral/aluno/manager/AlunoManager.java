@@ -61,8 +61,11 @@ public class AlunoManager {
     
     public void carregarCSV() throws IOException{
          
+       
+        
         try {            
-            removerTodosAlunos(); //remove todos os alunos do banco antes de inserir os novos dados do arquivo CSV
+                    
+            // removerTodosAlunos(); //remove todos os alunos do banco antes de inserir os novos dados do arquivo CSV
             
             Scanner scanner = new Scanner(new FileReader("C:/Users/Leandro Ensina/Documents/Unioeste/4 ano/Sistemas de Informação/export_completo.csv"));
             scanner.nextLine(); //junto com a linha abaixo, elimina as duas primeiras linhas do arquivo que não são importantes

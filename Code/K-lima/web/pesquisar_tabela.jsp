@@ -99,13 +99,51 @@
           </nav>
 
           <!-- MAIN SECTION -->
-          <br />
-          <br />
-          <br />
-          <div class="row" style="text-align:center;">
-		<img src="<%=caminho%>/img/unioeste.jpg" alt="Unioeste" height="400" width="900">
-          </div>
           
+          <div class="row centralizado">
+            <div class="medium-12 columns" style="text-align: center;">
+                <h1>Alunos Unioeste</h1>
+            </div>
+          
+            <hr />
+            <table id="example" class="display">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Curso</th>
+                        <th>Centro</th>
+                        <th>Situação atual</th>
+                        <th>Ano Entrada</th>
+                    </tr>
+                </thead>
+                <tbody>                    
+                    <%
+                    AlunoManager manager = new AlunoManager();
+                    
+                    //manager.carregarCSV();
+                    
+                    List<Aluno> alunos = new AlunoManager().recuperarTodosAlunos();
+                    
+                    //out.write(alunos.get(1).getNome());
+                   
+                    %>
+                    <%for(int i=0; i < alunos.size(); i++){
+                        
+                        out.write("<tr>");                            
+                            out.write("<td>" + alunos.get(i).getNome() + "</td>");
+                            out.write("<td>" + alunos.get(i).getCurso() + "</td>");
+                            out.write("<td>" + alunos.get(i).getCentro()+ "</td>");
+                            out.write("<td>" + alunos.get(i).getSituacaoAtual() + "</td>");
+                            out.write("<td>" + alunos.get(i).getAnoEntrada()+ "</td>");
+                        out.write("</tr>");
+                         
+                    }%>
+                </tbody>
+            </table>
+          </div>
+
+
+
         </div>
       </div>
     </div>
