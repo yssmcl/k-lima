@@ -102,7 +102,7 @@
                     <%
                     AlunoManager manager = new AlunoManager();
                     
-                    List<Aluno> alunos = new AlunoManager().recuperarTodosAlunos();
+                    List<Aluno> alunos = manager.recuperarTodosAlunos();
                     
                     for(Aluno aluno : alunos){
                        %>
