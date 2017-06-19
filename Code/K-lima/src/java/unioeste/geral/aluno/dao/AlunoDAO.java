@@ -160,8 +160,4 @@ public class AlunoDAO {
 		}
 	}
 	
-	public static void main(String[] args) {
-		new AlunoDAO().deletarTodosAlunos();
-	}
-	
 }

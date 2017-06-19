@@ -76,21 +76,4 @@ public class UsuarioManager {
 		new UsuarioDAO().atualizarUsuario(usuario);
 	}
 	
-//	public static void main(String[] args) {
-//		Usuario usuario = new Usuario();
-//		UsuarioManager usuarioManager = new UsuarioManager();
-//		
-////		usuario.setNomeUsuario("user");
-////		usuario.setSenha("password");
-////		usuarioManager.salvarUsuario(usuario);
-//		
-////		Session session = HibernateUtil.getSessionFactory().openSession(); 
-////		Criteria criteria = session.createCriteria(Usuario.class);
-////		criteria = criteria.add(Restrictions.eq("nomeUsuario", "user"));
-////		Usuario usuarioBanco = (Usuario) criteria.list().get(0);
-////		System.out.println(usuarioBanco.getNomeUsuario() + "\t" + usuarioBanco.getSalt() + "\t" + usuarioBanco.getSenha());
-//
-//		System.out.println(usuarioManager.verificarLogin("user", "password"));
-//	}
-
 }
