@@ -104,14 +104,13 @@
                     
                     List<Aluno> alunos = manager.recuperarTodosAlunos();
                     
-                    for(Aluno aluno : alunos){
-                       %>
+                    for(Aluno aluno : alunos){%>
                         <tr>
-                            <td><%out.write(aluno.getNome());%></td>
-                            <td><%out.write(aluno.getCurso());%></td>
-                            <td><%out.write(aluno.getCentro());%></td>
-                            <td><%out.write(aluno.getSituacaoAtual());%></td>
-                            <td><%out.write(aluno.getAnoEntrada());%></td>
+                            <td><%= aluno.getNome() %></td>
+                            <td><%= aluno.getCurso() %></td>
+                            <td><%= aluno.getCentro() %></td>
+                            <td><%= aluno.getSituacaoAtual() %></td>
+                            <td><%= aluno.getAnoEntrada() %></td>
                         </tr> 
                     <%}%>
                 </tbody>
