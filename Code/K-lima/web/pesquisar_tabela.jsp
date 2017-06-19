@@ -102,24 +102,18 @@
                     <%
                     AlunoManager manager = new AlunoManager();
                     
-                    //manager.carregarCSV();
-                    
                     List<Aluno> alunos = new AlunoManager().recuperarTodosAlunos();
                     
-                    //out.write(alunos.get(1).getNome());
-                   
-                    %>
-                    <%for(int i=0; i < alunos.size(); i++){
-                        
-                        out.write("<tr>");                            
-                            out.write("<td>" + alunos.get(i).getNome() + "</td>");
-                            out.write("<td>" + alunos.get(i).getCurso() + "</td>");
-                            out.write("<td>" + alunos.get(i).getCentro()+ "</td>");
-                            out.write("<td>" + alunos.get(i).getSituacaoAtual() + "</td>");
-                            out.write("<td>" + alunos.get(i).getAnoEntrada()+ "</td>");
-                        out.write("</tr>");
-                         
-                    }%>
+                    for(Aluno aluno : alunos){
+                       %>
+                        <tr>
+                            <td><%out.write(aluno.getNome());%></td>
+                            <td><%out.write(aluno.getCurso());%></td>
+                            <td><%out.write(aluno.getCentro());%></td>
+                            <td><%out.write(aluno.getSituacaoAtual());%></td>
+                            <td><%out.write(aluno.getAnoEntrada());%></td>
+                        </tr> 
+                    <%}%>
                 </tbody>
             </table>
           </div>
