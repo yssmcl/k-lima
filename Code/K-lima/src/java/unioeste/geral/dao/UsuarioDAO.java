@@ -1,4 +1,4 @@
-package unioeste.geral.autenticacao.dao;
+package unioeste.geral.dao;
 
 import java.util.List;
 import org.hibernate.Criteria;
@@ -6,9 +6,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-import unioeste.geral.aluno.bo.Aluno;
+import unioeste.geral.bo.Aluno;
 import unioeste.geral.util.HibernateUtil;
-import unioeste.geral.autenticacao.bo.Usuario;
+import unioeste.geral.bo.Usuario;
 
 public class UsuarioDAO {
 	// TODO: função genérica para inserirUsuario e inserirAluno (só muda a linha do session.save())

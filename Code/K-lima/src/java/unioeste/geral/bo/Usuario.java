@@ -1,4 +1,4 @@
-package unioeste.geral.autenticacao.bo;
+package unioeste.geral.bo;
 
 import java.io.Serializable;
 import java.util.Date;

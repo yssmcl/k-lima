@@ -1,5 +1,7 @@
-package unioeste.geral.aluno.dao;
+package unioeste.geral.dao;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import unioeste.geral.util.HibernateUtil;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +13,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import unioeste.geral.aluno.bo.Aluno;
+import org.hibernate.jdbc.Work;
+import unioeste.geral.bo.Aluno;
 
 public class AlunoDAO {
 	public void inserirAluno(Aluno aluno) {

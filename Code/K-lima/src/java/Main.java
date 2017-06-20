@@ -1,6 +1,6 @@
 
-import unioeste.geral.aluno.bo.Aluno;
-import unioeste.geral.aluno.manager.AlunoManager;
+import unioeste.geral.bo.Aluno;
+import unioeste.geral.manager.AlunoManager;
 
 public class Main {
 

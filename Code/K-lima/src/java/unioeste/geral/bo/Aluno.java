@@ -1,4 +1,4 @@
-package unioeste.geral.aluno.bo;
+package unioeste.geral.bo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

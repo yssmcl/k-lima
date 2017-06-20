@@ -1,4 +1,4 @@
-package unioeste.geral.autenticacao.manager;
+package unioeste.geral.manager;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -9,10 +9,10 @@ import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
-import unioeste.geral.aluno.bo.Aluno;
+import unioeste.geral.bo.Aluno;
 import unioeste.geral.util.HibernateUtil;
-import unioeste.geral.autenticacao.bo.Usuario;
-import unioeste.geral.autenticacao.dao.UsuarioDAO;
+import unioeste.geral.bo.Usuario;
+import unioeste.geral.dao.UsuarioDAO;
 
 
 public class UsuarioManager {
