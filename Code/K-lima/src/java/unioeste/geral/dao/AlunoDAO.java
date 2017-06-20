@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -150,8 +151,8 @@ public class AlunoDAO {
 		try {
 			transaction = session.beginTransaction();
 					
-			String sql = "DROP TABLE Aluno";
-			SQLQuery query = session.createSQLQuery(sql);
+			String hql = "delete from Aluno";
+			Query query = session.createQuery(hql);
 			query.executeUpdate();
 
 			transaction.commit();
@@ -162,5 +163,5 @@ public class AlunoDAO {
 			session.close();
 		}
 	}
-	
+		
 }
