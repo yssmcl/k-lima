@@ -95,3 +95,15 @@
 0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:08:31 -0300] "GET /K-lima/js/vendor/foundation.js HTTP/1.1" 200 289622
 0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:08:31 -0300] "GET /K-lima/js/app.js HTTP/1.1" 200 25
 0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:08:31 -0300] "GET /favicon.ico HTTP/1.1" 200 1150
+46.174.191.31 - - [10/Jul/2017:14:14:46 -0300] "GET / HTTP/1.0" 200 11432
+204.44.65.4 - - [10/Jul/2017:16:05:59 -0300] "GET /?rands=_728444188231302602606040 HTTP/1.0" 200 11432
+204.44.65.4 - - [10/Jul/2017:16:05:59 -0300] "GET /?rands=_21364208396841346007408384 HTTP/1.0" 200 11432
+204.44.65.4 - - [10/Jul/2017:16:05:59 -0300] "GET /vs.php?rands=_6672240048334804080936 HTTP/1.0" 404 1084
+127.0.0.1 - - [10/Jul/2017:16:11:06 -0300] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
+127.0.0.1 - admin [10/Jul/2017:16:11:06 -0300] "GET /manager/text/ HTTP/1.1" 200 39
+127.0.0.1 - - [10/Jul/2017:16:11:06 -0300] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
+127.0.0.1 - admin [10/Jul/2017:16:11:06 -0300] "GET /manager/text/ HTTP/1.1" 200 39
+127.0.0.1 - admin [10/Jul/2017:16:11:06 -0300] "GET /manager/text/ HTTP/1.1" 200 39
+127.0.0.1 - - [10/Jul/2017:16:11:06 -0300] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
+127.0.0.1 - - [10/Jul/2017:16:11:07 -0300] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
+127.0.0.1 - admin [10/Jul/2017:16:11:07 -0300] "GET /manager/text/ HTTP/1.1" 200 39
