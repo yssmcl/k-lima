@@ -18,6 +18,7 @@ import org.hibernate.jdbc.Work;
 import unioeste.geral.bo.Aluno;
 
 public class AlunoDAO {
+	
 	public void inserirAluno(Aluno aluno) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;

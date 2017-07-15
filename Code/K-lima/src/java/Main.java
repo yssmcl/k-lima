@@ -1,6 +1,12 @@
 
 import unioeste.geral.bo.Aluno;
-import unioeste.geral.manager.AlunoManager;
+import unioeste.geral.bo.Campus;
+import unioeste.geral.bo.Centro;
+import unioeste.geral.bo.Curso;
+import unioeste.geral.dao.AlunoDAO;
+import unioeste.geral.dao.CampusDAO;
+import unioeste.geral.dao.CentroDAO;
+import unioeste.geral.dao.CursoDAO;
 
 public class Main {
 
@@ -30,7 +36,16 @@ public class Main {
 //		System.out.println(qtd);
 		
 //		alunoDAO.deletarTabelaAluno();
-
+		
+		Campus campus = new Campus("campus1");
+		Centro centro = new Centro("centro1");
+		Curso curso = new Curso("curso1");
+		Aluno aluno = new Aluno("aluno1");
+		new CampusDAO().inserirCampus(campus);
+		new CentroDAO().inserirCentro(centro);
+		new CursoDAO().inserirCurso(curso);
+		new AlunoDAO().inserirAluno(aluno);
+	
 		/* teste de conexão */
         // Connection connection;
         // // Class.forName("com.mysql.jdbc.Driver");

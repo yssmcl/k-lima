@@ -56,8 +56,13 @@ public class AlunoManager {
 	}
 	
     public void removerTodosAlunos() {
-	new AlunoDAO().deletarTodosAlunos();
+		new AlunoDAO().deletarTodosAlunos();
     }
+	
+	// TODO
+	public void removerAlunosPorAtributo(String atributo, Object valor) {
+		// new AlunoDAO().deletarAlunosPorAtributo(atributo, valor);
+	}
     
     public void carregarCSV() throws IOException{
          
@@ -80,10 +85,10 @@ public class AlunoManager {
                 String campos[] = linha.split(";"); // separa cada campo do arquivo em vetores de string
                                 
                 Aluno aluno = new Aluno();
-                aluno.setCurso(campos[0]);
-                aluno.setCentro(campos[1]);
-                aluno.setModalidade(campos[2]);
-                aluno.setTurno(campos[3]);
+//                aluno.setCurso(campos[0]);
+//                aluno.setCentro(campos[1]);
+//                aluno.setModalidade(campos[2]);
+//                aluno.setTurno(campos[3]);
                 aluno.setAnoAtual(campos[4]);
                 aluno.setNome(campos[5]);
                 aluno.setUnidadeFederativa(campos[6]);
@@ -94,9 +99,9 @@ public class AlunoManager {
                 aluno.setBairro(campos[11]);
                 aluno.setCidade(campos[12]);
                 aluno.setAnoEntrada(campos[13]);
-                aluno.setEnderecoCompleto(campos[14]);
-                aluno.setLatitude(campos[15]);
-                aluno.setLongitude(campos[16]);
+//                aluno.setEnderecoCompleto(campos[14]);
+//                aluno.setLatitude(campos[15]);
+//                aluno.setLongitude(campos[16]);
                 
                 salvarAluno(aluno);
             }
