@@ -1,7 +1,5 @@
 package unioeste.geral.dao;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import unioeste.geral.util.HibernateUtil;
 import java.util.HashMap;
 import java.util.List;
@@ -9,12 +7,10 @@ import java.util.Map;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.jdbc.Work;
 import unioeste.geral.bo.Aluno;
 
 public class AlunoDAO {
@@ -164,5 +160,25 @@ public class AlunoDAO {
 			session.close();
 		}
 	}
-		
+
+	public void deletarAlunosPorAtributo(String atributo, Object valor) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+					
+			String hql = "delete from Aluno where " + atributo + " = :valor";
+			Query query = session.createQuery(hql);
+			query.setParameter("valor", valor);
+			query.executeUpdate();
+
+			transaction.commit();
+		} catch (HibernateException e) {
+			if (transaction != null) transaction.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+	
 }

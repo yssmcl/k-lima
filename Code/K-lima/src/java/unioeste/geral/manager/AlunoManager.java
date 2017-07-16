@@ -21,10 +21,10 @@ public class AlunoManager {
 		// Retorna uma lista de objetos do tipo Aluno contendo os objetos que possuem o atributo "nome" igual a "João Silva"
 		// e o atributo "centro" igual a "CECE".
 		// Equivalente a: SELECT * FROM Aluno WHERE nome = "João Silva" AND centro = "CECE";
-		HashMap<String, Object> condicoes = new HashMap<>();
-		condicoes.put("nome", "João Silva");
-		condicoes.put("centro", "CECE");
-		List<Aluno> alunos = recuperarAlunosPorAtributos(condicoes);
+		HashMap<String, Object> condicao = new HashMap<>();
+		condicao.put("nome", "João Silva");
+		condicao.put("centro", "CECE");
+		List<Aluno> alunos = recuperarAlunosPorAtributos(condicao);
 	*/
 	public List<Aluno> recuperarAlunosPorAtributos(HashMap<String, Object> condicao) {
 		return new AlunoDAO().buscarAlunosPorAtributos(condicao);
@@ -59,9 +59,8 @@ public class AlunoManager {
 		new AlunoDAO().deletarTodosAlunos();
     }
 	
-	// TODO
 	public void removerAlunosPorAtributo(String atributo, Object valor) {
-		// new AlunoDAO().deletarAlunosPorAtributo(atributo, valor);
+		new AlunoDAO().deletarAlunosPorAtributo(atributo, valor);
 	}
     
     public void carregarCSV() throws IOException{
