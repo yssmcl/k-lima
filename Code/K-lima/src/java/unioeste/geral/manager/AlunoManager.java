@@ -65,42 +65,39 @@ public class AlunoManager {
     
     public void carregarCSV() throws IOException{
          
-       
-        
         try {            
                     
             // removerTodosAlunos(); //remove todos os alunos do banco antes de inserir os novos dados do arquivo CSV
             
-            Scanner scanner = new Scanner(new FileReader("C:/Users/Leandro Ensina/Documents/Unioeste/4 ano/Sistemas de Informação/export_completo.csv"));
+            CursoManager curso = new CursoManager();
+            Scanner scanner = new Scanner(new FileReader("C:/Users/Leandro Ensina/Documents/Unioeste/4 ano/Sistemas de Informação/template_klima.csv"));
             scanner.nextLine(); //junto com a linha abaixo, elimina as duas primeiras linhas do arquivo que não são importantes
-            scanner.nextLine(); 
-                                              
+                                             
             while(scanner.hasNext()){
                 
-                String linha = scanner.nextLine(); //lê uma linha do arquivo
+                //lê uma linha do arquivo que não será utilizada (a primeira do arquivo)
+                String linha = scanner.nextLine();
                 
-                linha = padronizarLinhaCSV(linha); //Verifica a linha para evitar que não tenha valores faltantes
+                //Verifica a linha para evitar que não tenha valores faltantes
+               // linha = padronizarLinhaCSV(linha);
                 
-                String campos[] = linha.split(";"); // separa cada campo do arquivo em vetores de string
+               // separa cada campo do arquivo em vetores de string
+                String campos[] = linha.split(";");
                                 
                 Aluno aluno = new Aluno();
-//                aluno.setCurso(campos[0]);
-//                aluno.setCentro(campos[1]);
-//                aluno.setModalidade(campos[2]);
-//                aluno.setTurno(campos[3]);
-                aluno.setAnoAtual(campos[4]);
-                aluno.setNome(campos[5]);
-                aluno.setUnidadeFederativa(campos[6]);
+                aluno.setNome(campos[0]);
+                aluno.setAnoEntrada(campos[5]);
+                aluno.setAnoAtual(campos[6]);
                 aluno.setSituacaoAtual(campos[7]);
                 aluno.setCep(campos[8]);
                 aluno.setRua(campos[9]);
                 aluno.setNumero(campos[10]);
                 aluno.setBairro(campos[11]);
                 aluno.setCidade(campos[12]);
-                aluno.setAnoEntrada(campos[13]);
-//                aluno.setEnderecoCompleto(campos[14]);
-//                aluno.setLatitude(campos[15]);
-//                aluno.setLongitude(campos[16]);
+                aluno.setUnidadeFederativa(campos[13]);
+                
+                //recupera a ID de curso
+                
                 
                 salvarAluno(aluno);
             }
