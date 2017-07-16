@@ -5,8 +5,8 @@
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="unioeste.geral.aluno.bo.Aluno"%>
-<%@page import="unioeste.geral.aluno.manager.AlunoManager"%>
+<%@page import="unioeste.geral.bo.Aluno"%>
+<%@page import="unioeste.geral.manager.AlunoManager"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 
 
