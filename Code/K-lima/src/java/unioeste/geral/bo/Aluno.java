@@ -129,5 +129,13 @@ public class Aluno {
 	public void setAnoEntrada(String anoEntrada) {
 		this.anoEntrada = anoEntrada;
 	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
 	
 }
