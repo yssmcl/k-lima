@@ -17,6 +17,9 @@ public class Curso {
 	
 	@ManyToOne
 	private Centro centro;
+	
+	@ManyToOne
+	private Campus campus;
 
 	public Curso() {
 	}
@@ -40,6 +43,14 @@ public class Curso {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public String getTurno() {
+		return turno;
+	}
+
+	public void setTurno(String turno) {
+		this.turno = turno;
+	}
 
 	public Centro getCentro() {
 		return centro;
@@ -47,6 +58,14 @@ public class Curso {
 
 	public void setCentro(Centro centro) {
 		this.centro = centro;
+	}
+
+	public Campus getCampus() {
+		return campus;
+	}
+
+	public void setCampus(Campus campus) {
+		this.campus = campus;
 	}
 	
 }

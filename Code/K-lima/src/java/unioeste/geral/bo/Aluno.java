@@ -33,6 +33,12 @@ public class Aluno {
 
 	@ManyToOne
 	private Curso curso;
+	
+	@ManyToOne
+	private Centro centro;
+	
+	@ManyToOne
+	private Campus campus;
 
 	public Aluno() {
 	}
@@ -136,6 +142,22 @@ public class Aluno {
 
 	public void setCurso(Curso curso) {
 		this.curso = curso;
+	}
+
+	public Centro getCentro() {
+		return centro;
+	}
+
+	public void setCentro(Centro centro) {
+		this.centro = centro;
+	}
+
+	public Campus getCampus() {
+		return campus;
+	}
+
+	public void setCampus(Campus campus) {
+		this.campus = campus;
 	}
 	
 }

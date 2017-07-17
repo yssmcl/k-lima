@@ -37,21 +37,21 @@ public class Main {
 		
 //		alunoDAO.deletarTabelaAluno();
 		
-//		Campus campus = new Campus("campus1");
-//		Centro centro = new Centro("centro1");
-//		Curso curso = new Curso("curso1");
+		Campus campus = new Campus("campus1");
+		Centro centro = new Centro("centro1");
+		Curso curso = new Curso("curso1");
 		Aluno aluno = new Aluno("aluno1");
-		Aluno aluno2 = new Aluno("aluno2");
-		Aluno aluno3 = new Aluno("aluno3");
-//		new CampusDAO().inserirCampus(campus);
-//		new CentroDAO().inserirCentro(centro);
-//		new CursoDAO().inserirCurso(curso);
+//		Aluno aluno2 = new Aluno("aluno2");
+//		Aluno aluno3 = new Aluno("aluno3");
+		new CampusDAO().inserirCampus(campus);
+		new CentroDAO().inserirCentro(centro);
+		new CursoDAO().inserirCurso(curso);
 		new AlunoDAO().inserirAluno(aluno);
-		new AlunoDAO().inserirAluno(aluno);
-		new AlunoDAO().inserirAluno(aluno);
+//		new AlunoDAO().inserirAluno(aluno);
+//		new AlunoDAO().inserirAluno(aluno);
 //		new AlunoDAO().inserirAluno(aluno2);
 //		new AlunoDAO().inserirAluno(aluno3);
-		new AlunoDAO().deletarAlunosPorAtributo("nome", "aluno1");
+//		new AlunoDAO().deletarAlunosPorAtributo("nome", "aluno1");
 	
 		/* teste de conexão */
         // Connection connection;
