@@ -1,13 +1,13 @@
 <%-- 
-    Document   : index.jsp
-    Created on : 14/06/2017, 08:41:19
+    Document   : upload_csv_evasao
+    Created on : 17/07/2017, 08:12:07
     Author     : Leandro Ensina
 --%>
-
 <%@page import="java.util.List"%>
 <%@page import="unioeste.geral.bo.Aluno"%>
 <%@page import="unioeste.geral.manager.AlunoManager"%>
-<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 
 
 <!DOCTYPE html>
@@ -45,7 +45,7 @@
             <li><a href="#">Estáticos</a></li>
             <li><a href="#">Dinâmicos</a></li>
           </ul>
-          <div class="menu-mobile-opcao"><a href="upload_csv_evasao.jsp">Atualizar dados</a></div>
+          <div class="menu-mobile-opcao"><a href="#">Atualizar dados</a></div>
           <div class="menu-mobile-opcao"><a href="#">Ajuda</a></div>
         </div>
 
@@ -78,7 +78,7 @@
                     </ul>
                   </li>
                   <li>
-                    <a href="upload_csv_evasao.jsp">Atualizar dados</a>
+                    <a href="#">Atualizar dados</a>
                   </li>
                   <li>
                     <a href="#">Ajuda</a>
@@ -89,13 +89,17 @@
           </nav>
 
           <!-- MAIN SECTION -->
-          <br />
-          <br />
-          <br />
-          <div class="row" style="text-align:center;">
-		<img src="<%=caminho%>/img/unioeste.jpg" alt="Unioeste" height="400" width="900">
+          <div class="row">
+            <br />
+            <h1>Importar dados de Evasão</h1>
+            <form method="post" action="UploadServlet" enctype="multipart/form-data">
+              Selecione o arquivo CSV para importação:
+              <input type="file" name="dataFile" id="fileChooser"/><br/><br/>
+              <input type="submit" value="Upload" />
+            </form>
+              
           </div>
-          
+                    
         </div>
       </div>
     </div>
