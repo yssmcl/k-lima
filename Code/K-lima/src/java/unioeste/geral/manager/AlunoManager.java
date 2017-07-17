@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import unioeste.geral.bo.Aluno;
+import unioeste.geral.bo.Campus;
 import unioeste.geral.dao.AlunoDAO;
 
 public class AlunoManager {
@@ -69,7 +70,9 @@ public class AlunoManager {
                     
             // removerTodosAlunos(); //remove todos os alunos do banco antes de inserir os novos dados do arquivo CSV
             
-            CursoManager curso = new CursoManager();
+            CampusManager campusMana = new CampusManager();
+            CentroManager centroMana = new CentroManager();
+            CursoManager cursoMana = new CursoManager();
             Scanner scanner = new Scanner(new FileReader("C:/Users/Leandro Ensina/Documents/Unioeste/4 ano/Sistemas de Informação/template_klima.csv"));
             scanner.nextLine(); //junto com a linha abaixo, elimina as duas primeiras linhas do arquivo que não são importantes
                                              
@@ -98,7 +101,8 @@ public class AlunoManager {
                 
                 //recupera a ID de curso
                 
-                
+               // aluno.setCurso(curso.);
+                //Campus campus = campusMana.recuperarCampiPorAtributo("nome", campos[3]);
                 salvarAluno(aluno);
             }
             

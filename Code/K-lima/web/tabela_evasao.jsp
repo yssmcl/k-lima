@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index.jsp
-    Created on : 14/06/2017, 08:41:19
+    Document   : tabela_evasao
+    Created on : 17/07/2017, 09:01:48
     Author     : Leandro Ensina
 --%>
 
@@ -39,14 +39,12 @@
 
         <div class="off-canvas position-left" id="mobile-menu" data-off-canvas>
           <div class="menu-mobile-opcao"><a href="index.jsp">Home</a></div>
-          <div class="menu-mobile-opcao"><a href="tabela_evasao.jsp">Tabela</a></div>
-          <div class="menu-mobile-opcao">Gráficos</div>
+          <div class="menu-mobile-opcao"><a href="pesquisar_tabela.jsp">Tabela</a></div>
+          <div class="menu-mobile-opcao">Gráficos Dinâmicos</div>
           <ul>
-            <li><a href="#">Estáticos</a></li>
-            <li><a href="#">Dinâmicos</a></li>
+            <li><a href="#">Alunos do CECE</a></li>
+            <li><a href="#">Aprovados</a></li>
           </ul>
-          <div class="menu-mobile-opcao"><a href="upload_csv_evasao.jsp">Atualizar dados</a></div>
-          <div class="menu-mobile-opcao"><a href="#">Ajuda</a></div>
         </div>
 
         <!-- MOBILE NAVIGATION -->
@@ -68,20 +66,14 @@
                     <a href="index.jsp">Home</a>
                   </li>                  
                   <li>
-                    <a href="tabela_evasao.jsp">Tabela</a>
+                    <a href="pesquisar_tabela.jsp">Tabela</a>
                   </li>
                   <li>
-                    <a href="#">Gráficos</a>
+                    <a href="#">Gráficos Dinâmicos</a>
                     <ul class="menu">
-                      <li><a href="#">Estáticos</a></li>
-                      <li><a href="#">Dinâmicos</a></li>
+                      <li><a href="#">Alunos do CECE</a></li>
+                      <li><a href="#">Aprovados</a></li>
                     </ul>
-                  </li>
-                  <li>
-                    <a href="upload_csv_evasao.jsp">Atualizar dados</a>
-                  </li>
-                  <li>
-                    <a href="#">Ajuda</a>
                   </li>
                 </ul>
               </div>
@@ -89,11 +81,52 @@
           </nav>
 
           <!-- MAIN SECTION -->
-          <br />
-          <br />
-          <br />
-          <div class="row" style="text-align:center;">
-		<img src="<%=caminho%>/img/unioeste.jpg" alt="Unioeste" height="400" width="900">
+          
+          <div class="row centralizado">
+            <div class="medium-12 columns" style="text-align: center;">
+                <h1>Alunos Unioeste</h1>
+            </div>
+          </div>
+          
+          <hr />
+          
+          <form>
+            <div class="row">              
+              <div class="medium-4 columns">  
+                  <label>Aluno
+                      <input type="text" name="aluno" />
+                  </label>
+              </div>
+                <div class="medium-4 columns">  
+                  <label>Curso
+                      <input type="text" name="curso" />
+                  </label>
+              </div>
+                <div class="medium-4 columns">  
+                  <label>Situação Atual
+                      <input type="text" name="Situação Atual" />
+                  </label>
+              </div>
+            </div>
+            <div class="row">
+                <div class="medium-12 columns">
+                    <input type="submit" value="Pesquisar" class="button" />
+                </div>
+            </div>    
+          </form>
+          
+          <div class="row">
+              <table>
+              <thead>
+                  <tr>
+                      <th>Aluno</th>
+                      <th>Curso</th>
+                      <th>Ano Entrada</th>
+                      <th>Ano Atual</th>
+                      <th>Situação Atual</th>
+                  </tr>
+              </thead>
+            </table>
           </div>
           
         </div>
