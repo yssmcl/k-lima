@@ -10,6 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import unioeste.geral.bo.Aluno;
 import unioeste.geral.bo.Campus;
+import unioeste.geral.bo.Centro;
+import unioeste.geral.bo.Curso;
 import unioeste.geral.dao.AlunoDAO;
 
 public class AlunoManager {
@@ -102,7 +104,9 @@ public class AlunoManager {
                 //recupera a ID de curso
                 
                // aluno.setCurso(curso.);
-                //Campus campus = campusMana.recuperarCampiPorAtributo("nome", campos[3]);
+                Campus campus = campusMana.recuperarCampiPorAtributo("nome", campos[3]).get(0);
+                Centro centro = centroMana.recuperarCentrosPorAtributo("nome", campos[2]).get(0);
+                Curso curso = cursoMana.recuperarCursosPorAtributo("", aluno)
                 salvarAluno(aluno);
             }
             
