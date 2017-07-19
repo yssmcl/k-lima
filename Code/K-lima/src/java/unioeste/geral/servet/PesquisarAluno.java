@@ -90,7 +90,7 @@ public class PesquisarAluno extends HttpServlet {
             String situacaoAtual = request.getParameter("situacaoAtual");
             
             HashMap<String, Object> condicao = new HashMap<>();
-            condicao.put("nome", "Arlindo");
+            condicao.put("nome", "Arlindo Santos");
             
             alunos = alunoMana.recuperarAlunosPorAtributos(condicao);
             
