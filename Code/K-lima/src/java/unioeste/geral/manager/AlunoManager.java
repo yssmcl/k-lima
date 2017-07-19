@@ -49,7 +49,15 @@ public class AlunoManager {
     public List<Aluno> recuperarTodosAlunos() {
 	return new AlunoDAO().buscarTodosAlunos();
     }
-
+    
+    public int quantidadeAlunosCurso(Object curso,List<Aluno> alunos){
+        int totalCurso=0;
+        for(int i=0;i<alunos.size();i++ ){
+            if(alunos.get(i).getCurso().getNome().equals(curso)) totalCurso++;
+        }
+        return totalCurso;
+    }
+    
     public void modificarAluno(Aluno aluno) {
 		new AlunoDAO().atualizarAluno(aluno);
 	}
@@ -106,7 +114,7 @@ public class AlunoManager {
                // aluno.setCurso(curso.);
                 Campus campus = campusMana.recuperarCampiPorAtributo("nome", campos[3]).get(0);
                 Centro centro = centroMana.recuperarCentrosPorAtributo("nome", campos[2]).get(0);
-                Curso curso = cursoMana.recuperarCursosPorAtributo("", aluno)
+                //Curso curso = cursoMana.recuperarCursosPorAtributo("", aluno);
                 salvarAluno(aluno);
             }
             
