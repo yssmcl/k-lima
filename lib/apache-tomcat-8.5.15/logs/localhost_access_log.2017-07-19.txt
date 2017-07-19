@@ -987,3 +987,9 @@
 0:0:0:0:0:0:0:1 - - [19/Jul/2017:12:22:37 -0300] "GET /K-lima/css/DataTables-1.10.8/images/sort_both.png HTTP/1.1" 404 1127
 0:0:0:0:0:0:0:1 - - [19/Jul/2017:12:22:37 -0300] "GET /K-lima/css/DataTables-1.10.8/images/sort_asc.png HTTP/1.1" 404 1126
 46.174.191.30 - - [19/Jul/2017:12:23:05 -0300] "GET / HTTP/1.0" 200 11432
+127.0.0.1 - - [19/Jul/2017:12:25:01 -0300] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
+127.0.0.1 - admin [19/Jul/2017:12:25:01 -0300] "GET /manager/text/ HTTP/1.1" 200 39
+127.0.0.1 - - [19/Jul/2017:12:25:01 -0300] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
+127.0.0.1 - admin [19/Jul/2017:12:25:01 -0300] "GET /manager/text/ HTTP/1.1" 200 39
+127.0.0.1 - - [19/Jul/2017:12:25:01 -0300] "HEAD /netbeans-tomcat-status-test HTTP/1.1" 404 -
+127.0.0.1 - admin [19/Jul/2017:12:25:01 -0300] "GET /manager/text/ HTTP/1.1" 200 39

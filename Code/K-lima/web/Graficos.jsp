@@ -4,6 +4,13 @@
     Author     : Paulo
 --%>
 
+<%@page import="unioeste.geral.servet.GraficosServlet"%>
+<%@page import="unioeste.geral.bo.Aluno"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
+<%@page import="unioeste.geral.manager.CursoManager"%>
+<%@page import="unioeste.geral.manager.AlunoManager"%>
+<%@page import="java.util.HashMap"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,7 +24,22 @@
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/drilldown.js"></script>
   
- <div id="colunasLaterais" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>  
+<% 
+        HashMap<String, Object> condicao;
+        condicao = new HashMap<String, Object>();
+        condicao.put("situacaoAtual" , "Cancelado");
+              
+        AlunoManager aluno = new AlunoManager();
+        List<Aluno> alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosCanceladosCC =aluno.quantidadeAlunosCurso("Ciência da Computação", alunos); 
+        condicao.put("situacaoAtual" , "Cancelado por Abandono");  
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        alunosCanceladosCC =alunosCanceladosCC+aluno.quantidadeAlunosCurso("Ciência da Computação", alunos);
+        
+        //int alunosCanceladosMC =aluno.quantidadeAlunosCurso("Ciência da Computação", alunos); 
+%>
+
+    <div id="colunasLaterais" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>  
 <br><br><br>
 
 <div id="AlunosDesistentesPorCurso" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
@@ -34,7 +56,8 @@
      <script>
         
         // Create the chart
-
+     
+    
 Highcharts.chart('colunasLaterais', {
         chart: {
             type: 'column'
@@ -69,7 +92,7 @@ Highcharts.chart('colunasLaterais', {
         },
         series: [{
             name: 'Desistentes',
-            data: [495, 228, 143, 440]
+            data: [<%out.println(alunosCanceladosCC);%>, 228, 143, 440]
 
         }]
     }); // retangular
@@ -196,7 +219,8 @@ Highcharts.chart('pizza', {
         
     });  // pizza
  
-        
-    </script>    
+   </script>    
+    
+
     </body>
 </html>

@@ -49,7 +49,15 @@ public class AlunoManager {
     public List<Aluno> recuperarTodosAlunos() {
 	return new AlunoDAO().buscarTodosAlunos();
     }
-
+    
+    public int quantidadeAlunosCurso(Object curso,List<Aluno> alunos){
+        int totalCurso=0;
+        for(int i=0;i<alunos.size();i++ ){
+            if(alunos.get(i).getCurso().getNome().equals(curso)) totalCurso++;
+        }
+        return totalCurso;
+    }
+    
     public void modificarAluno(Aluno aluno) {
 		new AlunoDAO().atualizarAluno(aluno);
 	}
@@ -110,7 +118,7 @@ public class AlunoManager {
                 aluno.setCentro(centro);
                 aluno.setCurso(curso);
                 
-                
+                //Curso curso = cursoMana.recuperarCursosPorAtributo("", aluno);
                 salvarAluno(aluno);
             }
             
