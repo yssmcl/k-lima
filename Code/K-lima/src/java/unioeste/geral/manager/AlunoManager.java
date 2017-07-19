@@ -101,12 +101,16 @@ public class AlunoManager {
                 aluno.setCidade(campos[12]);
                 aluno.setUnidadeFederativa(campos[13]);
                 
-                //recupera a ID de curso
-                
-               // aluno.setCurso(curso.);
+                //recupera a IDs de curso, centro e campus
                 Campus campus = campusMana.recuperarCampiPorAtributo("nome", campos[3]).get(0);
                 Centro centro = centroMana.recuperarCentrosPorAtributo("nome", campos[2]).get(0);
-                Curso curso = cursoMana.recuperarCursosPorAtributo("", aluno)
+                Curso curso = cursoMana.recuperarCursosPorAtributo("nome", campos[1]).get(0);
+               
+                aluno.setCampus(campus);
+                aluno.setCentro(centro);
+                aluno.setCurso(curso);
+                
+                
                 salvarAluno(aluno);
             }
             

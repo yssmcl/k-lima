@@ -19,6 +19,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import unioeste.geral.manager.AlunoManager;
 
 /**
  *
@@ -130,7 +131,11 @@ public class UploadServlet extends HttpServlet {
                     item.write(uploadedFile);
                 }
             }
-
+            
+            //inseri no banco estes dados
+            AlunoManager alunoMana = new AlunoManager();
+            alunoMana.carregarCSV();
+            
             // displays done.jsp page after upload finished
             getServletContext().getRequestDispatcher("/index.jsp").forward(
                     request, response);
