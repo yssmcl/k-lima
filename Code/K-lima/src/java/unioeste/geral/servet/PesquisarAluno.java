@@ -83,14 +83,14 @@ public class PesquisarAluno extends HttpServlet {
         List<Aluno> alunos = new ArrayList<>();
         
         try{
-            String nome = request.getParameter("nome");
+            String aluno = request.getParameter("aluno");
             String curso = request.getParameter("curso");
             String anoEntrada = request.getParameter("anoEntrada");
             String anoAtual = request.getParameter("anoAtual");
             String situacaoAtual = request.getParameter("situacaoAtual");
             
             HashMap<String, Object> condicao = new HashMap<>();
-            condicao.put("nome", "Arlindo Santos");
+            condicao.put("nome", "%"+aluno+"%");
             
             alunos = alunoMana.recuperarAlunosPorAtributos(condicao);
             

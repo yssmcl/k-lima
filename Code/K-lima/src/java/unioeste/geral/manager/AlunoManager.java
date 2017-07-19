@@ -83,7 +83,7 @@ public class AlunoManager {
             CampusManager campusMana = new CampusManager();
             CentroManager centroMana = new CentroManager();
             CursoManager cursoMana = new CursoManager();
-            Scanner scanner = new Scanner(new FileReader("C:/Users/Leandro Ensina/Documents/Unioeste/4 ano/Sistemas de Informação/template_klima.csv"));
+            Scanner scanner = new Scanner(new FileReader("C:/Users/Leandro Ensina/Documents/Unioeste/4 ano/Sistemas de Informação/k-lima/Code/K-lima/build/web/data/template_klima.csv"));
             scanner.nextLine(); //junto com a linha abaixo, elimina as duas primeiras linhas do arquivo que não são importantes
                                              
             while(scanner.hasNext()){

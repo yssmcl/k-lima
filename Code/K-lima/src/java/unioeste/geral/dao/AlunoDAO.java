@@ -43,7 +43,7 @@ public class AlunoDAO {
 			
 			Criteria criteria = session.createCriteria(Aluno.class);
 			for (Map.Entry<String, Object> entry : condicao.entrySet()) {
-				criteria.add(Restrictions.eq(entry.getKey(), entry.getValue()));
+				criteria.add(Restrictions.ilike(entry.getKey(), entry.getValue()));
 			}
 			alunos = (List<Aluno>) criteria.list();
 			
