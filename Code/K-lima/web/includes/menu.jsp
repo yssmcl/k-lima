@@ -16,6 +16,7 @@
             <li><a href="#">Estáticos</a></li>
             <li><a href="#">Dinâmicos</a></li>
           </ul>
+          <div class="menu-mobile-opcao"><a href="mapa_alunos.jsp">Mapa</a></div>
           <div class="menu-mobile-opcao"><a href="upload_csv_evasao.jsp">Atualizar dados</a></div>
           <div class="menu-mobile-opcao"><a href="#">Ajuda</a></div>
         </div>
@@ -47,6 +48,9 @@
                       <li><a href="#">Estáticos</a></li>
                       <li><a href="#">Dinâmicos</a></li>
                     </ul>
+                  </li>
+                  <li>
+                    <a href="mapa_alunos.jsp">Mapa</a>
                   </li>
                   <li>
                     <a href="upload_csv_evasao.jsp">Atualizar dados</a>
