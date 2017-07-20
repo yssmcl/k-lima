@@ -1,5 +1,6 @@
 package unioeste.geral.dao;
 
+import com.google.common.collect.Multimap;
 import unioeste.geral.util.HibernateUtil;
 import java.util.HashMap;
 import java.util.List;
@@ -9,8 +10,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import static org.hibernate.criterion.Restrictions.eq;
 import unioeste.geral.bo.Aluno;
 
 public class AlunoDAO {
@@ -32,7 +35,7 @@ public class AlunoDAO {
 			session.close();
 		}
 	}
-
+	
 	public List<Aluno> buscarAlunosPorAtributos(HashMap<String, Object> condicao) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
@@ -57,7 +60,47 @@ public class AlunoDAO {
 
 		return alunos;
 	}
-	
+
+	public List<Aluno> buscarAlunosPorAtributosMultimap(Multimap<String, Object> condicaoAND, Multimap<String, Object> condicaoOR) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = null;
+		List<Aluno> alunos = null;
+
+		try {
+			transaction = session.beginTransaction();
+			
+			Criteria criteria = session.createCriteria(Aluno.class);
+			if (condicaoAND != null) {
+				for (Map.Entry entry : condicaoAND.entries()) {
+					criteria.add(
+						// TODO: se for número usar eq, se for String usar ilike
+						Restrictions.eq((String) entry.getKey(), entry.getValue())
+					);
+				}
+			}
+			Disjunction disjunction = Restrictions.disjunction();
+			if (condicaoOR != null) {
+				for (Map.Entry entry : condicaoOR.entries()) {
+					disjunction.add(
+						Restrictions.ilike((String) entry.getKey(), entry.getValue())
+					);
+				}
+			}
+			criteria.add(disjunction);
+			
+			alunos = (List<Aluno>) criteria.list();
+			
+			transaction.commit();
+		} catch (HibernateException e) {
+			if (transaction != null) transaction.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return alunos;
+	}
+
 	public Long buscarQtdAlunosPorAtributos(HashMap<String, Object> condicao) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;

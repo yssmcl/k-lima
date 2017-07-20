@@ -1,4 +1,6 @@
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -18,28 +20,17 @@ import unioeste.geral.manager.CursoManager;
 public class Main {
 
     public static void main(String[] args) {
-		AlunoManager alunoManager = new AlunoManager();
-		CursoManager cursoManager = new CursoManager();
-	
-		HashMap<String, Object> condicao = new HashMap<>();
-		Curso curso = new CursoManager().recuperarCursosPorAtributo("nome", "Ciência da Computação").get(0);
-		condicao.put("curso", curso);
-		List<Aluno> alunos = alunoManager.recuperarAlunosPorAtributos(condicao);
+		Multimap<String, Object> condicaoAND = HashMultimap.create();
+		Curso curso = new CursoManager().recuperarCursosPorAtributo("nome", "Ciência da Computação").get(0);	
+		condicaoAND.put("curso.id", curso.getId());
+		
+		Multimap<String, Object> condicaoOR = HashMultimap.create();
+		condicaoOR.put("situacaoAtual", "Cancelado Por Abandono");
+		condicaoOR.put("situacaoAtual", "Cancelado");
+		condicaoOR.put("situacaoAtual", "Transferido");
+		
+		List<Aluno> alunos = new AlunoManager().recuperarAlunosPorAtributosMultimap(condicaoAND, condicaoOR);
 		System.out.println("=========================== " + alunos.size());
-		
-		HashMap<String, Object> condicao2 = new HashMap<>();
-		curso = new CursoManager().recuperarCursosPorAtributo("nome", "Matemática").get(0);
-		condicao2.put("curso", curso);
-		alunos = alunoManager.recuperarAlunosPorAtributos(condicao2);
-		System.out.println("=========================== " + alunos.size());
-		
-//		long qtdAlunos = alunoManager.recuperarQtdAlunosPorAtributos(condicao);
-//		System.out.println(qtdAlunos);
-		
-//		long qtd = alunoDAO.buscarQtdAlunosPorAtributo("nome", "asd");
-//		System.out.println(qtd);
-		
-//		alunoDAO.deletarTabelaAluno();
 		
 //		Campus campus = new Campus("campus1");
 //		Centro centro = new Centro("centro1");
