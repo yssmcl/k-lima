@@ -34,9 +34,7 @@
           
           <hr />
           
-          
-            <div class="row">
-                
+          <div class="row">
               <div class="medium-2 columns">  
                   <label>Titulo do Gráfico:</label> 
                   <input id="tituloEscolhido" name="titulo">
@@ -50,12 +48,16 @@
                         <option name="Colunas Laterais" value="bar"> Grafico laterais</option>
                     </select>
               </div>
+          </div>
+            <div class="row">
+                
+              
               <div class="medium-2 columns">
                   <label>tipo do Grafico:</label>                      
                   <select id="graficoSelecionado">
-                        <option name="Pizza" value="pie"> Grafico Pizza</option>
                         <option name="Colunas" value="column"> Grafico Colunas</option>
                         <option name="Colunas Laterais" value="bar"> Grafico laterais</option>
+                        <option name="Pizza" value="pie"> Grafico Pizza</option>
                     </select>
               </div>
               <div class="medium-3 columns">  
@@ -166,5 +168,6 @@
     <script src="<%=caminho%>/js/vendor/foundation.js"></script>
     <script src="<%=caminho%>/js/app.js"></script>
     <script type="text/javascript">
+
     </body>
 </html>
