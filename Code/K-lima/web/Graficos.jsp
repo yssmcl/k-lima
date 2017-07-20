@@ -14,33 +14,46 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<%
+	String caminho = request.getContextPath();
+%>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>K-Lima</title>
+
+        <link rel="stylesheet" href="<%=caminho%>/css/foundation.css">    
+        <link rel="stylesheet" href="<%=caminho%>/css/app.css">
     </head>
     <body>
 
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/drilldown.js"></script>
-  
+  <div class="off-canvas-wrapper">
+      <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper> <!-- Essa div e a de cima servem para fazer a parte do menu lateral -->
+
+          <jsp:include page="#{caminho}/includes/menu.jsp"/>
+          
 <% 
+        String cursoEscolhido = "Ciência da Computação";
+        
+        
         HashMap<String, Object> condicao;
         condicao = new HashMap<String, Object>();
         condicao.put("situacaoAtual" , "Cancelado");
-              
         AlunoManager aluno = new AlunoManager();
-        List<Aluno> alunos= aluno.recuperarAlunosPorAtributos(condicao);
-        int alunosCanceladosCC =aluno.quantidadeAlunosCurso("Ciência da Computação", alunos); 
         condicao.put("situacaoAtual" , "Cancelado por Abandono");  
-        alunos= aluno.recuperarAlunosPorAtributos(condicao);
-        alunosCanceladosCC =aluno.quantidadeAlunosCurso("Ciência da Computação", alunos);
+        List<Aluno> alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosCanceladosCC =aluno.quantidadeAlunosCurso("Ciência da Computação", alunos);
         condicao.put("situacaoAtual" , "Cancelado");  
         alunos= aluno.recuperarAlunosPorAtributos(condicao);
         alunosCanceladosCC =alunosCanceladosCC+aluno.quantidadeAlunosCurso("Ciência da Computação", alunos);
         condicao.put("situacaoAtual" , "transferido");  
         alunos= aluno.recuperarAlunosPorAtributos(condicao);
-        alunosCanceladosCC =alunosCanceladosCC+aluno.quantidadeAlunosCurso("Ciência da Computação", alunos);
+        int alunosTransferidosCC = aluno.quantidadeAlunosCurso("Ciência da Computação", alunos);
+        alunosCanceladosCC =alunosCanceladosCC+alunosTransferidosCC;
         
         int alunosCanceladosEM =aluno.quantidadeAlunosCurso("Engenharia Mecânica", alunos); 
         condicao.put("situacaoAtual" , "Cancelado por Abandono");  
@@ -76,10 +89,95 @@
         alunos= aluno.recuperarAlunosPorAtributos(condicao);
         alunosCanceladosEE =alunosCanceladosEE+aluno.quantidadeAlunosCurso("Engenharia Elétrica", alunos);
         
-        //int alunosCanceladosMC =aluno.quantidadeAlunosCurso("Ciência da Computação", alunos); 
+%>
+<%
+                
+        condicao.put("situacaoAtual" , "cursando");        
+        condicao.put("anoAtual" , "1");
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosCursando1Ano =aluno.quantidadeAlunosCurso(cursoEscolhido, alunos); 
+        
+        condicao.put("situacaoAtual" , "cursando");        
+        condicao.put("anoAtual" , "2");
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosCursando2Ano =aluno.quantidadeAlunosCurso(cursoEscolhido, alunos); 
+
+        condicao.put("situacaoAtual" , "cursando");        
+        condicao.put("anoAtual" , "3");
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosCursando3Ano =aluno.quantidadeAlunosCurso(cursoEscolhido, alunos); 
+
+        condicao.put("situacaoAtual" , "cursando");        
+        condicao.put("anoAtual" , "4");
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosCursando4Ano =aluno.quantidadeAlunosCurso(cursoEscolhido, alunos); 
+
+%>
+<%            
+        condicao.put("situacaoAtual" , "cancelado");        
+        condicao.put("anoAtual" , "1");
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosCursando1AnoCancelados =aluno.quantidadeAlunosCurso(cursoEscolhido, alunos); 
+        
+        condicao.put("situacaoAtual" , "cancelado");        
+        condicao.put("anoAtual" , "2");
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosCursando2AnoCancelados =aluno.quantidadeAlunosCurso(cursoEscolhido, alunos); 
+
+        condicao.put("situacaoAtual" , "cancelado");        
+        condicao.put("anoAtual" , "3");
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosCursando3AnoCancelados =aluno.quantidadeAlunosCurso(cursoEscolhido, alunos); 
+
+        condicao.put("situacaoAtual" , "cancelado");        
+        condicao.put("anoAtual" , "4");
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosCursand4AnoCancelados =aluno.quantidadeAlunosCurso(cursoEscolhido, alunos); 
+%>
+<%            
+        condicao.put("situacaoAtual" , "Cancelado por Abandono");        
+        condicao.put("anoAtual" , "1");
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosCursando1AnoCanceladosAbandono =aluno.quantidadeAlunosCurso(cursoEscolhido, alunos); 
+        
+        condicao.put("situacaoAtual" , "Cancelado por Abandono");        
+        condicao.put("anoAtual" , "2");
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosCursando2AnoCanceladosAbandono =aluno.quantidadeAlunosCurso(cursoEscolhido, alunos); 
+
+        condicao.put("situacaoAtual" , "Cancelado por Abandono");        
+        condicao.put("anoAtual" , "3");
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosCursando3AnoCanceladosAbandono =aluno.quantidadeAlunosCurso(cursoEscolhido, alunos); 
+
+        condicao.put("situacaoAtual" , "Cancelado por Abandono");        
+        condicao.put("anoAtual" , "4");
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosCursand4AnoCanceladosAbandono =aluno.quantidadeAlunosCurso(cursoEscolhido, alunos); 
 %>
 
-    <div id="colunasLaterais" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>  
+<% 
+    
+        condicao.put("situacaoAtual" , "Cancelado");
+        condicao.put("situacaoAtual" , "Cancelado por Abandono");  
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosCancelados =aluno.quantidadeAlunosCurso(cursoEscolhido, alunos);
+        condicao.put("situacaoAtual" , "Cancelado");  
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        alunosCanceladosCC =alunosCanceladosCC+aluno.quantidadeAlunosCurso(cursoEscolhido, alunos);
+        condicao.put("situacaoAtual" , "transferido");  
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosTransferidos = aluno.quantidadeAlunosCurso(cursoEscolhido, alunos);        
+        condicao.put("situacaoAtual" , "formado");                
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        int alunosFormados =aluno.quantidadeAlunosCurso(cursoEscolhido, alunos); 
+%>
+</div>
+      </div>
+<br />
+          <br />
+          <br />
+<div id="colunasLaterais" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>  
 <br><br><br>
 
 <div id="AlunosDesistentesPorCurso" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
@@ -132,7 +230,7 @@ Highcharts.chart('colunasLaterais', {
         },
         series: [{
             name: 'Desistentes',
-            data: [<%out.println(alunosCanceladosCC);%>, <%out.println(alunosCanceladosEE);%>, <%out.println(alunosCanceladosEM);%>, <%out.println(alunosCanceladosMAT);%>]
+            data: [<%out.println(alunosCancelados);%>, <%out.println(alunosCanceladosEE);%>, <%out.println(alunosCanceladosEM);%>, <%out.println(alunosCanceladosMAT);%>]
 
         }]
     }); // retangular
@@ -142,7 +240,7 @@ Highcharts.chart('AlunosDesistentesPorCurso', {
             type: 'bar'
         },
         title: {
-            text: 'Alunos Cursando: Ciencia da Computação'+' '
+        text: 'Alunos Cursando:'+'<% out.print(cursoEscolhido);%>'
         },
         xAxis: {
             categories: ['1 ano', '2 ano', '3 ano', '4 ano'],
@@ -174,7 +272,8 @@ Highcharts.chart('AlunosDesistentesPorCurso', {
         },
         series: [{
             name: 'Quantidade de alunos',
-            data: [55 , 32, 10, 21]
+            data: [<% out.println(alunosCursando1Ano);%>,<% out.println(alunosCursando2Ano);%>,
+                    <% out.println(alunosCursando3Ano);%>,<% out.println(alunosCursando4Ano);%>]
         }]
     });
         
@@ -183,7 +282,7 @@ Highcharts.chart('AlunosPorAnoDoCursoDe', {
             type: 'column'
         },
         title: {
-            text: 'Alunos por ano do curso de '+'CC'
+            text: 'Alunos por ano do curso de '+'<% out.print(cursoEscolhido);%>'
         },
 
         xAxis: {
@@ -212,11 +311,13 @@ Highcharts.chart('AlunosPorAnoDoCursoDe', {
         },
         series: [{
             name: 'Cancelados',
-            data: [85, 31, 8, 7]
+            data: [<%out.println(alunosCursando1AnoCancelados);%>,<%out.println(alunosCursando2AnoCancelados);%>,
+                    <%out.println(alunosCursando3AnoCancelados);%>,<%out.println(alunosCursand4AnoCancelados);%> ]
 
         }, {
             name: 'Cancelados por Abandono',
-            data: [181, 24, 50, 24]
+            data: [<%out.println(alunosCursando1AnoCanceladosAbandono);%>,<%out.println(alunosCursando2AnoCanceladosAbandono);%>,
+                    <%out.println(alunosCursando3AnoCanceladosAbandono);%>,<%out.println(alunosCursand4AnoCanceladosAbandono);%> ]
         }]
     }); // retangular
         
@@ -228,7 +329,7 @@ Highcharts.chart('pizza', {
             type: 'pie'
         },
         title: {
-            text: 'situação do ingresso do curso de:'+'Ciência da Computação '
+            text: 'situação do ingresso do curso de:'+'<% out.print(cursoEscolhido);%>'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -250,17 +351,20 @@ Highcharts.chart('pizza', {
             name: 'Alunos',
             colorByPoint: true,
             data: [
-                   {name: 'Desistentes', y: 495},
-                   {name: 'Formados', y: 222},
-                   {name: 'Transferidos', y: 51},
-                   {name: 'Cursando', y: 118}            
+                   {name: 'Desistentes', y: <% out.println(alunosCancelados);%>},
+                   {name: 'Formados', y: <% out.println(alunosFormados);%>},
+                   {name: 'Transferidos', y: <%out.println(alunosTransferidos);%>},
+                   {name: 'Cursando', y: <%out.println(alunosCursando1Ano+alunosCursando2Ano+alunosCursando3Ano+alunosCursando4Ano);%>}            
             ]
         }]
         
     });  // pizza
  
-   </script>    
-    
+   </script>   
+    <script src="<%=caminho%>/js/vendor/jquery.js"></script>    
+    <script src="<%=caminho%>/js/vendor/what-input.js"></script>
+    <script src="<%=caminho%>/js/vendor/foundation.js"></script>
+    <script src="<%=caminho%>/js/app.js"></script>
 
     </body>
 </html>
