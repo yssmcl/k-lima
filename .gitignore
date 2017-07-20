@@ -39,7 +39,7 @@ hs_err_pid*
 ./lib/apache-tomcat-8.5.15/logs/
 /lib/apache-tomcat-8.5.15/logs/
 ./lib/apache-tomcat-8.5.15/work/Catalina/localhost/ROOT/org/apache/jsp/index_jsp.java
-/lib/apache-tomcat-8.5.15/work/Catalina/localhost/ROOT/org/apache/jsp/index_jsp.java
+/lib/apache-tomcat-8.5.15/work/Catalina/localhost/
 /Code/TrocaMensagensUDP/nbproject/private/
 /Code/TrocaMensagens/nbproject/private/
 /Code/TrocaMensagens/build/
