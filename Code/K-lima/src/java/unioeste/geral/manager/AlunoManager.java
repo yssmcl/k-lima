@@ -1,5 +1,6 @@
 package unioeste.geral.manager;
 
+import com.google.common.collect.Multimap;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -49,15 +50,35 @@ public class AlunoManager {
 		return new AlunoDAO().buscarAlunosPorAtributos(condicao);
 	}
 	
-	/* Exemplo de uso:
-		// Retorna a quantidade de objetos do tipo Aluno que possuem o atributo "nome" igual a "João Silva" e o atributo
-		// "centro" igual a "CECE".
-		// Equivalente a: SELECT * FROM Aluno WHERE nome = "João Silva" AND centro = "CECE";
-		HashMap<String, Object> condicoes = new HashMap<>();
-		condicoes.put("nome", "João Silva");
-		condicoes.put("centro", "CECE");
-		long qtdAlunos = recuperarAlunosPorAtributos(condicoes);
-	*/
+	// TODO:
+//	private void substituirChaves(Multimap<String, Object> condicao) {
+//		if (condicao != null) {
+//			for (Map.Entry entry : condicao.entries()) {
+//				if (entry.getKey().equals("curso")) {
+//					Curso curso = (Curso) entry.getValue();
+//					condicao.put("curso.id", curso);
+//					// condicao.removeAll("curso");
+//				}
+	//			else if (entry.getKey().equals("centro")) {
+	//				condicao.remove("centro");	
+	//				Centro centro = (Centro) entry.getValue();
+	//				condicao.put("centro.id", centro.getId());
+	//			} else if (entry.getKey().equals("campus")) {
+	//				condicao.remove("campus");
+	//				Campus campus = (Campus) entry.getValue();
+	//				condicao.put("campus.id", campus.getId());
+	//			}
+//			}
+//		}
+//	}
+	
+	public List<Aluno> recuperarAlunosPorAtributosMultimap(Multimap<String, Object> condicaoAND, Multimap<String, Object> condicaoOR) {	
+		// TODO:
+//		substituirChaves(condicaoOR);
+//		substituirChaves(condicaoAND);
+		return new AlunoDAO().buscarAlunosPorAtributosMultimap(condicaoAND, condicaoOR);
+	}
+	
 	public Long recuperarQtdAlunosPorAtributos(HashMap<String, Object> condicao) {
 		for (Map.Entry<String, Object> entry : condicao.entrySet()) {
 			if (entry.getKey().equals("curso")) {
