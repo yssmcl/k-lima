@@ -1,9 +1,7 @@
-<%-- 
-    Document   : graficosDinamicos
-    Created on : 19/07/2017, 10:09:07
-    Author     : Paulo
---%>
-
+<%@page import="unioeste.geral.bo.Aluno"%>
+<%@page import="java.util.List"%>
+<%@page import="unioeste.geral.manager.AlunoManager"%>
+<%@page import="java.util.HashMap"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="no-js" lang="en" dir="ltr">
@@ -16,8 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>K-Lima</title>
     
-    </head>
-    <body>
+  </head>
+<body>
   
   <script src="http://code.highcharts.com/highcharts.js"></script>
   <script src="http://code.highcharts.com/modules/exporting.js"></script>
@@ -45,7 +43,8 @@
                         <option name="cursos" value="{Ciência da Computação, Engenharia Mecânica,
                                 Engenharia Eletrica, Matemática}"> Cursos </option>
                         <option name="Colunas" value="{'1 ano', '2 ano', '3 ano','4 ano'}"> Ano Letivo</option>
-                        <option name="Colunas Laterais" value="bar"> Grafico laterais</option>
+                        <option name="Colunas Laterais" value="{Cursando, Formando, Transferido, 
+                                Cancelado, Cancelado por Abandono}"> Situação atual</option>
                     </select>
               </div>
           </div>
@@ -63,7 +62,8 @@
               <div class="medium-3 columns">  
                   <label>Curso:</label>
                     <select id="cursoSelecionado">
-                        <option value="Todos">Todos</option>
+                        <option value="{Ciência da Computação, Engenharia Mecânica,
+                                Engenharia Eletrica, Matemática}">Todos</option>
                         <option value="Ciência da Computação">Ciência da Computação</option>
                         <option value="Engenharia Mecânica">Engenharia Mecânica</option>
                         <option value="Engenharia Eletrica">Engenharia Eletrica</option>
@@ -73,7 +73,7 @@
                 <div class="medium-2 columns">  
                   <label>Ano Atual:</label>
                     <select id="anoSelecionado">
-                        <option value="Todos">Todos</option>
+                        <option value="{'1 ano', '2 ano', '3 ano','4 ano'}">Todos</option>
                         <option value="Primeiro">Primeiro</option>
                         <option value="Segundo">Segundo</option>
                         <option value="Terceiro">Terceiro</option>
@@ -84,7 +84,8 @@
             <div class="medium-3 columns">  
                   <label>Situação Atual:</label>
                     <select id="situacaoSelecionada">
-                        <option value="Todas">Todas</option>
+                        <option value="{Cursando, Formando, Transferido, 
+                                Cancelado, Cancelado por Abandono}">Todas</option>
                         <option value="Cancelado por Abandono">Cancelado por Abandono</option>
                         <option value="Cursando">Cursando</option>
                         <option value="Cancelado">Cancelado</option>
@@ -168,6 +169,8 @@
     <script src="<%=caminho%>/js/vendor/foundation.js"></script>
     <script src="<%=caminho%>/js/app.js"></script>
     <script type="text/javascript">
+
+
 
     </body>
 </html>
