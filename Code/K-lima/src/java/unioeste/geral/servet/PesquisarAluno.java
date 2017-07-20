@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import unioeste.geral.bo.Aluno;
+import unioeste.geral.bo.Curso;
 import unioeste.geral.manager.AlunoManager;
 import unioeste.geral.manager.CursoManager;
 
@@ -81,6 +82,8 @@ public class PesquisarAluno extends HttpServlet {
         AlunoManager alunoMana = new AlunoManager();
         CursoManager cursoMana = new CursoManager();
         List<Aluno> alunos = new ArrayList<>();
+        List<Aluno> alunos_total = new ArrayList<>();
+        List<Curso> cursos = new ArrayList<>();
         
         try{
             String aluno = request.getParameter("aluno");
@@ -90,11 +93,28 @@ public class PesquisarAluno extends HttpServlet {
             String situacaoAtual = request.getParameter("situacaoAtual");
             
             HashMap<String, Object> condicao = new HashMap<>();
-            condicao.put("nome", "%"+aluno+"%");
             
+            //recupera os alunos
+            condicao.put("nome", "%"+aluno+"%");            
+            condicao.put("anoEntrada", "%"+anoEntrada+"%");
+            condicao.put("anoAtual", "%"+anoAtual+"%");
+            condicao.put("situacaoAtual", "%"+situacaoAtual+"%");
             alunos = alunoMana.recuperarAlunosPorAtributos(condicao);
             
-            request.setAttribute("alunos", alunos);
+            //recupera os cursos
+            cursos = cursoMana.recuperarCursosPorAtributo("nome", "%"+curso+"%");
+            
+            //procura por alunos que estejam no curso passado no filtro de pesquisa
+            for(int i=0; i<alunos.size(); i++){
+                for(int j=0; j<cursos.size(); j++){
+                    if(alunos.get(i).getCurso().getId() == cursos.get(j).getId()){
+                        alunos_total.add(alunos.get(i));
+                        continue;
+                    }
+                }
+            }
+            
+            request.setAttribute("alunos", alunos_total);
             request.getRequestDispatcher("tabela_evasao.jsp").forward(request, response);
         }catch(Exception e){
             System.out.println(e.getMessage());
