@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +30,22 @@ public class AlunoManager {
 		condicao.put("centro", "CECE");
 		List<Aluno> alunos = recuperarAlunosPorAtributos(condicao);
 	*/
-	public List<Aluno> recuperarAlunosPorAtributos(HashMap<String, Object> condicao) {
+	public List<Aluno> recuperarAlunosPorAtributos(HashMap<String, Object> condicao) {	
+		for (Map.Entry<String, Object> entry : condicao.entrySet()) {
+			if (entry.getKey().equals("curso")) {
+				condicao.remove("curso");
+				Curso curso = (Curso) entry.getValue();
+				condicao.put("curso.id", curso.getId());
+			} else if (entry.getKey().equals("centro")) {
+				condicao.remove("centro");	
+				Centro centro = (Centro) entry.getValue();
+				condicao.put("centro.id", centro.getId());
+			} else if (entry.getKey().equals("campus")) {
+				condicao.remove("campus");
+				Campus campus = (Campus) entry.getValue();
+				condicao.put("campus.id", campus.getId());
+			}
+		}
 		return new AlunoDAO().buscarAlunosPorAtributos(condicao);
 	}
 	
@@ -43,11 +59,26 @@ public class AlunoManager {
 		long qtdAlunos = recuperarAlunosPorAtributos(condicoes);
 	*/
 	public Long recuperarQtdAlunosPorAtributos(HashMap<String, Object> condicao) {
+		for (Map.Entry<String, Object> entry : condicao.entrySet()) {
+			if (entry.getKey().equals("curso")) {
+				condicao.remove("curso");
+				Curso curso = (Curso) entry.getValue();
+				condicao.put("curso.id", curso.getId());
+			} else if (entry.getKey().equals("centro")) {
+				condicao.remove("centro");	
+				Centro centro = (Centro) entry.getValue();
+				condicao.put("centro.id", centro.getId());
+			} else if (entry.getKey().equals("campus")) {
+				condicao.remove("campus");
+				Campus campus = (Campus) entry.getValue();
+				condicao.put("campus.id", campus.getId());
+			}
+		}
 		return new AlunoDAO().buscarQtdAlunosPorAtributos(condicao);
 	}
 
     public List<Aluno> recuperarTodosAlunos() {
-	return new AlunoDAO().buscarTodosAlunos();
+		return new AlunoDAO().buscarTodosAlunos();
     }
     
     public int quantidadeAlunosCurso(Object curso,List<Aluno> alunos){

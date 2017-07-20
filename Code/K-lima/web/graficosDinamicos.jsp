@@ -41,6 +41,15 @@
                   <label>Titulo do Gráfico:</label> 
                   <input id="tituloEscolhido" name="titulo">
               </div>
+              <div class="medium-2 columns">  
+                  <label>filtro primario:</label> 
+                  <select id="filtroExioX">
+                        <option name="cursos" value="{Ciência da Computação, Engenharia Mecânica,
+                                Engenharia Eletrica, Matemática}"> Cursos </option>
+                        <option name="Colunas" value="{'1 ano', '2 ano', '3 ano','4 ano'}"> Ano Letivo</option>
+                        <option name="Colunas Laterais" value="bar"> Grafico laterais</option>
+                    </select>
+              </div>
               <div class="medium-2 columns">
                   <label>tipo do Grafico:</label>                      
                   <select id="graficoSelecionado">
@@ -102,6 +111,8 @@
         var teste = graficoSelecionado.options[graficoSelecionado.selectedIndex].value;
         var curso = cursoSelecionado.options[cursoSelecionado.selectedIndex].value;
         var anoAtual = anoSelecionado.options[anoSelecionado.selectedIndex].value;
+        var situacao = situacaoSelecionada.options[situacaoSelecionada.selectedIndex].value;
+         
         Highcharts.chart( 'grafico', {
             chart:{
                 type: teste
@@ -110,7 +121,7 @@
                 text: titulo
             },
         xAxis: {
-            categories: [ '1 ano', '2 ano', '3 ano','4 ano'],
+            categories: [ ],
             crosshair: true
         },
         yAxis: {
@@ -133,14 +144,18 @@
                 borderWidth: 0
             }
         },
-        series: [{
-            name: 'Cancelados',
-            data: [85, 31, 8, 7]
-
-        }, {
-            name: 'Cancelados por Abandono',
-            data: [181, 24, 50, 24]
-        }]
+        series: [
+        <% out.println(
+                "{name: "
+                    + "'Cancelados', "
+                    + "data: [85, 31, 8, 7] "
+                + "}, "
+                + "{ name:"
+                    + " 'Cancelados por Abandono', "
+                    + "data: [181, 24, 50, 24]"
+                + "}");
+    
+                %>]
     });
         }
         
