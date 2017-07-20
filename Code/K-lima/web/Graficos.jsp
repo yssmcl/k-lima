@@ -34,7 +34,47 @@
         int alunosCanceladosCC =aluno.quantidadeAlunosCurso("Ciência da Computação", alunos); 
         condicao.put("situacaoAtual" , "Cancelado por Abandono");  
         alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        alunosCanceladosCC =aluno.quantidadeAlunosCurso("Ciência da Computação", alunos);
+        condicao.put("situacaoAtual" , "Cancelado");  
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
         alunosCanceladosCC =alunosCanceladosCC+aluno.quantidadeAlunosCurso("Ciência da Computação", alunos);
+        condicao.put("situacaoAtual" , "transferido");  
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        alunosCanceladosCC =alunosCanceladosCC+aluno.quantidadeAlunosCurso("Ciência da Computação", alunos);
+        
+        int alunosCanceladosEM =aluno.quantidadeAlunosCurso("Engenharia Mecânica", alunos); 
+        condicao.put("situacaoAtual" , "Cancelado por Abandono");  
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        alunosCanceladosEM =aluno.quantidadeAlunosCurso("Engenharia Mecânica", alunos);
+        condicao.put("situacaoAtual" , "Cancelado");  
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        alunosCanceladosEM =alunosCanceladosEM+aluno.quantidadeAlunosCurso("Engenharia Mecânica", alunos);
+        condicao.put("situacaoAtual" , "transferido");  
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        alunosCanceladosEM =alunosCanceladosEM+aluno.quantidadeAlunosCurso("Engenharia Mecânica", alunos);
+        
+        int alunosCanceladosMAT =aluno.quantidadeAlunosCurso("Matemática", alunos); 
+        condicao.put("situacaoAtual" , "Cancelado por Abandono");  
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        alunosCanceladosMAT =aluno.quantidadeAlunosCurso("Matemática", alunos);
+        condicao.put("situacaoAtual" , "Cancelado");  
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        alunosCanceladosMAT =alunosCanceladosMAT+aluno.quantidadeAlunosCurso("Matemática", alunos);
+        condicao.put("situacaoAtual" , "transferido");  
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        alunosCanceladosMAT =alunosCanceladosMAT+aluno.quantidadeAlunosCurso("Matemática", alunos);
+        
+        
+        int alunosCanceladosEE =aluno.quantidadeAlunosCurso("Engenharia Elétrica", alunos); 
+        condicao.put("situacaoAtual" , "Cancelado por Abandono");  
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        alunosCanceladosEE =aluno.quantidadeAlunosCurso("Engenharia Elétrica", alunos);
+        condicao.put("situacaoAtual" , "Cancelado");  
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        alunosCanceladosEE =alunosCanceladosEE+aluno.quantidadeAlunosCurso("Engenharia Elétrica", alunos);
+        condicao.put("situacaoAtual" , "transferido");  
+        alunos= aluno.recuperarAlunosPorAtributos(condicao);
+        alunosCanceladosEE =alunosCanceladosEE+aluno.quantidadeAlunosCurso("Engenharia Elétrica", alunos);
         
         //int alunosCanceladosMC =aluno.quantidadeAlunosCurso("Ciência da Computação", alunos); 
 %>
@@ -92,7 +132,7 @@ Highcharts.chart('colunasLaterais', {
         },
         series: [{
             name: 'Desistentes',
-            data: [<%out.println(alunosCanceladosCC);%>, 228, 143, 440]
+            data: [<%out.println(alunosCanceladosCC);%>, <%out.println(alunosCanceladosEE);%>, <%out.println(alunosCanceladosEM);%>, <%out.println(alunosCanceladosMAT);%>]
 
         }]
     }); // retangular

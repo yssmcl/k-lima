@@ -30,9 +30,12 @@
             $('#example').dataTable();
 	} );
         
-        function pesquisarAlunos(){
-            var url = 'PesquisarAluno';
-            var conteudo = 'nome=' + $F('nome') +'&nome=' + $F('nome');
+        function limparFiltros(){
+            document.getElementById("aluno").value = "";
+            document.getElementById("curso").value = "";
+            document.getElementById("anoEntrada").value = "";
+            document.getElementById("anoAtual").value = "";
+            document.getElementById("situacaoAtual").value = "";
         }
     </script>
     
@@ -56,40 +59,40 @@
           
           <hr />
           
-          <form method="post" action="PesquisarAluno">
-            <div class="row group">              
+          <form action="PesquisarAluno" method="post">
+            <div class="row">              
               <div class="medium-6 columns">  
-                  <label>Aluno
-                      <input type="text" name="aluno" />
+                  <label>Nome
+                      <input id="aluno" name="aluno" type="text" />
                   </label>
               </div>
                 <div class="medium-6 columns">  
                   <label>Curso
-                      <input type="text" name="curso" />
+                      <input id="curso" name="curso" type="text" />
                   </label>
                 </div>                
             </div>
-            <div class="row group">
+            <div class="row">
                 <div class="medium-4 columns">  
                   <label>Ano Entrada
-                      <input type="text" name="anoEntrada" />
+                      <input id="anoEntrada" name="anoEntrada" type="text" />
                   </label>
                 </div>
                 <div class="medium-4 columns">  
                   <label>Ano Atual
-                      <input type="text" name="anoAtual" />
+                      <input id="anoAtual" name="anoAtual" type="text" />
                   </label>
                 </div>
                 <div class="medium-4 columns">  
                   <label>Situação Atual
-                      <input type="text" name="situacaoAtual" />
+                      <input id="situacaoAtual" name="situacaoAtual" type="text" />
                   </label>
                 </div>                
             </div>  
               <div class="row">
                   <div class="medium-12 columns">
-                    <input type="submit" value="Pesquisar" class="button" />
-                    <!--input type="button" class="button" value="Pesquiar" onclick="pesquisarAlunos()" /-->
+                    <input type="submit" value="Pesquisar" class="button" style="width: 150px;" />
+                    <input type="button" value="Limpar Filtros" class="button" style="width: 150px;" onclick="limparFiltros()" />
                   </div>
               </div>
           </form>
@@ -100,7 +103,7 @@
             <table id="example" class="display">
               <thead>
                   <tr>
-                      <th>Aluno</th>
+                      <th>Nome</th>
                       <th>Curso</th>
                       <th>Ano Entrada</th>
                       <th>Ano Atual</th>
