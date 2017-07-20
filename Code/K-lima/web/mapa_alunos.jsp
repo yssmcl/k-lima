@@ -114,7 +114,7 @@
                 }                        
 
                 for(Aluno aluno : alunos){%>
-                    geocoder.geocode({'address': '<%= aluno.getRua() %> <%= aluno.getNumero() %> <%= aluno.getCidade()%>'}, placeMarkers);
+                    geocoder.geocode({'address': "<%= aluno.getRua() %> <%= aluno.getNumero() %> <%= aluno.getCidade()%>"}, placeMarkers);
                 <%}%>
             }
 
