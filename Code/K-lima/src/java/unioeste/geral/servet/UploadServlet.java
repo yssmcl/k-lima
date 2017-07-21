@@ -137,7 +137,7 @@ public class UploadServlet extends HttpServlet {
             alunoMana.carregarCSV();
             
             // displays done.jsp page after upload finished
-            getServletContext().getRequestDispatcher("/index.jsp").forward(
+            getServletContext().getRequestDispatcher("/tabela_evasao.jsp").forward(
                     request, response);
 
         } catch (FileUploadException ex) {

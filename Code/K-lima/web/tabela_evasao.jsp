@@ -37,6 +37,13 @@
             document.getElementById("anoAtual").value = "";
             document.getElementById("situacaoAtual").value = "";
         }
+        
+        function limparBanco(){
+            decisao = confirm("Ao apagar o banco, todos os dados serão perdidos. Deseja continuar?");
+            if(decisao){
+            	location.href = "index.jsp";
+            }
+        }
     </script>
     
     <link rel="stylesheet" href="<%=caminho%>/css/foundation.css">    
@@ -92,7 +99,7 @@
               <div class="row">
                   <div class="medium-12 columns">
                     <input type="submit" value="Pesquisar" class="button" style="width: 150px;" />
-                    <input type="button" value="Limpar Filtros" class="button" style="width: 150px;" onclick="limparFiltros()" />
+                    <input type="button" value="Limpar Filtros" class="button" style="width: 150px;" onclick="limparFiltros()" />                    
                   </div>
               </div>
           </form>
@@ -132,7 +139,11 @@
                 </tbody>
             </table>
           </div>
-          
+          <form action="LimparBanco" method="post">
+              <div class="row">
+                  <input type="submit" value="Limpar Banco" class="alert button" style="width: 150px;" />
+              </div>              
+          </form>
         </div>
       </div>
     </div>

@@ -201,7 +201,7 @@ Highcharts.chart('colunasLaterais', {
             type: 'column'
         },
         title: {
-            text: 'Alunos Desistentes por Curso'
+            text: 'Alunos desistentes por curso'
         },
 
         xAxis: {
@@ -240,7 +240,7 @@ Highcharts.chart('AlunosDesistentesPorCurso', {
             type: 'bar'
         },
         title: {
-        text: 'Alunos Cursando:'+'<% out.print(cursoEscolhido);%>'
+        text: 'Alunos cursando:'+'<% out.print(cursoEscolhido);%>'
         },
         xAxis: {
             categories: ['1 ano', '2 ano', '3 ano', '4 ano'],
@@ -329,7 +329,7 @@ Highcharts.chart('pizza', {
             type: 'pie'
         },
         title: {
-            text: 'situação do ingresso do curso de:'+'<% out.print(cursoEscolhido);%>'
+            text: 'Situação do ingresso do curso de:'+'<% out.print(cursoEscolhido);%>'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

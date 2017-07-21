@@ -5,6 +5,7 @@
 --%>
 
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.List"%>
 <%@page import="unioeste.geral.bo.Aluno"%>
 <%@page import="unioeste.geral.manager.AlunoManager"%>
@@ -110,7 +111,10 @@
                 List<Aluno> alunos = (ArrayList<Aluno>) request.getAttribute("alunos");
 
                 if (alunos == null) {
-                    alunos = manager.recuperarTodosAlunos();
+                    HashMap<String, Object> condicao = new HashMap<>();
+                    condicao.put("cidade", "foz do iguaçu"); 
+                    alunos = manager.recuperarAlunosPorAtributos(condicao);
+
                 }                        
 
                 for(Aluno aluno : alunos){%>

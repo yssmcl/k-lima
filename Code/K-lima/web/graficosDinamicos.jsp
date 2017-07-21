@@ -38,17 +38,17 @@
           
           <div class="row">
               <div class="medium-2 columns">  
-                  <label>Titulo do Gráfico:</label> 
+                  <label>Título do Gráfico:</label> 
                   <input id="tituloEscolhido" name="titulo">
               </div>
               <div class="medium-2 columns">  
-                  <label>filtro primario:</label> 
+                  <label>Filtro Primário:</label> 
                   <select id="filtroExioX">
                         <option name="cursos" value="{Ciência da Computação, Engenharia Mecânica,
                                 Engenharia Eletrica, Matemática}"> Cursos </option>
                         <option name="Colunas" value="{'1 ano', '2 ano', '3 ano','4 ano'}"> Ano Letivo</option>
                         <option name="Colunas Laterais" value="{Cursando, Formando, Transferido, 
-                                Cancelado, Cancelado por Abandono}"> Situação atual</option>
+                                Cancelado, Cancelado por Abandono}"> Situação Atual</option>
                     </select>
               </div>
           </div>
@@ -56,7 +56,7 @@
                 
               
               <div class="medium-2 columns">
-                  <label>tipo do Grafico:</label>                      
+                  <label>Tipo do Gráfico:</label>                      
                   <select id="graficoSelecionado">
                         <option name="Colunas" value="column"> Grafico Colunas</option>
                         <option name="Colunas Laterais" value="bar"> Grafico laterais</option>
