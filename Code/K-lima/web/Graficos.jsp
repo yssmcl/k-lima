@@ -240,7 +240,7 @@ Highcharts.chart('AlunosDesistentesPorCurso', {
             type: 'bar'
         },
         title: {
-        text: 'Alunos cursando:'+'<% out.print(cursoEscolhido);%>'
+        text: 'Alunos cursando '+'<% out.print(cursoEscolhido);%>'
         },
         xAxis: {
             categories: ['1 ano', '2 ano', '3 ano', '4 ano'],
@@ -315,7 +315,7 @@ Highcharts.chart('AlunosPorAnoDoCursoDe', {
                     <%out.println(alunosCursando3AnoCancelados);%>,<%out.println(alunosCursand4AnoCancelados);%> ]
 
         }, {
-            name: 'Cancelados por Abandono',
+            name: 'Cancelados por abandono',
             data: [<%out.println(alunosCursando1AnoCanceladosAbandono);%>,<%out.println(alunosCursando2AnoCanceladosAbandono);%>,
                     <%out.println(alunosCursando3AnoCanceladosAbandono);%>,<%out.println(alunosCursand4AnoCanceladosAbandono);%> ]
         }]
@@ -329,7 +329,7 @@ Highcharts.chart('pizza', {
             type: 'pie'
         },
         title: {
-            text: 'Situação do ingresso do curso de:'+'<% out.print(cursoEscolhido);%>'
+            text: 'Situação do ingresso do curso de '+'<% out.print(cursoEscolhido);%>'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -342,7 +342,8 @@ Highcharts.chart('pizza', {
                     enabled: true,
                     format: '<b>{point.name}</b>: {point.percentage:.1f} %',
                     style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
+						fontSize: '14px'
                     }
                 }
             }

@@ -11,7 +11,6 @@ import unioeste.geral.util.HibernateUtil;
 import unioeste.geral.bo.Usuario;
 
 public class UsuarioDAO {
-	// TODO: função genérica para inserirUsuario e inserirAluno (só muda a linha do session.save())
 	public void inserirUsuario(Usuario usuario) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;

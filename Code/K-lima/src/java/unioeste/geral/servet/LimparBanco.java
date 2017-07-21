@@ -78,7 +78,8 @@ public class LimparBanco extends HttpServlet {
         
         manager.removerTodosAlunos();
         
-        getServletContext().getRequestDispatcher("/tabela_evasao.jsp");
+//        getServletContext().getRequestDispatcher("/tabela_evasao.jsp");
+		request.getRequestDispatcher("tabela_evasao.jsp").forward(request, response);
     }
 
     /**

@@ -80,7 +80,6 @@ public class AlunoManager {
 		return new AlunoDAO().buscarAlunosPorAtributosMultimap(condicaoAND, condicaoOR);
 	}
 	
-	// TODO: arrumar com base na recuperarAlunosPorAtributosMultimap
 	public Long recuperarQtdAlunosPorAtributos(HashMap<String, Object> condicao) {
 		for (Map.Entry<String, Object> entry : condicao.entrySet()) {
 			if (entry.getKey().equals("curso")) {
