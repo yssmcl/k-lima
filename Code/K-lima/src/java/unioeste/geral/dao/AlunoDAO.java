@@ -72,18 +72,30 @@ public class AlunoDAO {
 			Criteria criteria = session.createCriteria(Aluno.class);
 			if (condicaoAND != null) {
 				for (Map.Entry entry : condicaoAND.entries()) {
-					criteria.add(
-						// TODO: se for número usar eq, se for String usar ilike
-						Restrictions.eq((String) entry.getKey(), entry.getValue())
-					);
+					if (entry.getValue().getClass() == Long.class) {
+						criteria.add(
+							Restrictions.eq((String) entry.getKey(), entry.getValue())
+						);
+					} else if (entry.getValue().getClass() == String.class) {
+						criteria.add(
+							Restrictions.ilike((String) entry.getKey(), entry.getValue())
+						);
+					}
 				}
 			}
+			
 			Disjunction disjunction = Restrictions.disjunction();
 			if (condicaoOR != null) {
 				for (Map.Entry entry : condicaoOR.entries()) {
-					disjunction.add(
-						Restrictions.ilike((String) entry.getKey(), entry.getValue())
-					);
+					if (entry.getValue().getClass() == Long.class) {
+						disjunction.add(
+							Restrictions.eq((String) entry.getKey(), entry.getValue())
+						);
+					} else if (entry.getValue().getClass() == String.class) {
+						disjunction.add(
+							Restrictions.ilike((String) entry.getKey(), entry.getValue())
+						);
+					}
 				}
 			}
 			criteria.add(disjunction);

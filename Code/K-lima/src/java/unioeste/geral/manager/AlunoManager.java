@@ -1,10 +1,12 @@
 package unioeste.geral.manager;
 
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -50,35 +52,35 @@ public class AlunoManager {
 		return new AlunoDAO().buscarAlunosPorAtributos(condicao);
 	}
 	
-	// TODO:
-//	private void substituirChaves(Multimap<String, Object> condicao) {
-//		if (condicao != null) {
-//			for (Map.Entry entry : condicao.entries()) {
-//				if (entry.getKey().equals("curso")) {
-//					Curso curso = (Curso) entry.getValue();
-//					condicao.put("curso.id", curso);
-//					// condicao.removeAll("curso");
-//				}
-	//			else if (entry.getKey().equals("centro")) {
-	//				condicao.remove("centro");	
-	//				Centro centro = (Centro) entry.getValue();
-	//				condicao.put("centro.id", centro.getId());
-	//			} else if (entry.getKey().equals("campus")) {
-	//				condicao.remove("campus");
-	//				Campus campus = (Campus) entry.getValue();
-	//				condicao.put("campus.id", campus.getId());
-	//			}
-//			}
-//		}
-//	}
+	private Multimap<String, Object> substituirChaves(Multimap<String, Object> condicao) {		
+		if (condicao != null) {			
+			Multimap<String, Object> novaCondicao = HashMultimap.create();
+			for (Map.Entry entry : condicao.entries()) {
+				if (entry.getKey().equals("curso")) {
+					Curso curso = (Curso) entry.getValue();
+					novaCondicao.put(entry.getKey() + ".id", curso.getId());
+				} else if (entry.getKey().equals("centro")) {
+					Centro centro = (Centro) entry.getValue();
+					novaCondicao.put(entry.getKey() + ".id", centro.getId());
+				} else if (entry.getKey().equals("campus")) {
+					Campus campus = (Campus) entry.getValue();
+					novaCondicao.put(entry.getKey() + ".id", campus.getId());
+				}
+			}
+			condicao.clear();
+			return novaCondicao;
+		}
+		return null;
+	}
 	
-	public List<Aluno> recuperarAlunosPorAtributosMultimap(Multimap<String, Object> condicaoAND, Multimap<String, Object> condicaoOR) {	
-		// TODO:
-//		substituirChaves(condicaoOR);
-//		substituirChaves(condicaoAND);
+	public List<Aluno> recuperarAlunosPorAtributosMultimap(Multimap<String, Object> condicaoAND,
+														   Multimap<String, Object> condicaoOR) {
+		condicaoAND = substituirChaves(condicaoAND);
+		condicaoOR = substituirChaves(condicaoOR);
 		return new AlunoDAO().buscarAlunosPorAtributosMultimap(condicaoAND, condicaoOR);
 	}
 	
+	// TODO: arrumar com base na recuperarAlunosPorAtributosMultimap
 	public Long recuperarQtdAlunosPorAtributos(HashMap<String, Object> condicao) {
 		for (Map.Entry<String, Object> entry : condicao.entrySet()) {
 			if (entry.getKey().equals("curso")) {

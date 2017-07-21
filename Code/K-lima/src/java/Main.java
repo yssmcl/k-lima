@@ -15,6 +15,7 @@ import unioeste.geral.dao.CentroDAO;
 import unioeste.geral.dao.CursoDAO;
 import unioeste.geral.manager.AlunoManager;
 import unioeste.geral.manager.CampusManager;
+import unioeste.geral.manager.CentroManager;
 import unioeste.geral.manager.CursoManager;
 
 public class Main {
@@ -22,7 +23,7 @@ public class Main {
     public static void main(String[] args) {
 		Multimap<String, Object> condicaoAND = HashMultimap.create();
 		Curso curso = new CursoManager().recuperarCursosPorAtributo("nome", "Ciência da Computação").get(0);	
-		condicaoAND.put("curso.id", curso.getId());
+		condicaoAND.put("curso", curso);
 		
 		Multimap<String, Object> condicaoOR = HashMultimap.create();
 		condicaoOR.put("situacaoAtual", "Cancelado Por Abandono");
