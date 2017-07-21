@@ -87,10 +87,10 @@
                         
                         cluster.fitMapToMarkers();
                     } else {
-                        // window.alert('No results found');
+                        window.alert('No results found');
                     }
                 } else {
-                    // window.alert('Geocoder failed: ' + status);
+                    window.alert('Geocoder failed: ' + status);
                 }
             }
 
@@ -115,10 +115,20 @@
                     condicao.put("cidade", "foz do iguaçu"); 
                     alunos = manager.recuperarAlunosPorAtributos(condicao);
 
-                }                        
+                }                   
+                    alunos = manager.recuperarTodosAlunos();
+                }   
 
-                for(Aluno aluno : alunos){%>
-                    geocoder.geocode({'address': "<%= aluno.getRua() %> <%= aluno.getNumero() %> <%= aluno.getCidade()%>"}, placeMarkers);
+                int i=0;
+                for(Aluno aluno : alunos){ if (++i>21) break;%>
+                    var addr = "";
+                    // <% if (aluno.getBairro() != null && !aluno.getBairro().contains("\"")) { %> addr += " <%= aluno.getBairro() %>"; <%}%>
+                    <% if (aluno.getRua() != null) { %> addr += " <%= aluno.getRua() %>"; <%}%>
+                    <% if (aluno.getNumero() != null && !aluno.getNumero().equals("0")) { %> addr += " <%= aluno.getNumero() %>"; <%}%>
+                    // <% if (aluno.getCidade() != null) { %> addr += " <%= aluno.getCidade() %>"; <%}%>
+                    // <% if (aluno.getUnidadeFederativa() != null) { %> addr += " <%= aluno.getUnidadeFederativa() %>"; <%}%>
+                    console.log(addr);
+                    geocoder.geocode({'address': addr}, placeMarkers);
                 <%}%>
             }
 

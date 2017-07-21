@@ -1,0 +1,27 @@
+Página Tabela:
+- Botão para zerar os dados do banco
+- Inserir menu/template para atualizar os dados (?)
+- Pesquisas com acento não funcionam
+- Adicionar botão no canto superior direito para exportar relatório com os dados atuais da página
+- Adicionar turno como critério de pesquisa (mudar a tabela Curso?)
+
+Página Atualizar Dados:
+- Trocar título de "Importar dados de Evasão" para "Importar dados de alunos"
+- Adicionar mensagem de sucesso para importação e voltar para a página Tabela
+
+Página Gráficos:
+- Gráficos estáticos para cada curso
+- Aumentar tamanho da fonte do gráfico de pizza
+- Filtros dos gráficos dinâmicos não funcionam
+
+Página Mapa:
+- Salvar coordenadas no banco
+- Pegar o endereço pelo CEP
+- Título do mapa: Mapa de Alunos
+- Rearranjar tamanho do mapa para tela cheia
+
+Relatório:
+- Adicionar menu para geração de relatório (cancelado, cancelado por abandono, transferido)
+
+Página Ajuda:
+- Instruir o usuário sobre o formato do CSV (não usar ';', acentos, nome dos cursos, câmpus e centros etc.)
