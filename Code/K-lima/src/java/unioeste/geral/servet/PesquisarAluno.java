@@ -79,6 +79,8 @@ public class PesquisarAluno extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8"); // pega caracteres UTF-8 do JSP
+
         AlunoManager alunoMana = new AlunoManager();
         CursoManager cursoMana = new CursoManager();
         List<Aluno> alunos = new ArrayList<>();

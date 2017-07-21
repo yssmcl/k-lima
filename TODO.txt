@@ -1,7 +1,6 @@
 Página Tabela:
 - Botão para zerar os dados do banco
 - Inserir menu/template para atualizar os dados (?)
-- Pesquisas com acento não funcionam
 - Adicionar botão no canto superior direito para exportar relatório com os dados atuais da página
 - Adicionar turno como critério de pesquisa (mudar a tabela Curso?)
 
