@@ -3,47 +3,44 @@ package unioeste.geral.bo;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
 
 @Entity
 public class Usuario implements Serializable {
+
 	@Id
 	@GeneratedValue
-    private Long id;
-	
+	private Long id;
+
 //	@Id
 	@Column(nullable = false, unique = true)
 	private String nomeUsuario;
-	
+
 //	@Id
 	@Column(nullable = false)
 	private String senha;
-	
+
 	@Column(nullable = false)
 	private String salt;
-	
+
 //	@Column(nullable = false)
 	private String email;
-	
+
 //	@Column(nullable = false)
 //	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date dataCriacao;
-	
+
 //	@Column(nullable = false)
 	private String primeiroNome;
-	
+
 //	@Column(nullable = false)
 	private String segundoNome;
 
 	public Usuario() {
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -107,5 +104,5 @@ public class Usuario implements Serializable {
 	public void setSegundoNome(String segundoNome) {
 		this.segundoNome = segundoNome;
 	}
-	
+
 }

@@ -5,12 +5,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.List;
-import org.hibernate.Criteria;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
-import unioeste.geral.bo.Aluno;
-import unioeste.geral.util.HibernateUtil;
 import unioeste.geral.bo.Usuario;
 import unioeste.geral.dao.UsuarioDAO;
 

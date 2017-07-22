@@ -6,24 +6,25 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-import unioeste.geral.bo.Centro;
 import unioeste.geral.bo.Curso;
 import unioeste.geral.util.HibernateUtil;
 
 public class CursoDAO {
-	
+
 	public void inserirCurso(Curso curso) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
 
 		try {
 			transaction = session.beginTransaction();
-			
+
 			session.save(curso);
-			
+
 			transaction.commit();
 		} catch (HibernateException e) {
-			if (transaction != null) transaction.rollback();
+			if (transaction != null) {
+				transaction.rollback();
+			}
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -41,10 +42,12 @@ public class CursoDAO {
 			Criteria criteria = session.createCriteria(Curso.class);
 			criteria.add(Restrictions.ilike(atributo, valor));
 			cursos = (List<Curso>) criteria.list();
-			
+
 			transaction.commit();
 		} catch (HibernateException e) {
-			if (transaction != null) transaction.rollback();
+			if (transaction != null) {
+				transaction.rollback();
+			}
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -52,5 +55,5 @@ public class CursoDAO {
 
 		return cursos;
 	}
-	
+
 }

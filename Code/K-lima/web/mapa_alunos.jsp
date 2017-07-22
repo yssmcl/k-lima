@@ -32,29 +32,35 @@
     </script>
     <link rel="stylesheet" href="<%=caminho%>/css/foundation.css">    
     <link rel="stylesheet" href="<%=caminho%>/css/app.css">
-    
+	
   </head>
   <body>
     
     <div class="off-canvas-wrapper">
-      <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper> <!-- Essa div e a de cima servem para fazer a parte do menu lateral -->
+		<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper> <!-- Essa div e a de cima servem para fazer a parte do menu lateral -->
 
-          <jsp:include page="#{caminho}/includes/menu.jsp"/>
+			<jsp:include page="#{caminho}/includes/menu.jsp"/>
 
-          <!-- MAIN SECTION -->
-          <br />
-          <br />
-          <br />
-          
-          <div class="row">
-              <div class="columns-12">
-                  <div id="map" style="height: 500px"></div>
-              </div>
-          </div>
-          
-        </div>
-      </div>
+			<div class="row centralizado">
+				<div class="medium-12 columns" style="text-align: center;">
+					<h1>Mapa de Alunos</h1>
+				</div>
+			</div>
+
+			<!-- MAIN SECTION -->
+			<br />
+			<br />
+			<br />
+
+			<div class="row">
+				<div class="columns-12">
+					<div id="map" style="height: 500px"></div>
+				</div>
+			</div>
+			
+        </div>			
     </div>
+	</div>
     <br/>
     <br/>
     <br/>
@@ -116,9 +122,8 @@
                     alunos = manager.recuperarAlunosPorAtributos(condicao);
 
                 }                   
-                    alunos = manager.recuperarTodosAlunos();
-                }   
-
+				
+                alunos = manager.recuperarTodosAlunos();
                 int i=0;
                 for(Aluno aluno : alunos){ if (++i>21) break;%>
                     var addr = "";

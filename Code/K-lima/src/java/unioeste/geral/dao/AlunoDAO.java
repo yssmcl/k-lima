@@ -1,7 +1,6 @@
 package unioeste.geral.dao;
 
 import com.google.common.collect.Multimap;
-import unioeste.geral.util.HibernateUtil;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,29 +12,31 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import static org.hibernate.criterion.Restrictions.eq;
 import unioeste.geral.bo.Aluno;
+import unioeste.geral.util.HibernateUtil;
 
 public class AlunoDAO {
-	
+
 	public void inserirAluno(Aluno aluno) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
 
 		try {
 			transaction = session.beginTransaction();
-			
+
 			session.save(aluno);
-			
+
 			transaction.commit();
 		} catch (HibernateException e) {
-			if (transaction != null) transaction.rollback();
+			if (transaction != null) {
+				transaction.rollback();
+			}
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
 	}
-	
+
 	public List<Aluno> buscarAlunosPorAtributos(HashMap<String, Object> condicao) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
@@ -43,16 +44,18 @@ public class AlunoDAO {
 
 		try {
 			transaction = session.beginTransaction();
-			
+
 			Criteria criteria = session.createCriteria(Aluno.class);
 			for (Map.Entry<String, Object> entry : condicao.entrySet()) {
 				criteria.add(Restrictions.ilike(entry.getKey(), entry.getValue()));
 			}
 			alunos = (List<Aluno>) criteria.list();
-			
+
 			transaction.commit();
 		} catch (HibernateException e) {
-			if (transaction != null) transaction.rollback();
+			if (transaction != null) {
+				transaction.rollback();
+			}
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -68,7 +71,7 @@ public class AlunoDAO {
 
 		try {
 			transaction = session.beginTransaction();
-			
+
 			Criteria criteria = session.createCriteria(Aluno.class);
 			if (condicaoAND != null) {
 				for (Map.Entry entry : condicaoAND.entries()) {
@@ -83,7 +86,7 @@ public class AlunoDAO {
 					}
 				}
 			}
-			
+
 			Disjunction disjunction = Restrictions.disjunction();
 			if (condicaoOR != null) {
 				for (Map.Entry entry : condicaoOR.entries()) {
@@ -99,12 +102,14 @@ public class AlunoDAO {
 				}
 			}
 			criteria.add(disjunction);
-			
+
 			alunos = (List<Aluno>) criteria.list();
-			
+
 			transaction.commit();
 		} catch (HibernateException e) {
-			if (transaction != null) transaction.rollback();
+			if (transaction != null) {
+				transaction.rollback();
+			}
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -120,17 +125,19 @@ public class AlunoDAO {
 
 		try {
 			transaction = session.beginTransaction();
-			
+
 			Criteria criteria = session.createCriteria(Aluno.class);
 			for (Map.Entry<String, Object> entry : condicao.entrySet()) {
 				criteria.add(Restrictions.eq(entry.getKey(), entry.getValue()));
 			}
 			criteria.setProjection(Projections.rowCount());
 			qtdAlunos = (Long) criteria.uniqueResult();
-			
+
 			transaction.commit();
 		} catch (HibernateException e) {
-			if (transaction != null) transaction.rollback();
+			if (transaction != null) {
+				transaction.rollback();
+			}
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -146,15 +153,17 @@ public class AlunoDAO {
 
 		try {
 			transaction = session.beginTransaction();
-			
+
 			alunos = session.createCriteria(Aluno.class).list();
-			
+
 			transaction.commit();
 		} catch (HibernateException e) {
-			if (transaction != null) transaction.rollback();
-			e.printStackTrace(); 
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
 		} finally {
-			session.close(); 
+			session.close();
 		}
 
 		return alunos;
@@ -166,17 +175,19 @@ public class AlunoDAO {
 
 		try {
 			transaction = session.beginTransaction();
-			
+
 			session.update(aluno);
-			
+
 			transaction.commit();
 		} catch (HibernateException e) {
-			if (transaction != null) transaction.rollback();
+			if (transaction != null) {
+				transaction.rollback();
+			}
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		
+
 		return aluno;
 	}
 
@@ -185,31 +196,35 @@ public class AlunoDAO {
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
-			
+
 			session.delete(aluno);
-			
+
 			transaction.commit();
 		} catch (HibernateException e) {
-			if (transaction != null) transaction.rollback();
+			if (transaction != null) {
+				transaction.rollback();
+			}
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
 	}
-	
+
 	public void deletarTodosAlunos() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
-					
+
 			String hql = "delete from Aluno";
 			Query query = session.createQuery(hql);
 			query.executeUpdate();
 
 			transaction.commit();
 		} catch (HibernateException e) {
-			if (transaction != null) transaction.rollback();
+			if (transaction != null) {
+				transaction.rollback();
+			}
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -221,7 +236,7 @@ public class AlunoDAO {
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
-					
+
 			String hql = "delete from Aluno where " + atributo + " = :valor";
 			Query query = session.createQuery(hql);
 			query.setParameter("valor", valor);
@@ -229,11 +244,13 @@ public class AlunoDAO {
 
 			transaction.commit();
 		} catch (HibernateException e) {
-			if (transaction != null) transaction.rollback();
+			if (transaction != null) {
+				transaction.rollback();
+			}
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
 	}
-	
+
 }

@@ -1,24 +1,22 @@
 Página Tabela:
-- Inserir menu/template para atualizar os dados (?)
-- Adicionar botão no canto superior direito para exportar relatório com os dados atuais da página
 - Adicionar turno como critério de pesquisa (mudar a tabela Curso?)
+- Adicionar botão no canto superior direito para exportar relatório com os dados atuais da página
+- Inserir menu/template para atualizar os dados (?)
 
 Página Gráficos:
-- Gráficos estáticos para cada curso
 - Filtros dos gráficos dinâmicos não funcionam
+- Gráficos estáticos para cada curso
 
 Página Mapa:
+- Rearranjar tamanho do mapa para tela cheia
 - Salvar coordenadas no banco
 - Pegar o endereço pelo CEP
-- Título do mapa: Mapa de Alunos
-- Rearranjar tamanho do mapa para tela cheia
 
 Relatório:
 - Adicionar menu para geração de relatório (cancelado, cancelado por abandono, transferido)
 
 Página Ajuda:
-- Instruir o usuário sobre o formato do CSV (não usar ';', acentos, nome dos cursos, câmpus e centros etc.)
+- Instruir o usuário sobre o formato do CSV (não usar ';', acentos, nome dos cursos, câmpus, centros etc.)
 
 Outros:
 - Fechar Session Factory (segunda resposta em https://stackoverflow.com/questions/30096416/where-to-open-and-where-to-close-sessionfactory-in-my-application)
-- Arrumar o index.jsp
