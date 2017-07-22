@@ -7,17 +7,18 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Curso {
+
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	private String nome;
-	
+
 	private String turno;
-	
+
 	@ManyToOne
 	private Centro centro;
-	
+
 	@ManyToOne
 	private Campus campus;
 
@@ -43,7 +44,7 @@ public class Curso {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public String getTurno() {
 		return turno;
 	}
@@ -67,5 +68,5 @@ public class Curso {
 	public void setCampus(Campus campus) {
 		this.campus = campus;
 	}
-	
+
 }

@@ -7,36 +7,37 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Aluno {
+
 	@Id
 	@GeneratedValue
-    private Long id;
+	private Long id;
 
-    private String nome; 
-    
+	private String nome;
+
 	private String anoEntrada;
-      
-    private String anoAtual;
-    
+
+	private String anoAtual;
+
 	private String situacaoAtual;
-      
-    private String cep;
-    
-    private String rua;
-    
-    private String numero;
-    
-    private String bairro;
-    
-    private String cidade;
-	
+
+	private String cep;
+
+	private String rua;
+
+	private String numero;
+
+	private String bairro;
+
+	private String cidade;
+
 	private String unidadeFederativa;
 
 	@ManyToOne
 	private Curso curso;
-	
+
 	@ManyToOne
 	private Centro centro;
-	
+
 	@ManyToOne
 	private Campus campus;
 
@@ -46,7 +47,6 @@ public class Aluno {
 	public Aluno(String nome) {
 		this.nome = nome;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -159,5 +159,5 @@ public class Aluno {
 	public void setCampus(Campus campus) {
 		this.campus = campus;
 	}
-	
+
 }

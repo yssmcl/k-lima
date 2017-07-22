@@ -6,10 +6,11 @@ import javax.persistence.Id;
 
 @Entity
 public class Campus {
+
 	@Id
 	@GeneratedValue
-    private Long id;
-	
+	private Long id;
+
 	private String nome;
 
 	public Campus() {

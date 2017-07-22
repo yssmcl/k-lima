@@ -98,9 +98,9 @@ public class AlunoManager {
 		return new AlunoDAO().buscarQtdAlunosPorAtributos(condicao);
 	}
 
-    public List<Aluno> recuperarTodosAlunos() {
+	public List<Aluno> recuperarTodosAlunos() {
 		return new AlunoDAO().buscarTodosAlunos();
-    }
+	}
     
     public int quantidadeAlunosCurso(Object curso,List<Aluno> alunos){
         int totalCurso=0;

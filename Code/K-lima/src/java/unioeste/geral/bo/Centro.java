@@ -7,12 +7,13 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Centro {
+
 	@Id
 	@GeneratedValue
-    private Long id;
-	
+	private Long id;
+
 	private String nome;
-	
+
 	@ManyToOne
 	private Campus campus;
 
