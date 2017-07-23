@@ -18,8 +18,11 @@ public class Relatorio {
 
 	public void gerarRelatorioCancelamento() {
 		try {
-			String arquivoTemplate = "./jasper/templates/relatorioabandono.jrxml";
-			String arquivoDestino = "./jasper/relatorios/relatorioabandono.pdf";
+			String wd = System.getProperty("user.dir");
+			wd = wd.split("k-lima")[0];
+
+			String arquivoTemplate = wd + "k-lima/Code/K-lima/jasper/templates/relatorioabandono.jrxml";
+			String arquivoDestino = wd + "k-lima/Code/K-lima/jasper/relatorios/relatorioabandono.pdf";
 
 			HashMap<String, Object> condicao = new HashMap<>();
 			condicao.put("situacaoAtual", "Cancelado");
