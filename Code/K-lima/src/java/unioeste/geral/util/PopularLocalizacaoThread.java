@@ -38,7 +38,7 @@ public class PopularLocalizacaoThread extends Thread {
                                 a.setLatitude(l.getLat());
                                 a.setLongitude(l.getLng());
 
-                                am.salvarAluno(a);
+                                am.modificarAluno(a);
                                 
                                 System.out.println("Dados do aluno [" + a.getNome() + "]");
                             }
