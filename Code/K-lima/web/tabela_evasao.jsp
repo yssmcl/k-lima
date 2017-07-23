@@ -63,19 +63,28 @@
                 <h1>Alunos</h1>
             </div>
           </div>
-          
+          <form>
+              <div class="row" style="text-align: right;">
+                  <input type="submit" value="Gerar Relatório" class="success button" style="width: 150px;" />
+              </div>
+          </form>
           <hr />
           
           <form action="PesquisarAluno" method="post">
             <div class="row">              
-              <div class="medium-6 columns">  
+              <div class="medium-4 columns">  
                   <label>Nome
                       <input id="aluno" name="aluno" type="text" />
                   </label>
               </div>
-                <div class="medium-6 columns">  
+                <div class="medium-4 columns">  
                   <label>Curso
                       <input id="curso" name="curso" type="text" />
+                  </label>
+                </div>
+                <div class="medium-4 columns">  
+                  <label>Turno
+                      <input id="turno" name="turno" type="text" />
                   </label>
                 </div>                
             </div>
@@ -112,6 +121,7 @@
                   <tr>
                       <th>Nome</th>
                       <th>Curso</th>
+                      <th>Turno</th>
                       <th>Ano Entrada</th>
                       <th>Ano Atual</th>
                       <th>Situação Atual</th>
@@ -131,6 +141,7 @@
                         <tr>
                             <td><%= aluno.getNome() %></td>
                             <td><%= aluno.getCurso().getNome() %></td>
+                            <td><%= aluno.getCurso().getTurno() %></td>
                             <td><%= aluno.getAnoEntrada() %></td>
                             <td><%= aluno.getAnoAtual()%></td>
                             <td><%= aluno.getSituacaoAtual() %></td>                            

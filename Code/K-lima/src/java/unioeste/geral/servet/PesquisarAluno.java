@@ -86,10 +86,14 @@ public class PesquisarAluno extends HttpServlet {
         List<Aluno> alunos = new ArrayList<>();
         List<Aluno> alunos_total = new ArrayList<>();
         List<Curso> cursos = new ArrayList<>();
+        List<Curso> cursos_nome = new ArrayList<>();
+        List<Curso> cursos_turno = new ArrayList<>();
+        int i, j;
         
         try{
             String aluno = request.getParameter("aluno");
             String curso = request.getParameter("curso");
+            String turno = request.getParameter("turno");
             String anoEntrada = request.getParameter("anoEntrada");
             String anoAtual = request.getParameter("anoAtual");
             String situacaoAtual = request.getParameter("situacaoAtual");
@@ -104,17 +108,31 @@ public class PesquisarAluno extends HttpServlet {
             alunos = alunoMana.recuperarAlunosPorAtributos(condicao);
             
             //recupera os cursos
-            cursos = cursoMana.recuperarCursosPorAtributo("nome", "%"+curso+"%");
+            cursos_nome = cursoMana.recuperarCursosPorAtributo("nome", "%"+curso+"%");
+            
+            //recupera os cursos pelo turno
+            cursos_turno = cursoMana.recuperarCursosPorAtributo("turno", "%"+turno+"%");
+            
+            for(i=0; i<cursos_nome.size(); i++){                
+                for(j=0; j<cursos_turno.size(); j++){
+                    if(cursos_nome.get(i).getId() == cursos_turno.get(j).getId()){
+                        cursos.add(cursos_nome.get(i));
+                        continue;
+                    }
+                }
+            }
             
             //procura por alunos que estejam no curso passado no filtro de pesquisa
-            for(int i=0; i<alunos.size(); i++){
-                for(int j=0; j<cursos.size(); j++){
+            for(i=0; i<alunos.size(); i++){
+                for(j=0; j<cursos.size(); j++){
                     if(alunos.get(i).getCurso().getId() == cursos.get(j).getId()){
                         alunos_total.add(alunos.get(i));
                         continue;
                     }
                 }
             }
+            
+            
             
             request.setAttribute("alunos", alunos_total);
             request.getRequestDispatcher("tabela_evasao.jsp").forward(request, response);

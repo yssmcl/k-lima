@@ -1,7 +1,3 @@
-Página Tabela:
-- Adicionar turno como critério de pesquisa (mudar a tabela Curso?)
-- Adicionar botão no canto superior direito para exportar relatório com os dados atuais da página
-- Inserir menu/template para atualizar os dados (?)
 
 Página Gráficos:
 - Filtros dos gráficos dinâmicos não funcionam
