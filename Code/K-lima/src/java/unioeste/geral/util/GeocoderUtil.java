@@ -26,7 +26,7 @@ import unioeste.googlemaps.Result;
 public class GeocoderUtil {
     public List<Result> fromAddress(String addr) throws IOException {
         try {
-            URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + addr + "key=AIzaSyC9pNbJrgjHF7S7IXPXXZVGXPFVLDUr4S8");
+            URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + addr + "&key=AIzaSyC9pNbJrgjHF7S7IXPXXZVGXPFVLDUr4S8");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Accept", "application/xml");
