@@ -2,9 +2,12 @@ package unioeste.geral.manager;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +19,7 @@ import unioeste.geral.bo.Campus;
 import unioeste.geral.bo.Centro;
 import unioeste.geral.bo.Curso;
 import unioeste.geral.dao.AlunoDAO;
+import unioeste.geral.util.PopularLocalizacaoThread;
 
 public class AlunoManager {
 
@@ -135,7 +139,7 @@ public class AlunoManager {
             CampusManager campusMana = new CampusManager();
             CentroManager centroMana = new CentroManager();
             CursoManager cursoMana = new CursoManager();
-            Scanner scanner = new Scanner(new FileReader("C:/Users/Leandro Ensina/Documents/Unioeste/4 ano/Sistemas de Informação/k-lima/Code/K-lima/build/web/data/template_klima.csv"));
+            Scanner scanner = new Scanner(new InputStreamReader(new FileInputStream("/home/nardi/Projetos/k-lima/Code/K-lima/build/web/data/template_klima.csv"), StandardCharsets.ISO_8859_1));
             scanner.nextLine(); //junto com a linha abaixo, elimina as duas primeiras linhas do arquivo que não são importantes
                                              
             while(scanner.hasNext()){
@@ -176,6 +180,7 @@ public class AlunoManager {
             
             scanner.close();
         
+            new PopularLocalizacaoThread(this).start();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AlunoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

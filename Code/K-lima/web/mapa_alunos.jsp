@@ -80,25 +80,7 @@
     </script>
     <script>
             var map;
-            var geocoder;
             var cluster;
-
-            function placeMarkers(results, status) {
-                if (status === 'OK') {
-                    if (results[0]) {
-                        cluster.addMarker(new google.maps.Marker({
-                            map: map,
-                            position: results[0].geometry.location
-                        }));
-                        
-                        cluster.fitMapToMarkers();
-                    } else {
-                        window.alert('No results found');
-                    }
-                } else {
-                    window.alert('Geocoder failed: ' + status);
-                }
-            }
 
             function init() {
                 map = new google.maps.Map(document.getElementById('map'), {
@@ -107,8 +89,6 @@
                     mapTypeId: 'roadmap'
                 });
 
-                geocoder = new google.maps.Geocoder;
-
                 cluster = new MarkerClusterer(map, [], {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
                 <%
@@ -116,25 +96,20 @@
 
                 List<Aluno> alunos = (ArrayList<Aluno>) request.getAttribute("alunos");
 
-                if (alunos == null) {
-                    HashMap<String, Object> condicao = new HashMap<>();
-                    condicao.put("cidade", "foz do iguaçu"); 
-                    alunos = manager.recuperarAlunosPorAtributos(condicao);
-
-                }                   
-				
-                alunos = manager.recuperarTodosAlunos();
-                int i=0;
-                for(Aluno aluno : alunos){ if (++i>21) break;%>
-                    var addr = "";
-                    // <% if (aluno.getBairro() != null && !aluno.getBairro().contains("\"")) { %> addr += " <%= aluno.getBairro() %>"; <%}%>
-                    <% if (aluno.getRua() != null) { %> addr += " <%= aluno.getRua() %>"; <%}%>
-                    <% if (aluno.getNumero() != null && !aluno.getNumero().equals("0")) { %> addr += " <%= aluno.getNumero() %>"; <%}%>
-                    // <% if (aluno.getCidade() != null) { %> addr += " <%= aluno.getCidade() %>"; <%}%>
-                    // <% if (aluno.getUnidadeFederativa() != null) { %> addr += " <%= aluno.getUnidadeFederativa() %>"; <%}%>
-                    console.log(addr);
-                    geocoder.geocode({'address': addr}, placeMarkers);
-                <%}%>
+                if (alunos == null) { 
+                    alunos = manager.recuperarTodosAlunos();
+                }
+                
+                for(Aluno aluno : alunos){
+                    if (aluno.getLatitude() != null) {%>
+                        cluster.addMarker(new google.maps.Marker({
+                            map: map,
+                            position: {lat:<%= aluno.getLatitude() %>, lng:<%= aluno.getLongitude() %>}
+                        }));
+                    <%}
+                }%>
+                    
+                cluster.fitMapToMarkers();
             }
 
     </script>
