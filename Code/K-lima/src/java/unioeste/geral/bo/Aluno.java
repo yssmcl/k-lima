@@ -31,6 +31,10 @@ public class Aluno {
 	private String cidade;
 
 	private String unidadeFederativa;
+        
+        private Double latitude;
+        
+        private Double longitude;
 
 	@ManyToOne
 	private Curso curso;
@@ -159,5 +163,21 @@ public class Aluno {
 	public void setCampus(Campus campus) {
 		this.campus = campus;
 	}
+
+        public Double getLatitude() {
+            return latitude;
+        }
+
+        public void setLatitude(Double latitude) {
+            this.latitude = latitude;
+        }
+
+        public Double getLongitude() {
+            return longitude;
+        }
+
+        public void setLongitude(Double longitude) {
+            this.longitude = longitude;
+        }
 
 }
