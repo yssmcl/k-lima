@@ -5,8 +5,6 @@ Página Gráficos:
 
 Página Mapa:
 - Rearranjar tamanho do mapa para tela cheia
-- Salvar coordenadas no banco
-- Pegar o endereço pelo CEP
 
 Relatório:
 - Adicionar menu para geração de relatório (cancelado, cancelado por abandono, transferido)
