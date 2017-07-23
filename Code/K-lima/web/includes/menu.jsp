@@ -18,7 +18,7 @@
           </ul>
           <div class="menu-mobile-opcao"><a href="mapa_alunos.jsp">Mapa</a></div>
           <div class="menu-mobile-opcao"><a href="upload_csv_evasao.jsp">Atualizar Dados</a></div>
-          <div class="menu-mobile-opcao"><a href="#">Ajuda</a></div>
+          <div class="menu-mobile-opcao"><a href="ajuda.jsp">Ajuda</a></div>
         </div>
 
         <!-- MOBILE NAVIGATION -->
@@ -56,7 +56,7 @@
                     <a href="upload_csv_evasao.jsp">Atualizar Dados</a>
                   </li>
                   <li>
-                    <a href="#">Ajuda</a>
+                    <a href="ajuda.jsp">Ajuda</a>
                   </li>
                 </ul>
               </div>

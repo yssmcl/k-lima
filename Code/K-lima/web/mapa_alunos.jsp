@@ -21,7 +21,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>K-Lima</title>
+    <title>SAG - Sistema de Apoio ao Gestor</title>
     
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/zf-5.5.2/jqc-1.11.3,dt-1.10.8/datatables.min.css"/> 
     <script type="text/javascript" src="https://cdn.datatables.net/r/zf-5.5.2/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
@@ -40,32 +40,19 @@
 		<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper> <!-- Essa div e a de cima servem para fazer a parte do menu lateral -->
 
 			<jsp:include page="#{caminho}/includes/menu.jsp"/>
-
-			<div class="row centralizado">
+                        
+                        <!-- MAIN SECTION -->
+			
+                        <div class="row centralizado">
 				<div class="medium-12 columns" style="text-align: center;">
 					<h1>Mapa de Alunos</h1>
 				</div>
 			</div>
-
-			<!-- MAIN SECTION -->
-			<br />
-			<br />
-			<br />
-
-			<div class="row">
-				<div class="columns-12">
-					<div id="map" style="height: 500px"></div>
-				</div>
-			</div>
+        		<div id="map" style="height: 600px;"></div>
 			
         </div>			
     </div>
 	</div>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
     <!--
     <script src="<%=caminho%>/js/vendor/jquery.js"></script>
     -->

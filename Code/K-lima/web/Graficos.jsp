@@ -21,7 +21,7 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>K-Lima</title>
+        <title>SAG - Sistema de Apoio ao Gestor</title>
 
         <link rel="stylesheet" href="<%=caminho%>/css/foundation.css">    
         <link rel="stylesheet" href="<%=caminho%>/css/app.css">

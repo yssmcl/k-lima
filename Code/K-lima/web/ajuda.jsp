@@ -1,14 +1,10 @@
 <%-- 
-    Document   : index.jsp
-    Created on : 14/06/2017, 08:41:19
+    Document   : ajuda
+    Created on : 23/07/2017, 17:55:22
     Author     : Leandro Ensina
 --%>
 
-<%@page import="java.util.List"%>
-<%@page import="unioeste.geral.bo.Aluno"%>
-<%@page import="unioeste.geral.manager.AlunoManager"%>
-<%@ page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html class="no-js" lang="en" dir="ltr">

@@ -3,9 +3,6 @@ Página Gráficos:
 - Filtros dos gráficos dinâmicos não funcionam
 - Gráficos estáticos para cada curso
 
-Página Mapa:
-- Rearranjar tamanho do mapa para tela cheia
-
 Relatório:
 - Adicionar menu para geração de relatório (cancelado, cancelado por abandono, transferido)
 
