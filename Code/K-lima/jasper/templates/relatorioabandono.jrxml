@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="483" leftMargin="56" rightMargin="56" topMargin="56" bottomMargin="56" uuid="7a6eb2a1-a69f-422f-8c53-f44972525516">
-	<property name="ireport.zoom" value="1.4641000000000068"/>
+	<property name="ireport.zoom" value="1.0000000000000044"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="57"/>
+	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
 	<parameter name="Total" class="java.lang.Integer"/>
@@ -59,56 +59,56 @@ www.unioeste.br]]></text>
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<staticText>
-					<reportElement mode="Transparent" x="5" y="38" width="366" height="28" uuid="2105147e-144f-48a0-9412-9705e31e53ca"/>
+					<reportElement mode="Transparent" x="5" y="38" width="417" height="28" uuid="2105147e-144f-48a0-9412-9705e31e53ca"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font size="12"/>
 					</textElement>
 					<text><![CDATA[Total de cancelamentos de matrícula por abandono:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement mode="Transparent" x="5" y="10" width="366" height="28" uuid="64cbb83b-8c53-4b35-be54-84d57a6ec92c"/>
+					<reportElement mode="Transparent" x="5" y="10" width="417" height="28" uuid="64cbb83b-8c53-4b35-be54-84d57a6ec92c"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font size="12"/>
 					</textElement>
-					<text><![CDATA[Total de cancelamentos de matrícula requisitados por acadêmicos:]]></text>
+					<text><![CDATA[Total de cancelamentos de matrícula requisitados poracadêmicos:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement mode="Transparent" x="5" y="66" width="366" height="28" uuid="b490e5a9-3615-4cb5-8807-703c3cee8d49"/>
+					<reportElement mode="Transparent" x="5" y="66" width="417" height="28" uuid="b490e5a9-3615-4cb5-8807-703c3cee8d49"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font size="12"/>
 					</textElement>
 					<text><![CDATA[Total de cancelamentos por transferência:]]></text>
 				</staticText>
 				<textField>
-					<reportElement mode="Transparent" x="388" y="10" width="86" height="28" uuid="fc5f9d1a-34f0-4305-a12d-a0ab13092fb8"/>
+					<reportElement mode="Transparent" x="422" y="10" width="52" height="28" uuid="fc5f9d1a-34f0-4305-a12d-a0ab13092fb8"/>
 					<textElement markup="none">
 						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{Cancelados}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement mode="Transparent" x="388" y="38" width="86" height="28" uuid="6037b816-cb54-4618-9977-e894cb1f5b59"/>
+					<reportElement mode="Transparent" x="422" y="38" width="52" height="28" uuid="6037b816-cb54-4618-9977-e894cb1f5b59"/>
 					<textElement markup="none">
 						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{CanceladosPorAbandono}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement mode="Transparent" x="388" y="66" width="86" height="28" uuid="c7cf7a72-439f-467f-b64d-34bdff956ce0"/>
+					<reportElement mode="Transparent" x="422" y="66" width="52" height="28" uuid="c7cf7a72-439f-467f-b64d-34bdff956ce0"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{Transferidos}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement mode="Transparent" x="5" y="112" width="366" height="28" uuid="ecd0f38c-df29-4a4a-be63-0adbac817eea"/>
+					<reportElement mode="Transparent" x="5" y="112" width="417" height="28" uuid="ecd0f38c-df29-4a4a-be63-0adbac817eea"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font size="12"/>
 					</textElement>
 					<text><![CDATA[Total geral de cancelamentos de matrícula:]]></text>
 				</staticText>
 				<textField>
-					<reportElement mode="Transparent" x="388" y="112" width="86" height="28" uuid="1dc3d96f-bc8b-4976-84a5-f0c2acdb115b"/>
+					<reportElement mode="Transparent" x="422" y="112" width="52" height="28" uuid="1dc3d96f-bc8b-4976-84a5-f0c2acdb115b"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
