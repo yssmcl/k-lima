@@ -18,33 +18,33 @@
 
 	<body>
 		<div class="off-canvas-wrapper">
-		  <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper> <!-- Essa div e a de cima servem para fazer a parte do menu lateral -->
-			  <jsp:include page="#{caminho}/includes/menu.jsp"/>
+			<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper> <!-- Essa div e a de cima servem para fazer a parte do menu lateral -->
+				<jsp:include page="#{caminho}/includes/menu.jsp"/>
 
-			  <!-- MAIN SECTION -->
-			  <div class="row">
-				  <br />
-				  <h1>Relatório de Evasão</h1>
-				  <form action="RelatorioServlet" method="get">
-					  Selecione o curso:
+				<div class="row">
+					<br />
+					<h1>Relatório de Evasão</h1>
+					<form action="RelatorioServlet" method="get">
+						<div class="medium-3 columns">
+						  Selecione o curso:
+						  <select id="idCurso" name="idCurso">
+							  <%
+							  List<Curso> cursos = new CursoManager().recuperarCursosPorAtributo("nome", "%");
+							  for (Curso curso : cursos) {%>
+								  <option value="<%= curso.getId() %>">
+									  <%= curso.getNome() %>
+								  </option>
+							  <%}%>
+							  <option value="Todos">Todos</option>
+						  </select>
+						  <br />
+						  <br />
+						  <input type="submit" value="Gerar relatório de evasão" class="button" />
+						</div>
+					</form>
+				</div>
 
-					  <select id="idCurso" name="idCurso">
-						  <%
-						  List<Curso> cursos = new CursoManager().recuperarCursosPorAtributo("nome", "%");
-						  for (Curso curso : cursos) {%>
-							  <option value="<%= curso.getId() %>">
-								  <%= curso.getNome() %>
-							  </option>
-						  <%}%>
-						  <option value="Todos">Todos</option>
-					  </select>
-					  <br />
-					  <br />
-					  <input type="submit" value="Gerar relatório de evasão" class="button" />
-				  </form>
-			  </div>
-
-		  </div>
+			</div>
 		</div>
 	</body>
 
