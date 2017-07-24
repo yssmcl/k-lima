@@ -1,5 +1,7 @@
 package unioeste.geral.relatorio;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,29 +13,42 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import unioeste.geral.bo.Aluno;
+import unioeste.geral.bo.Curso;
 import unioeste.geral.manager.AlunoManager;
+import unioeste.geral.manager.CursoManager;
 
 public class Relatorio {
 
-	public void gerarRelatorio() {
+	// TODO: fazer o esquema de caminho absoluto pro logo da Unioeste no relatório
+	public void gerarRelatorioEvasaoPorCurso(Curso curso) {
 		try {
 			String wd = System.getProperty("user.dir");
 			wd = wd.split("k-lima")[0];
-
 			String arquivoTemplate = wd + "k-lima/Code/K-lima/jasper/templates/relatorioabandono.jrxml";
 			String arquivoDestino = wd + "k-lima/Code/K-lima/jasper/relatorios/relatorioabandono.pdf";
 
-			HashMap<String, Object> condicao = new HashMap<>();
-			condicao.put("situacaoAtual", "Cancelado");
-			List<Aluno> alunosCancelados = new AlunoManager().recuperarAlunosPorAtributos(condicao);
+			String nomeAtributoCurso;
+			if (curso == null) {
+				nomeAtributoCurso = "";
+			} else {
+				nomeAtributoCurso = "curso";
 
-			condicao.clear();
-			condicao.put("situacaoAtual", "Cancelado Por Abandono");
-			List<Aluno> alunosCanceladosPorAbandono = new AlunoManager().recuperarAlunosPorAtributos(condicao);
+			}
 
-			condicao.clear();
-			condicao.put("situacaoAtual", "Transferido");
-			List<Aluno> alunosTransferidos = new AlunoManager().recuperarAlunosPorAtributos(condicao);
+			Multimap<String, Object> condicaoAND = HashMultimap.create();
+			condicaoAND.put("situacaoAtual", "Cancelado");
+			condicaoAND.put(nomeAtributoCurso, curso);
+			List<Aluno> alunosCancelados = new AlunoManager().recuperarAlunosPorAtributosMultimap(condicaoAND, null);
+
+			condicaoAND.clear();
+			condicaoAND.put("situacaoAtual", "Cancelado Por Abandono");
+			condicaoAND.put(nomeAtributoCurso, curso);
+			List<Aluno> alunosCanceladosPorAbandono = new AlunoManager().recuperarAlunosPorAtributosMultimap(condicaoAND, null);
+
+			condicaoAND.clear();
+			condicaoAND.put("situacaoAtual", "Transferido");
+			condicaoAND.put(nomeAtributoCurso, curso);
+			List<Aluno> alunosTransferidos = new AlunoManager().recuperarAlunosPorAtributosMultimap(condicaoAND, null);
 
 			Map parametros = new HashMap();
 			parametros.put("Cancelados", alunosCancelados.size());
@@ -44,9 +59,15 @@ public class Relatorio {
 			JasperReport jasperReport = JasperCompileManager.compileReport(arquivoTemplate);
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, new JREmptyDataSource());
 			JasperExportManager.exportReportToPdfFile(jasperPrint, arquivoDestino);
+//			JasperViewer.viewReport(jasperPrint);
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void main(String[] args) {
+		new Relatorio().gerarRelatorioEvasaoPorCurso(
+			new CursoManager().recuperarCursosPorAtributo("nome", "Matemática").get(0));
 	}
 
 }

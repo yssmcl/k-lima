@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import unioeste.geral.bo.Curso;
+import unioeste.geral.manager.CursoManager;
 import unioeste.geral.relatorio.Relatorio;
 
 @WebServlet(name = "RelatorioServlet", urlPatterns = {"/RelatorioServlet"})
@@ -16,7 +18,15 @@ public class RelatorioServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-		new Relatorio().gerarRelatorio();
+		String idCurso = request.getParameter("idCurso");
+
+		// Verifica se é a seleção no JSP não foi "Todos"
+		if (idCurso.matches("[0-9]+")) {
+			Curso curso = new CursoManager().recuperarCursosPorAtributo("id", Long.parseLong(idCurso)).get(0);
+			new Relatorio().gerarRelatorioEvasaoPorCurso(curso);
+		} else {
+			new Relatorio().gerarRelatorioEvasaoPorCurso(null);
+		}
 
 		File file = new File("/home/user/p/si/trabalhos/k-lima/Code/K-lima/jasper/relatorios/relatorioabandono.pdf");
 		response.setHeader("Content-Type", getServletContext().getMimeType(file.getName()));
@@ -28,7 +38,6 @@ public class RelatorioServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-
 	}
 
 }
