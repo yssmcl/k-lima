@@ -28,7 +28,9 @@ public class RelatorioServlet extends HttpServlet {
 			new Relatorio().gerarRelatorioEvasaoPorCurso(null);
 		}
 
-		File file = new File("/home/user/p/si/trabalhos/k-lima/Code/K-lima/jasper/relatorios/relatorioabandono.pdf");
+		String diretorioAtual = System.getProperty("user.dir");
+		diretorioAtual = diretorioAtual.split("k-lima")[0];
+		File file = new File(diretorioAtual + "k-lima/Code/K-lima/jasper/relatorios/relatorioabandono.pdf");
 		response.setHeader("Content-Type", getServletContext().getMimeType(file.getName()));
 		response.setHeader("Content-Length", String.valueOf(file.length()));
 		response.setHeader("Content-Disposition", "inline; filename=\"relatorioabandono.pdf\"");
