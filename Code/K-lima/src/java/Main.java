@@ -1,9 +1,5 @@
 
-import java.util.HashMap;
-import java.util.List;
-import unioeste.geral.bo.Aluno;
 import unioeste.geral.bo.Curso;
-import unioeste.geral.manager.AlunoManager;
 import unioeste.geral.manager.CursoManager;
 
 public class Main {
@@ -11,23 +7,24 @@ public class Main {
 	public static void main(String[] args) {
 //		Multimap<String, Object> condicaoAND = HashMultimap.create();
 //		Curso curso = new CursoManager().recuperarCursosPorAtributo("nome", "Ciência da Computação").get(0);
-//		condicaoAND.put("curso", curso);
-//
+//		condicaoAND.put("", "");
+//		condicaoAND.put("situacaoAtual", "Transferido");
+
 //		Multimap<String, Object> condicaoOR = HashMultimap.create();
 //		condicaoOR.put("situacaoAtual", "Cancelado Por Abandono");
 //		condicaoOR.put("situacaoAtual", "Cancelado");
 //		condicaoOR.put("situacaoAtual", "Transferido");
-//
-//		List<Aluno> alunos = new AlunoManager().recuperarAlunosPorAtributosMultimap(condicaoAND, condicaoOR);
+//		List<Aluno> alunos = new AlunoManager().recuperarAlunosPorAtributosMultimap(condicaoAND, null);
 //		System.out.println("=========================== " + alunos.size());
+		Curso curso = new CursoManager().recuperarCursosPorAtributo("id", 2).get(0);
+		System.out.println(curso.getNome());
 
-		HashMap<String, Object> condicao = new HashMap<>();
-		Curso curso = new CursoManager().recuperarCursosPorAtributo("nome", "Ciência da Computação").get(0);
-		condicao.put("curso", curso);
-
-		List<Aluno> alunos = new AlunoManager().recuperarAlunosPorAtributos(condicao);
-		System.out.println("=========================== " + alunos.size());
-
+//		HashMap<String, Object> condicao = new HashMap<>();
+//		Curso curso = new CursoManager().recuperarCursosPorAtributo("nome", "Ciência da Computação").get(0);
+//		condicao.put("curso", curso);
+//
+//		List<Aluno> alunos = new AlunoManager().recuperarAlunosPorAtributos(condicao);
+//		System.out.println("=========================== " + alunos.size());
 //		Campus campus = new Campus("campus1");
 //		Centro centro = new Centro("centro1");
 //		Curso curso = new Curso("curso1");
