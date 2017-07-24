@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : menu
     Created on : 19/07/2017, 09:18:29
     Author     : Leandro Ensina
@@ -22,7 +22,7 @@
         </div>
 
         <!-- MOBILE NAVIGATION -->
-        
+
         <div class="off-canvas-content" data-off-canvas-content>
           <div class="title-bar show-for-small-only">
             <div class="title-bar-left">
@@ -30,7 +30,7 @@
               <span class="title-bar-title">MENU</span>
             </div>
           </div>
-        
+
           <!-- DESKTOP NAVIGATION -->
           <nav class="top-bar nav-desktop hide-for-small-only">
            <div class="wrap">
@@ -38,7 +38,7 @@
                 <ul class="dropdown menu menu-desktop" data-dropdown-menu>
                   <li>
                     <a href="index.jsp">Home</a>
-                  </li>                  
+                  </li>
                   <li>
                     <a href="tabela_evasao.jsp">Tabela</a>
                   </li>
@@ -54,6 +54,9 @@
                   </li>
                   <li>
                     <a href="upload_csv_evasao.jsp">Atualizar Dados</a>
+                  </li>
+				  <li>
+                    <a href="relatorio.jsp">Relatórios</a>
                   </li>
                   <li>
                     <a href="ajuda.jsp">Ajuda</a>

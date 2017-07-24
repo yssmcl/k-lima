@@ -1,6 +1,8 @@
 package unioeste.geral.servet;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,19 +16,19 @@ public class RelatorioServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
+		new Relatorio().gerarRelatorio();
 
+		File file = new File("/home/user/p/si/trabalhos/k-lima/Code/K-lima/jasper/relatorios/relatorioabandono.pdf");
+		response.setHeader("Content-Type", getServletContext().getMimeType(file.getName()));
+		response.setHeader("Content-Length", String.valueOf(file.length()));
+		response.setHeader("Content-Disposition", "inline; filename=\"relatorioabandono.pdf\"");
+		long copy = Files.copy(file.toPath(), response.getOutputStream());
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8"); // pega caracteres UTF-8 do JSP
 
-		new Relatorio().gerarRelatorioCancelamento();
-
-//            response = HttpResponse(arquivo_pdf, content_type='application/pdf')
-//            response['Content-Disposition'] = 'inline; filename=%s' % smart_str(nome_arquivo)
-//			return response
 	}
 
 }

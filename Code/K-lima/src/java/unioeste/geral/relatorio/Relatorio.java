@@ -10,13 +10,12 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
 import unioeste.geral.bo.Aluno;
 import unioeste.geral.manager.AlunoManager;
 
 public class Relatorio {
 
-	public void gerarRelatorioCancelamento() {
+	public void gerarRelatorio() {
 		try {
 			String wd = System.getProperty("user.dir");
 			wd = wd.split("k-lima")[0];
@@ -45,32 +44,9 @@ public class Relatorio {
 			JasperReport jasperReport = JasperCompileManager.compileReport(arquivoTemplate);
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, new JREmptyDataSource());
 			JasperExportManager.exportReportToPdfFile(jasperPrint, arquivoDestino);
-			JasperViewer.viewReport(jasperPrint);
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public static void main(String[] args) {
-//		String reportSource = "/home/user/p/si/trabalhos/K-lima-jasper/jasper/templates/HelloWorld.jrxml";
-//		String reportDest = "/home/user/p/si/trabalhos/K-lima-jasper/jasper/relatorios/HelloWorld.pdf";
-//
-//		Map<String, Object> params = new HashMap<>();
-//		params.put("parametro", "666");
-//
-//		try {
-//			JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
-//
-//			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, new JREmptyDataSource());
-//
-//			JasperExportManager.exportReportToPdfFile(jasperPrint, reportDest);
-//
-//			JasperViewer.viewReport(jasperPrint);
-//		} catch (Exception ex) {
-//			ex.printStackTrace();
-//		}
-
-		new Relatorio().gerarRelatorioCancelamento();
 	}
 
 }
