@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="483" leftMargin="56" rightMargin="56" topMargin="56" bottomMargin="56" uuid="7a6eb2a1-a69f-422f-8c53-f44972525516">
-	<property name="ireport.zoom" value="2.143588810000006"/>
-	<property name="ireport.x" value="52"/>
-	<property name="ireport.y" value="241"/>
+	<property name="ireport.zoom" value="1.4641000000000068"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="57"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
 	<parameter name="Total" class="java.lang.Integer"/>
@@ -21,23 +21,21 @@
 	<pageHeader>
 		<band height="164" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Transparent" x="98" y="130" width="286" height="28" uuid="27e051fb-e8f0-4a33-91e7-3621954a7458"/>
+				<reportElement mode="Transparent" x="77" y="136" width="345" height="28" uuid="27e051fb-e8f0-4a33-91e7-3621954a7458"/>
 				<textElement>
-					<font fontName="Arial" size="18" isBold="false"/>
+					<font size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SAG - Sistema de Apoio ao Gestor]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Transparent" x="0" y="82" width="483" height="38" uuid="40ceaa17-a2fe-4834-9114-2771652a6f28"/>
 				<textElement>
-					<font fontName="Arial" size="8" isBold="false"/>
+					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Reitoria - CNPJ 78680337/0001-84
 Rua Universitária, 1619 - Fone: (45) 3220-3000 - Fax: (45) 3324-4590
 Jardim Universitário - Cx. P. 000701 - CEP 85819-110 - Cascavel - Paraná
-www.unioeste.br
-
-]]></text>
+www.unioeste.br]]></text>
 			</staticText>
 			<image>
 				<reportElement x="0" y="0" width="210" height="82" uuid="008ff6ff-73d3-479b-bf85-e0bdc95b0df4"/>
@@ -63,56 +61,56 @@ www.unioeste.br
 				<staticText>
 					<reportElement mode="Transparent" x="5" y="38" width="366" height="28" uuid="2105147e-144f-48a0-9412-9705e31e53ca"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isBold="false" isItalic="true"/>
+						<font size="12"/>
 					</textElement>
 					<text><![CDATA[Total de cancelamentos de matrícula por abandono:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement mode="Transparent" x="5" y="10" width="366" height="28" uuid="64cbb83b-8c53-4b35-be54-84d57a6ec92c"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isBold="false" isItalic="true"/>
+						<font size="12"/>
 					</textElement>
 					<text><![CDATA[Total de cancelamentos de matrícula requisitados por acadêmicos:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement mode="Transparent" x="5" y="66" width="366" height="28" uuid="b490e5a9-3615-4cb5-8807-703c3cee8d49"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isBold="false" isItalic="true"/>
+						<font size="12"/>
 					</textElement>
 					<text><![CDATA[Total de cancelamentos por transferência:]]></text>
 				</staticText>
 				<textField>
 					<reportElement mode="Transparent" x="388" y="10" width="86" height="28" uuid="fc5f9d1a-34f0-4305-a12d-a0ab13092fb8"/>
 					<textElement markup="none">
-						<font fontName="Arial" size="16" isBold="false"/>
+						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{Cancelados}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement mode="Transparent" x="388" y="38" width="86" height="28" uuid="6037b816-cb54-4618-9977-e894cb1f5b59"/>
 					<textElement markup="none">
-						<font fontName="Arial" size="16" isBold="false"/>
+						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{CanceladosPorAbandono}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement mode="Transparent" x="388" y="66" width="86" height="28" uuid="c7cf7a72-439f-467f-b64d-34bdff956ce0"/>
 					<textElement>
-						<font fontName="Arial" size="16" isBold="false"/>
+						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{Transferidos}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement mode="Transparent" x="5" y="112" width="366" height="28" uuid="ecd0f38c-df29-4a4a-be63-0adbac817eea"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isBold="false" isItalic="true"/>
+						<font size="12"/>
 					</textElement>
 					<text><![CDATA[Total geral de cancelamentos de matrícula:]]></text>
 				</staticText>
 				<textField>
 					<reportElement mode="Transparent" x="388" y="112" width="86" height="28" uuid="1dc3d96f-bc8b-4976-84a5-f0c2acdb115b"/>
 					<textElement>
-						<font fontName="Arial" size="16" isBold="false"/>
+						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{Total}]]></textFieldExpression>
 				</textField>
@@ -120,35 +118,35 @@ www.unioeste.br
 			<staticText>
 				<reportElement mode="Transparent" x="0" y="0" width="483" height="28" uuid="360818ac-62cd-4801-bc8f-2c5a83c514ce"/>
 				<textElement>
-					<font fontName="Arial" size="14" isBold="false" isItalic="false"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Relatório de Evasão por Curso]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="0" y="30" width="44" height="28" uuid="0f2590ce-4020-40f0-98ad-bdc7fcdf8fcc"/>
+				<reportElement mode="Transparent" x="0" y="30" width="46" height="28" uuid="0f2590ce-4020-40f0-98ad-bdc7fcdf8fcc"/>
 				<textElement>
-					<font fontName="Arial" size="14" isBold="false"/>
+					<font size="12"/>
 				</textElement>
 				<text><![CDATA[Curso:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Transparent" x="0" y="86" width="483" height="28" uuid="af75ea39-e81a-47ca-9e7f-f4e98f5aa20a"/>
 				<textElement>
-					<font fontName="Arial" size="14" isBold="false"/>
+					<font size="12"/>
 				</textElement>
 				<text><![CDATA[]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Transparent" x="0" y="58" width="483" height="28" uuid="d20f0067-0935-4f0a-b96f-c6d620df3a6a"/>
 				<textElement>
-					<font fontName="Arial" size="14" isBold="false"/>
+					<font size="12"/>
 				</textElement>
 				<text><![CDATA[Centro: CECE]]></text>
 			</staticText>
 			<textField>
-				<reportElement mode="Transparent" x="44" y="30" width="433" height="28" uuid="0d63c07b-bda5-42cb-9fa3-fa1ccb8e8351"/>
+				<reportElement mode="Transparent" x="46" y="30" width="433" height="28" uuid="0d63c07b-bda5-42cb-9fa3-fa1ccb8e8351"/>
 				<textElement>
-					<font fontName="Arial" size="14" isBold="false"/>
+					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{Curso}]]></textFieldExpression>
 			</textField>

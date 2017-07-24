@@ -2,6 +2,7 @@ package unioeste.geral.relatorio;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ public class Relatorio {
 		try {
 			String diretorioAtual = System.getProperty("user.dir");
 			diretorioAtual = diretorioAtual.split("k-lima")[0];
+			new File(diretorioAtual + "k-lima/lib/apache-tomcat-8.5.15/temp").mkdir(); // cria diretório temp pra não dar exceção de fontes no jasper
 			String arquivoTemplate = diretorioAtual + "k-lima/Code/K-lima/jasper/templates/relatorioabandono.jrxml";
 			String arquivoDestino = diretorioAtual + "k-lima/Code/K-lima/jasper/relatorios/relatorioabandono.pdf";
 			String caminhoLogoUnioeste = diretorioAtual + "k-lima/Code/K-lima/web/img/unioeste.jpg";
