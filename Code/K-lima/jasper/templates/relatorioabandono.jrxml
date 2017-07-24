@@ -159,7 +159,7 @@ www.unioeste.br
 			<textField>
 				<reportElement x="371" y="30" width="72" height="20" uuid="7d46c3f7-11c3-4c40-8fd4-679ede12be16"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement x="443" y="30" width="40" height="20" uuid="e9567bb1-abdf-4e7f-8d9d-61147fa4d642"/>
