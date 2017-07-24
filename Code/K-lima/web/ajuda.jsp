@@ -37,12 +37,56 @@
 
           <!-- MAIN SECTION -->
           <br />
+          <h1 style="text-align: center;">Importação dos dados de alunos para a aplicação</h1>
           <br />
+          <div class="row">
+              <span><p style="color: red; font-weight: bold;">Observação: </p>Antes de importar um arquivo para o sistema, 
+                  lembre-se de apagar o banco com o botão "Limpar Banco" que está presente no final da página na Tabela, a qual
+                  apresenta as informações gerais de alunos. 
+                  Isso se deve ao fato de que poderá ocorrer risco de duplicação de dados de alunos, 
+                  sendo então responsabilidade do usuário.</span>
+          </div>
+          <hr />
+          <div class="row">
+              <p>Para que a importação dos dados de alunos para a aplicação seja feito de forma correta, siga o modelo da 
+                  template disposível <a href="<%=caminho%>/img/ajuda/template_SAG.xlsx">aqui</a>. 
+                  A primeira linha do arquivo (Figura 1) indica quais informações cada coluna deve conter, 
+                  e esta <b>não</b> deve ser apagada. Cada linha indica as informações de um aluno e, 
+                  em caso de necessidade, <b>não</b> utilize ponto e vírgula (<b>;</b>) para separar partes de textos, 
+                  dê preferência a vírgulas comuns, pois o algoritmo de importação utiliza de pontos e vírgulas 
+                  para a importação do arquivo.</p>
+          </div>
           <br />
           <div class="row" style="text-align:center;">
-		<img src="<%=caminho%>/img/unioeste.jpg" alt="Unioeste" height="400" width="900">
+             <img src="<%=caminho%>/img/ajuda/img1.png" alt="Unioeste" height="400" width="900">
+             <p><b>Figura 1</b></p>
           </div>
-          
+          <br />
+          <div class="row">
+              <p>A partir deste arquivo em Excel com os dados já inseridos, salve este arquivo para o formato CSV, 
+                  conforme demonstrado nas Figuras 2 e 3 abaixo.</p>
+          </div>
+          <br />
+          <div class="row" style="text-align:center;">
+		<img src="<%=caminho%>/img/ajuda/img2.png" alt="Unioeste" height="400" width="900">
+                <p><b>Figura 2</b></p>
+          </div>
+          <br />
+          <div class="row" style="text-align:center;">
+		<img src="<%=caminho%>/img/ajuda/img3.png" alt="Unioeste" height="400" width="900">
+                <p><b>Figura 3</b></p>
+          </div>
+          <br />
+          <div class="row">
+              <p>Após salvar o arquivo no formato CSV, os dados neste arquivo ficarão semelhantes a Figura 4. 
+              Com isso, o arquivo está pronto para ser importado para a aplicação. Lembre-se que o nome do arquivo 
+              para importação deve ser exclusivamente <b>template_SAG.csv</b>.</p>
+          </div>          
+          <br />
+          <div class="row" style="text-align:center;">
+		<img src="<%=caminho%>/img/ajuda/img4.png" alt="Unioeste" height="500" width="900">
+                <p><b>Figura 4</b></p>
+          </div>
         </div>
       </div>
     </div>
