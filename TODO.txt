@@ -1,13 +1,6 @@
-
 Página Gráficos:
 - Filtros dos gráficos dinâmicos não funcionam
 - Gráficos estáticos para cada curso
-
-Relatório:
-- Adicionar menu para geração de relatório (cancelado, cancelado por abandono, transferido)
-
-Página Ajuda:
-- Instruir o usuário sobre o formato do CSV (não usar ';', acentos, nome dos cursos, câmpus, centros etc.)
 
 Outros:
 - Fechar Session Factory (segunda resposta em https://stackoverflow.com/questions/30096416/where-to-open-and-where-to-close-sessionfactory-in-my-application)

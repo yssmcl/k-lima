@@ -19,7 +19,6 @@ import unioeste.geral.manager.AlunoManager;
 
 public class Relatorio {
 
-	// TODO: fazer o esquema de caminho absoluto pro logo da Unioeste no relatório
 	public void gerarRelatorioEvasaoPorCurso(Curso curso) {
 		try {
 			String diretorioAtual = System.getProperty("user.dir");
