@@ -15,24 +15,27 @@ import net.sf.jasperreports.engine.JasperReport;
 import unioeste.geral.bo.Aluno;
 import unioeste.geral.bo.Curso;
 import unioeste.geral.manager.AlunoManager;
-import unioeste.geral.manager.CursoManager;
 
 public class Relatorio {
 
 	// TODO: fazer o esquema de caminho absoluto pro logo da Unioeste no relatório
 	public void gerarRelatorioEvasaoPorCurso(Curso curso) {
 		try {
-			String wd = System.getProperty("user.dir");
-			wd = wd.split("k-lima")[0];
-			String arquivoTemplate = wd + "k-lima/Code/K-lima/jasper/templates/relatorioabandono.jrxml";
-			String arquivoDestino = wd + "k-lima/Code/K-lima/jasper/relatorios/relatorioabandono.pdf";
+			String diretorioAtual = System.getProperty("user.dir");
+			diretorioAtual = diretorioAtual.split("k-lima")[0];
+			String arquivoTemplate = diretorioAtual + "k-lima/Code/K-lima/jasper/templates/relatorioabandono.jrxml";
+			String arquivoDestino = diretorioAtual + "k-lima/Code/K-lima/jasper/relatorios/relatorioabandono.pdf";
+			String caminhoLogoUnioeste = diretorioAtual + "k-lima/Code/K-lima/web/img/unioeste.jpg";
+			String caminhoLogoGoverno = diretorioAtual + "k-lima/Code/K-lima/web/img/governo.jpg";
 
 			String nomeAtributoCurso;
+			String nomeCurso;
 			if (curso == null) {
+				nomeCurso = "Todos os cursos";
 				nomeAtributoCurso = "";
 			} else {
+				nomeCurso = curso.getNome();
 				nomeAtributoCurso = "curso";
-
 			}
 
 			Multimap<String, Object> condicaoAND = HashMultimap.create();
@@ -51,6 +54,9 @@ public class Relatorio {
 			List<Aluno> alunosTransferidos = new AlunoManager().recuperarAlunosPorAtributosMultimap(condicaoAND, null);
 
 			Map parametros = new HashMap();
+			parametros.put("Curso", nomeCurso);
+			parametros.put("LogoUnioeste", caminhoLogoUnioeste);
+			parametros.put("LogoGoverno", caminhoLogoGoverno);
 			parametros.put("Cancelados", alunosCancelados.size());
 			parametros.put("CanceladosPorAbandono", alunosCanceladosPorAbandono.size());
 			parametros.put("Transferidos", alunosTransferidos.size());
@@ -66,8 +72,7 @@ public class Relatorio {
 	}
 
 	public static void main(String[] args) {
-		new Relatorio().gerarRelatorioEvasaoPorCurso(
-			new CursoManager().recuperarCursosPorAtributo("nome", "Matemática").get(0));
+		new Relatorio().gerarRelatorioEvasaoPorCurso(null);
 	}
 
 }
