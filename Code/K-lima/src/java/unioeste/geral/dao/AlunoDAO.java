@@ -75,6 +75,8 @@ public class AlunoDAO {
 			Criteria criteria = session.createCriteria(Aluno.class);
 			if (condicaoAND != null) {
 				for (Map.Entry entry : condicaoAND.entries()) {
+//					System.out.println("============================= key: " + entry.getKey());
+//					System.out.println("============================= value: " + entry.getValue());
 					if (entry.getValue().getClass() == Long.class) {
 						criteria.add(
 							Restrictions.eq((String) entry.getKey(), entry.getValue())
