@@ -7,6 +7,8 @@ package unioeste.geral.util;
 
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 /**
@@ -20,11 +22,12 @@ public class HibernateUtil {
 
 	static {
 		try {
-			// Create the SessionFactory from standard (hibernate.cfg.xml)
-			// config file.
-			sessionFactory = new Configuration().configure().buildSessionFactory();
+			Configuration configuration = new Configuration();
+			configuration.configure();
+			StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
+				configuration.getProperties()).build();
+			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 		} catch (HibernateException ex) {
-			// Log the exception.
 			System.err.println("Initial SessionFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);
 		}
