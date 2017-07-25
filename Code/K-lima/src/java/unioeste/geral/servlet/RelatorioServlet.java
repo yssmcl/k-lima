@@ -1,4 +1,4 @@
-package unioeste.geral.servet;
+package unioeste.geral.servlet;
 
 import java.io.File;
 import java.io.IOException;

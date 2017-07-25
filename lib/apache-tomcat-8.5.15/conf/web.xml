@@ -90,22 +90,6 @@
   <!--   showServerInfo      Should server information be presented in the  -->
   <!--                       response sent to clients when directory        -->
   <!--                       listings is enabled? [true]                    -->
-  <filter>
-    <filter-name>HTTPMonitorFilter</filter-name>
-    <filter-class>org.netbeans.modules.web.monitor.server.MonitorFilter</filter-class>
-    <init-param>
-      <param-name>netbeans.monitor.ide</param-name>
-      <param-value>127.0.0.1:8082</param-value>
-    </init-param>
-  </filter>
-  <filter-mapping>
-    <filter-name>HTTPMonitorFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-    <dispatcher>REQUEST</dispatcher>
-    <dispatcher>FORWARD</dispatcher>
-    <dispatcher>INCLUDE</dispatcher>
-    <dispatcher>ERROR</dispatcher>
-  </filter-mapping>
   <servlet>
     <servlet-name>default</servlet-name>
     <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
