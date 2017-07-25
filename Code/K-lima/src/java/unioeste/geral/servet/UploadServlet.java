@@ -28,134 +28,138 @@ import unioeste.geral.manager.AlunoManager;
 @WebServlet(name = "UploadServlet", urlPatterns = {"/UploadServlet"})
 public class UploadServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private static final String DATA_DIRECTORY = "data";
-    private static final int MAX_MEMORY_SIZE = 1024 * 1024 * 2;
-    private static final int MAX_REQUEST_SIZE = 1024 * 1024;
-    
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UploadServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UploadServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+	private static final String DATA_DIRECTORY = "data";
+	private static final int MAX_MEMORY_SIZE = 1024 * 1024 * 2;
+	private static final int MAX_REQUEST_SIZE = 1024 * 1024;
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+	/**
+	 * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+	 *
+	 * @param request servlet request
+	 * @param response servlet response
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException if an I/O error occurs
+	 */
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		try (PrintWriter out = response.getWriter()) {
+			/* TODO output your page here. You may use following sample code. */
+			out.println("<!DOCTYPE html>");
+			out.println("<html>");
+			out.println("<head>");
+			out.println("<title>Servlet UploadServlet</title>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<h1>Servlet UploadServlet at " + request.getContextPath() + "</h1>");
+			out.println("</body>");
+			out.println("</html>");
+		}
+	}
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // Check that we have a file upload request
-        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+	// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+	/**
+	 * Handles the HTTP <code>GET</code> method.
+	 *
+	 * @param request servlet request
+	 * @param response servlet response
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException if an I/O error occurs
+	 */
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
+		processRequest(request, response);
+	}
 
-        if (!isMultipart) {
-            return;
-        }
+	/**
+	 * Handles the HTTP <code>POST</code> method.
+	 *
+	 * @param request servlet request
+	 * @param response servlet response
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException if an I/O error occurs
+	 */
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
+		// TODO: tirar daqui
+		String diretorioAtual = System.getProperty("user.dir");
+		diretorioAtual = diretorioAtual.split("k-lima")[0];
+		new File(diretorioAtual + "k-lima/Code/K-lima/build/web/data/").mkdir();
 
-        // Create a factory for disk-based file items
-        DiskFileItemFactory factory = new DiskFileItemFactory();
+		// Check that we have a file upload request
+		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 
-        // Sets the size threshold beyond which files are written directly to
-        // disk.
-        factory.setSizeThreshold(MAX_MEMORY_SIZE);
+		if (!isMultipart) {
+			return;
+		}
 
-        // Sets the directory used to temporarily store files that are larger
-        // than the configured size threshold. We use temporary directory for
-        // java
-        factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+		// Create a factory for disk-based file items
+		DiskFileItemFactory factory = new DiskFileItemFactory();
 
-        // constructs the folder where uploaded file will be stored
-        String uploadFolder = getServletContext().getRealPath("")
-                + File.separator + DATA_DIRECTORY;
+		// Sets the size threshold beyond which files are written directly to
+		// disk.
+		factory.setSizeThreshold(MAX_MEMORY_SIZE);
 
-        // Create a new file upload handler
-        ServletFileUpload upload = new ServletFileUpload(factory);
+		// Sets the directory used to temporarily store files that are larger
+		// than the configured size threshold. We use temporary directory for
+		// java
+		factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
 
-        // Set overall request size constraint
-        upload.setSizeMax(MAX_REQUEST_SIZE);
+		// constructs the folder where uploaded file will be stored
+		String uploadFolder = getServletContext().getRealPath("")
+			+ File.separator + DATA_DIRECTORY;
 
-        try {
-            // Parse the request
-            List items = upload.parseRequest(request);
-            Iterator iter = items.iterator();
-            while (iter.hasNext()) {
-                FileItem item = (FileItem) iter.next();
+		// Create a new file upload handler
+		ServletFileUpload upload = new ServletFileUpload(factory);
 
-                if (!item.isFormField()) {
-                    String fileName = new File(item.getName()).getName();
-                    String filePath = uploadFolder + File.separator + fileName;
-                    File uploadedFile = new File(filePath);
-                    System.out.println(filePath);
-                    // saves the file to upload directory
-                    item.write(uploadedFile);
-                }
-            }
-            
-            //inseri no banco estes dados
-            AlunoManager alunoMana = new AlunoManager();
-            alunoMana.carregarCSV();
-            
-            // displays done.jsp page after upload finished
-            getServletContext().getRequestDispatcher("/tabela_evasao.jsp").forward(
-                    request, response);
+		// Set overall request size constraint
+		upload.setSizeMax(MAX_REQUEST_SIZE);
 
-        } catch (FileUploadException ex) {
-            throw new ServletException(ex);
-        } catch (Exception ex) {
-            System.out.print("Deu erro!");
-            throw new ServletException(ex);
-        }
-    }
+		try {
+			// Parse the request
+			List items = upload.parseRequest(request);
+			Iterator iter = items.iterator();
+			while (iter.hasNext()) {
+				FileItem item = (FileItem) iter.next();
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+				if (!item.isFormField()) {
+					String fileName = new File(item.getName()).getName();
+					String filePath = uploadFolder + File.separator + fileName;
+					File uploadedFile = new File(filePath);
+					System.out.println(filePath);
+					// saves the file to upload directory
+					item.write(uploadedFile);
+				}
+			}
+
+			//inseri no banco estes dados
+			AlunoManager alunoMana = new AlunoManager();
+			alunoMana.carregarCSV();
+
+			// displays done.jsp page after upload finished
+			getServletContext().getRequestDispatcher("/tabela_evasao.jsp").forward(
+				request, response);
+
+		} catch (FileUploadException ex) {
+			throw new ServletException(ex);
+		} catch (Exception ex) {
+			System.out.print("Deu erro!");
+			throw new ServletException(ex);
+		}
+	}
+
+	/**
+	 * Returns a short description of the servlet.
+	 *
+	 * @return a String containing servlet description
+	 */
+	@Override
+	public String getServletInfo() {
+		return "Short description";
+	}// </editor-fold>
 
 }

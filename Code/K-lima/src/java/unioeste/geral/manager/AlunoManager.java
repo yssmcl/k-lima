@@ -141,45 +141,49 @@ public class AlunoManager {
 			CampusManager campusMana = new CampusManager();
 			CentroManager centroMana = new CentroManager();
 			CursoManager cursoMana = new CursoManager();
-			Scanner scanner = new Scanner(new InputStreamReader(new FileInputStream("C:\\Users\\Leandro Ensina\\Documents\\Unioeste\\4 ano\\Sistemas de Informação\\k-lima\\Code\\K-lima\\build\\web\\data/template_klima.csv"), StandardCharsets.ISO_8859_1));
-			scanner.nextLine(); //junto com a linha abaixo, elimina as duas primeiras linhas do arquivo que não são importantes
 
-			while (scanner.hasNext()) {
+			String diretorioAtual = System.getProperty("user.dir");
+			diretorioAtual = diretorioAtual.split("k-lima")[0];
+			try (Scanner scanner = new Scanner(new InputStreamReader(
+				new FileInputStream(diretorioAtual
+					+ "k-lima/Code/K-lima/build/web/data/template_klima.csv"), StandardCharsets.ISO_8859_1))) {
+				scanner.nextLine(); //junto com a linha abaixo, elimina as duas primeiras linhas do arquivo que não são importantes
 
-				//lê uma linha do arquivo que não será utilizada (a primeira do arquivo)
-				String linha = scanner.nextLine();
+				while (scanner.hasNext()) {
 
-				//Verifica a linha para evitar que não tenha valores faltantes
-				// linha = padronizarLinhaCSV(linha);
-				// separa cada campo do arquivo em vetores de string
-				String campos[] = linha.split(";");
+					//lê uma linha do arquivo que não será utilizada (a primeira do arquivo)
+					String linha = scanner.nextLine();
 
-				Aluno aluno = new Aluno();
-				aluno.setNome(campos[0]);
-				aluno.setAnoEntrada(campos[5]);
-				aluno.setAnoAtual(campos[6]);
-				aluno.setSituacaoAtual(campos[7]);
-				aluno.setCep(campos[8]);
-				aluno.setRua(campos[9]);
-				aluno.setNumero(campos[10]);
-				aluno.setBairro(campos[11]);
-				aluno.setCidade(campos[12]);
-				aluno.setUnidadeFederativa(campos[13]);
+					//Verifica a linha para evitar que não tenha valores faltantes
+					// linha = padronizarLinhaCSV(linha);
+					// separa cada campo do arquivo em vetores de string
+					String campos[] = linha.split(";");
 
-				//recupera a IDs de curso, centro e campus
-				Campus campus = campusMana.recuperarCampiPorAtributo("nome", campos[3]).get(0);
-				Centro centro = centroMana.recuperarCentrosPorAtributo("nome", campos[2]).get(0);
-				Curso curso = cursoMana.recuperarCursosPorAtributo("nome", campos[1]).get(0);
+					Aluno aluno = new Aluno();
+					aluno.setNome(campos[0]);
+					aluno.setAnoEntrada(campos[5]);
+					aluno.setAnoAtual(campos[6]);
+					aluno.setSituacaoAtual(campos[7]);
+					aluno.setCep(campos[8]);
+					aluno.setRua(campos[9]);
+					aluno.setNumero(campos[10]);
+					aluno.setBairro(campos[11]);
+					aluno.setCidade(campos[12]);
+					aluno.setUnidadeFederativa(campos[13]);
 
-				aluno.setCampus(campus);
-				aluno.setCentro(centro);
-				aluno.setCurso(curso);
+					//recupera a IDs de curso, centro e campus
+					Campus campus = campusMana.recuperarCampiPorAtributo("nome", campos[3]).get(0);
+					Centro centro = centroMana.recuperarCentrosPorAtributo("nome", campos[2]).get(0);
+					Curso curso = cursoMana.recuperarCursosPorAtributo("nome", campos[1]).get(0);
 
-				//Curso curso = cursoMana.recuperarCursosPorAtributo("", aluno);
-				salvarAluno(aluno);
-			}
+					aluno.setCampus(campus);
+					aluno.setCentro(centro);
+					aluno.setCurso(curso);
 
-			scanner.close();
+					//Curso curso = cursoMana.recuperarCursosPorAtributo("", aluno);
+					salvarAluno(aluno);
+				}
+			} //junto com a linha abaixo, elimina as duas primeiras linhas do arquivo que não são importantes
 
 			new PopularLocalizacaoThread(this).start();
 		} catch (FileNotFoundException ex) {
