@@ -27,7 +27,7 @@ public class PopularLocalizacaoThread extends Thread {
             for (int i=0; i<alunoList.size(); ) {
                 long beginTime = System.currentTimeMillis();
                 
-                for (int j=45; j-->0 && i<alunoList.size(); ++i) {
+                for (int j=45; j>0 && i<alunoList.size(); ++i) {
                     Aluno a = alunoList.get(i);
                     try {
                         if (a.getLatitude() == null && a.getCep() != null) {
@@ -42,6 +42,7 @@ public class PopularLocalizacaoThread extends Thread {
                                 
                                 System.out.println("Dados do aluno [" + a.getNome() + "]");
                             }
+                            --j;
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(PopularLocalizacaoThread.class.getName()).log(Level.SEVERE, null, ex);
