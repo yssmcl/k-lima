@@ -1,10 +1,9 @@
 <%@page import="java.util.List"%>
-<%@page import="unioeste.geral.bo.Aluno"%>
 <%@page import="unioeste.geral.bo.Curso"%>
-<%@page import="unioeste.geral.manager.AlunoManager"%>
 <%@page import="unioeste.geral.manager.CursoManager"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<!DOCTYPE html>
 <html class="no-js" lang="en" dir="ltr">
 	<%String caminho = request.getContextPath();%>
 	<head>
@@ -12,6 +11,15 @@
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>SAG - Sistema de Apoio ao Gestor</title>
+
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/zf-5.5.2/jqc-1.11.3,dt-1.10.8/datatables.min.css"/>
+		<script type="text/javascript" src="https://cdn.datatables.net/r/zf-5.5.2/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				$('#example').dataTable();
+			} );
+		</script>
+
 		<link rel="stylesheet" href="<%=caminho%>/css/foundation.css">
 		<link rel="stylesheet" href="<%=caminho%>/css/app.css">
 	</head>
@@ -46,6 +54,9 @@
 
 			</div>
 		</div>
+		<script src="<%=caminho%>/js/vendor/what-input.js"></script>
+		<script src="<%=caminho%>/js/vendor/foundation.js"></script>
+		<script src="<%=caminho%>/js/app.js"></script>
 	</body>
 
 </html>

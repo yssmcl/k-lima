@@ -18,6 +18,7 @@
           </ul>
           <div class="menu-mobile-opcao"><a href="mapa_alunos.jsp">Mapa</a></div>
           <div class="menu-mobile-opcao"><a href="upload_csv_evasao.jsp">Atualizar Dados</a></div>
+		  <div class="menu-mobile-opcao"><a href="relatorio.jsp">Atualizar Dados</a></div>
           <div class="menu-mobile-opcao"><a href="ajuda.jsp">Ajuda</a></div>
         </div>
 
@@ -45,8 +46,8 @@
                   <li>
                     <a href="#">Gráficos</a>
                     <ul class="menu">
-                      <li><a href="Graficos.jsp">Estáticos</a></li>
-                      <li><a href="graficosDinamicos.jsp">Dinâmicos</a></li>
+                      <li><a href="graficos.jsp">Estáticos</a></li>
+                      <li><a href="graficos_dinamicos.jsp">Dinâmicos</a></li>
                     </ul>
                   </li>
                   <li>
