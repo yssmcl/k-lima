@@ -19,7 +19,13 @@ import unioeste.googlemaps.Result;
  * @author nardi
  */
 public class PopularLocalizacaoThread extends Thread {
+    AlunoManager am;
     public PopularLocalizacaoThread(AlunoManager am) {
+        this.am = am;
+    }
+    
+    @Override
+    public void run() {
         try {
             GeocoderUtil geocoder =  new GeocoderUtil();
 
@@ -59,8 +65,7 @@ public class PopularLocalizacaoThread extends Thread {
         }
     }
     
-    @Override
-    public void run() {
-        
+    public static void main(String[] args) {
+        new PopularLocalizacaoThread(new AlunoManager()).start();
     }
 }
