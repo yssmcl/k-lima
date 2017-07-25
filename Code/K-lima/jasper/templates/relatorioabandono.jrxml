@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="483" leftMargin="56" rightMargin="56" topMargin="56" bottomMargin="56" uuid="7a6eb2a1-a69f-422f-8c53-f44972525516">
 	<property name="ireport.zoom" value="1.0000000000000044"/>
 	<property name="ireport.x" value="0"/>
@@ -70,7 +71,7 @@ www.unioeste.br]]></text>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font size="12"/>
 					</textElement>
-					<text><![CDATA[Total de cancelamentos de matrícula requisitados poracadêmicos:]]></text>
+					<text><![CDATA[Total de cancelamentos de matrícula requisitados por acadêmicos:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement mode="Transparent" x="5" y="66" width="417" height="28" uuid="b490e5a9-3615-4cb5-8807-703c3cee8d49"/>
