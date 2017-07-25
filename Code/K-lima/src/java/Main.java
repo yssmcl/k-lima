@@ -43,6 +43,12 @@ public class Main {
 		// ResultSet resultSet = statement.executeQuery();
 		// resultSet.next();
 		// System.out.println(resultSet.getString("login"));
+                
+//                AnnotationConfiguration configuration = new AnnotationConfiguration();
+//                        configuration.configure();
+//                        StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
+//                                configuration.getProperties()).build();
+//			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 	}
 
 }
