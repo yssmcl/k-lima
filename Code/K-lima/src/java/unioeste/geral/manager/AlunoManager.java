@@ -2,6 +2,7 @@ package unioeste.geral.manager;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -133,7 +134,7 @@ public class AlunoManager {
 		new AlunoDAO().deletarAlunosPorAtributo(atributo, valor);
 	}
 
-	public void carregarCSV() throws IOException {
+	public void carregarCSV(File arquivoCSV) throws IOException {
 
 		try {
 
@@ -145,8 +146,7 @@ public class AlunoManager {
 			String diretorioAtual = System.getProperty("user.dir");
 			diretorioAtual = diretorioAtual.split("k-lima")[0];
 			try (Scanner scanner = new Scanner(new InputStreamReader(
-				new FileInputStream(diretorioAtual
-					+ "k-lima/Code/K-lima/build/web/data/template_klima.csv"), StandardCharsets.ISO_8859_1))) {
+				new FileInputStream(arquivoCSV), StandardCharsets.ISO_8859_1))) {
 				scanner.nextLine(); //junto com a linha abaixo, elimina as duas primeiras linhas do arquivo que não são importantes
 
 				while (scanner.hasNext()) {

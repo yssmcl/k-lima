@@ -133,12 +133,12 @@ public class UploadServlet extends HttpServlet {
 					System.out.println(filePath);
 					// saves the file to upload directory
 					item.write(uploadedFile);
+
+					//inseri no banco estes dados
+					AlunoManager alunoMana = new AlunoManager();
+					alunoMana.carregarCSV(uploadedFile);
 				}
 			}
-
-			//inseri no banco estes dados
-			AlunoManager alunoMana = new AlunoManager();
-			alunoMana.carregarCSV();
 
 			// displays done.jsp page after upload finished
 			getServletContext().getRequestDispatcher("/tabela_evasao.jsp").forward(
