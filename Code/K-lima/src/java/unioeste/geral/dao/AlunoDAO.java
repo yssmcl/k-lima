@@ -64,13 +64,14 @@ public class AlunoDAO {
 		return alunos;
 	}
 
-	public List<Aluno> buscarAlunosPorAtributosMultimap(Multimap<String, Object> condicaoAND, Multimap<String, Object> condicaoOR) {
+	public List<Aluno> buscarAlunosPorAtributosMultimap(Multimap<String, Object> condicaoAND,
+														Multimap<String, Object> condicaoOR) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = null;
+//		Transaction transaction = null;
 		List<Aluno> alunos = null;
 
 		try {
-			transaction = session.beginTransaction();
+//			transaction = session.beginTransaction();
 
 			Criteria criteria = session.createCriteria(Aluno.class);
 			if (condicaoAND != null) {
@@ -107,11 +108,11 @@ public class AlunoDAO {
 
 			alunos = (List<Aluno>) criteria.list();
 
-			transaction.commit();
+//			transaction.commit();
 		} catch (HibernateException e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
+//			if (transaction != null) {
+//				transaction.rollback();
+//			}
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -120,26 +121,51 @@ public class AlunoDAO {
 		return alunos;
 	}
 
-	public Long buscarQtdAlunosPorAtributos(HashMap<String, Object> condicao) {
+	public Long buscarQtdAlunosPorAtributos(Multimap<String, Object> condicaoAND,
+											Multimap<String, Object> condicaoOR) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = null;
 		long qtdAlunos = 0;
 
 		try {
-			transaction = session.beginTransaction();
-
 			Criteria criteria = session.createCriteria(Aluno.class);
-			for (Map.Entry<String, Object> entry : condicao.entrySet()) {
-				criteria.add(Restrictions.eq(entry.getKey(), entry.getValue()));
+			if (condicaoAND != null) {
+				for (Map.Entry entry : condicaoAND.entries()) {
+					System.out.println("============================= key: " + entry.getKey());
+					System.out.println("============================= value: " + entry.getValue());
+					if (entry.getValue().getClass() == Long.class) {
+						criteria.add(
+							Restrictions.eq((String) entry.getKey(), entry.getValue())
+						);
+					} else if (entry.getValue().getClass() == String.class) {
+						criteria.add(
+							Restrictions.ilike((String) entry.getKey(), entry.getValue())
+						);
+					}
+				}
 			}
+
+			Disjunction disjunction = Restrictions.disjunction();
+			if (condicaoOR != null) {
+				for (Map.Entry entry : condicaoOR.entries()) {
+					System.out.println("============================= key: " + entry.getKey());
+					System.out.println("============================= value: " + entry.getValue());
+					if (entry.getValue().getClass() == Long.class) {
+						disjunction.add(
+							Restrictions.eq((String) entry.getKey(), entry.getValue())
+						);
+					} else if (entry.getValue().getClass() == String.class) {
+						disjunction.add(
+							Restrictions.ilike((String) entry.getKey(), entry.getValue())
+						);
+					}
+				}
+			}
+			criteria.add(disjunction);
+
 			criteria.setProjection(Projections.rowCount());
 			qtdAlunos = (Long) criteria.uniqueResult();
 
-			transaction.commit();
 		} catch (HibernateException e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
 			e.printStackTrace();
 		} finally {
 			session.close();

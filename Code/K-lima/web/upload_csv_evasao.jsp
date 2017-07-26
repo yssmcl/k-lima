@@ -27,6 +27,16 @@
 	$(document).ready(function() {
             $('#example').dataTable();
 	} );
+        
+        <%AlunoManager manager = new AlunoManager();%>
+            
+        function limparBanco(){
+            decisao = confirm("Ao apagar o banco, todos os dados serão perdidos. Deseja continuar?");
+            if(decisao){
+                <% manager.removerTodosAlunos(); %>
+                alert("Banco apagado com sucesso!");
+            }
+        }
     </script>
     <link rel="stylesheet" href="<%=caminho%>/css/foundation.css">
     <link rel="stylesheet" href="<%=caminho%>/css/app.css">
@@ -43,14 +53,19 @@
           <div class="row">
             <br />
             <h1>Importar dados de alunos</h1>
+            
             <form method="post" action="UploadServlet" enctype="multipart/form-data">
-				<div class="medium-12 columns">
-					Selecione o arquivo CSV para importação:
-					<input type="file" name="dataFile" id="fileChooser"/><br/><br/>
-					<input type="submit" class="button" value="Importar" style="width: 150px;"/>
-				</div>
+		<div class="medium-12 columns">
+                    Selecione o arquivo CSV para importação:
+                    <input type="file" name="dataFile" id="fileChooser"/><br/><br/>
+                    <input type="submit" class="button" value="Importar" style="width: 150px;"/>
+		</div>
             </form>
-
+            <div style="padding-left: 15px;">
+                <button class="alert button" onclick="limparBanco()" style="width: 150px;">Limpar Banco</button>
+                <br />
+                <span><b>Observação:</b> a importação do arquivo pode levar alguns segundos...</span>
+            </div>
           </div>
 
         </div>

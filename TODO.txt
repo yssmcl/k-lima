@@ -1,6 +1,4 @@
-Página Gráficos:
 - Filtros dos gráficos dinâmicos não funcionam
 - Gráficos estáticos para cada curso
-
-Outros:
 - Fechar Session Factory (segunda resposta em https://stackoverflow.com/questions/30096416/where-to-open-and-where-to-close-sessionfactory-in-my-application)
+- Atualizar página Ajuda (nome do arquivo pode ser qualquer um)

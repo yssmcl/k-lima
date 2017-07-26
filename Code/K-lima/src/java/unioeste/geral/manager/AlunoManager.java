@@ -58,6 +58,7 @@ public class AlunoManager {
 	private Multimap<String, Object> substituirChaves(Multimap<String, Object> condicao) {
 		if (condicao != null) {
 			Multimap<String, Object> novaCondicao = HashMultimap.create();
+
 			for (Map.Entry entry : condicao.entries()) {
 				if (entry.getKey().equals("curso")) {
 					Curso curso = (Curso) entry.getValue();
@@ -72,6 +73,7 @@ public class AlunoManager {
 					novaCondicao.put((String) entry.getKey(), entry.getValue());
 				}
 			}
+
 			condicao.clear();
 			return novaCondicao;
 		}
@@ -85,23 +87,11 @@ public class AlunoManager {
 		return new AlunoDAO().buscarAlunosPorAtributosMultimap(condicaoAND, condicaoOR);
 	}
 
-	public Long recuperarQtdAlunosPorAtributos(HashMap<String, Object> condicao) {
-		for (Map.Entry<String, Object> entry : condicao.entrySet()) {
-			if (entry.getKey().equals("curso")) {
-				condicao.remove("curso");
-				Curso curso = (Curso) entry.getValue();
-				condicao.put("curso.id", curso.getId());
-			} else if (entry.getKey().equals("centro")) {
-				condicao.remove("centro");
-				Centro centro = (Centro) entry.getValue();
-				condicao.put("centro.id", centro.getId());
-			} else if (entry.getKey().equals("campus")) {
-				condicao.remove("campus");
-				Campus campus = (Campus) entry.getValue();
-				condicao.put("campus.id", campus.getId());
-			}
-		}
-		return new AlunoDAO().buscarQtdAlunosPorAtributos(condicao);
+	public Long recuperarQtdAlunosPorAtributos(Multimap<String, Object> condicaoAND,
+											   Multimap<String, Object> condicaoOR) {
+		condicaoAND = substituirChaves(condicaoAND);
+		condicaoOR = substituirChaves(condicaoOR);
+		return new AlunoDAO().buscarQtdAlunosPorAtributos(condicaoAND, condicaoOR);
 	}
 
 	public List<Aluno> recuperarTodosAlunos() {
@@ -143,8 +133,6 @@ public class AlunoManager {
 			CentroManager centroMana = new CentroManager();
 			CursoManager cursoMana = new CursoManager();
 
-			String diretorioAtual = System.getProperty("user.dir");
-			diretorioAtual = diretorioAtual.split("k-lima")[0];
 			try (Scanner scanner = new Scanner(new InputStreamReader(
 				new FileInputStream(arquivoCSV), StandardCharsets.ISO_8859_1))) {
 				scanner.nextLine(); //junto com a linha abaixo, elimina as duas primeiras linhas do arquivo que não são importantes
