@@ -143,8 +143,6 @@ public class AlunoManager {
 			CentroManager centroMana = new CentroManager();
 			CursoManager cursoMana = new CursoManager();
 
-			String diretorioAtual = System.getProperty("user.dir");
-			diretorioAtual = diretorioAtual.split("k-lima")[0];
 			try (Scanner scanner = new Scanner(new InputStreamReader(
 				new FileInputStream(arquivoCSV), StandardCharsets.ISO_8859_1))) {
 				scanner.nextLine(); //junto com a linha abaixo, elimina as duas primeiras linhas do arquivo que não são importantes

@@ -41,8 +41,7 @@
           <br />
           <div class="row">
               <span><p style="color: red; font-weight: bold;">Observação: </p>Antes de importar um arquivo para o sistema, 
-                  lembre-se de apagar o banco com o botão "Limpar Banco" que está presente no final da página na Tabela, a qual
-                  apresenta as informações gerais de alunos. 
+                  lembre-se de apagar o banco com o botão "Limpar Banco" que está presente na própria "Atualizar Dados".
                   Isso se deve ao fato de que poderá ocorrer risco de duplicação de dados de alunos, 
                   sendo então responsabilidade do usuário.</span>
           </div>
@@ -79,8 +78,7 @@
           <br />
           <div class="row">
               <p>Após salvar o arquivo no formato CSV, os dados neste arquivo ficarão semelhantes a Figura 4. 
-              Com isso, o arquivo está pronto para ser importado para a aplicação. Lembre-se que o nome do arquivo 
-              para importação deve ser exclusivamente <b>template_SAG.csv</b>.</p>
+              Com isso, o arquivo está pronto para ser importado para a aplicação.</p>
           </div>          
           <br />
           <div class="row" style="text-align:center;">
