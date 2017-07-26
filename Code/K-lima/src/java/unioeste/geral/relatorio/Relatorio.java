@@ -81,22 +81,17 @@ public class Relatorio {
 			diretorioAtual = diretorioAtual.split("k-lima")[0];
 			new File(diretorioAtual + "k-lima/lib/apache-tomcat-8.5.15/temp").mkdir();
 			String arquivoTemplate = "/home/cristopher/Área de Trabalho/tudo/k-lima/k-lima/Code/K-lima/jasper/templates/relatorio-geral.jrxml"; 
-			//String arquivoDestino = diretorioAtual + "k-lima/Code/K-lima/jasper/relatorios/relatorio-geral.pdf";
+			String arquivoDestino = "/home/cristopher/Área de Trabalho/tudo/k-lima/k-lima/Code/K-lima/jasper/relatorios/relatorio-geral.pdf";
 			String caminhoLogoUnioeste = diretorioAtual + "k-lima/Code/K-lima/web/img/unioeste.jpg";
 			String caminhoLogoGoverno = diretorioAtual + "k-lima/Code/K-lima/web/img/governo.jpg";
-			//String Report ="/home/cristopher/NetBeansProjects/Geradorderelatório/relatorio-geral.jrxml";
-
 			JasperReport jr = JasperCompileManager.compileReport(arquivoTemplate);
-
 			Map<String, Object> parametros = new HashMap<>();
-
 			JRDataSource arquivo = new JRBeanCollectionDataSource(alunos);
-
 			JasperPrint jp = JasperFillManager.fillReport(jr, parametros, arquivo);
-                       // JasperExportManager.exportReportToPdfFile(jp, arquivoDestino);
-			JasperViewer.viewReport(jp);
+                       JasperExportManager.exportReportToPdfFile(jp, arquivoDestino);
+                    	JasperViewer.viewReport(jp);
 		} catch (JRException e) {
-			e.printStackTrace();
+			System.out.println("Erro fatal na geração do relatório");
 		}
 	}
 

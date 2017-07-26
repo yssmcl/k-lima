@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="afe18803-85c4-44a1-bc6e-57214292583e">
 	<property name="ireport.zoom" value="0.9090909090909092"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="129"/>
+	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -48,11 +48,17 @@
 	<field name="unidadeFederativa" class="java.lang.String">
 		<fieldDescription><![CDATA[unidadeFederativa]]></fieldDescription>
 	</field>
+	<field name="nome_1" class="java.lang.String">
+		<fieldDescription><![CDATA[nome]]></fieldDescription>
+	</field>
+	<field name="nome_2" class="java.lang.String">
+		<fieldDescription><![CDATA[curso.nome]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="209" splitType="Stretch">
+		<band height="185" splitType="Stretch">
 			<staticText>
 				<reportElement mode="Transparent" x="10" y="90" width="483" height="38" uuid="d0d47e79-a474-4375-b1fd-5882d26b5e06"/>
 				<textElement>
@@ -68,7 +74,7 @@ www.unioeste.br]]></text>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Relatório de Evasão por Curso]]></text>
+				<text><![CDATA[Relatório de Evasão]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Transparent" x="122" y="18" width="345" height="28" uuid="f87cef07-f5b7-4fdb-a8f2-cd8c94d3589e"/>
@@ -79,9 +85,6 @@ www.unioeste.br]]></text>
 			</staticText>
 		</band>
 	</title>
-	<pageHeader>
-		<band height="35" splitType="Stretch"/>
-	</pageHeader>
 	<columnHeader>
 		<band height="24" splitType="Stretch">
 			<staticText>
@@ -89,26 +92,31 @@ www.unioeste.br]]></text>
 				<text><![CDATA[Nome]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="209" y="1" width="100" height="20" uuid="05e87a4e-90e7-4981-bded-f90122f9c8e8"/>
+				<reportElement x="163" y="1" width="100" height="20" uuid="05e87a4e-90e7-4981-bded-f90122f9c8e8"/>
 				<text><![CDATA[Situação Atual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="373" y="1" width="100" height="20" uuid="2d7fd574-3b37-4338-9a6d-0e9dc1abe57c"/>
+				<text><![CDATA[Curso]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="37" splitType="Stretch">
+		<band height="23" splitType="Stretch">
 			<textField>
 				<reportElement x="40" y="0" width="100" height="20" uuid="5186854f-4302-4d8a-8b3e-30d70d331164"/>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="209" y="0" width="100" height="20" uuid="5d7efdaa-96e4-4bab-898b-89af905c84a7"/>
+				<reportElement x="163" y="0" width="164" height="20" uuid="5d7efdaa-96e4-4bab-898b-89af905c84a7"/>
 				<textFieldExpression><![CDATA[$F{situacaoAtual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="373" y="3" width="163" height="20" uuid="bfa710e3-2e2e-42ea-b8b6-49c1746c7af9"/>
+				<textFieldExpression><![CDATA[$F{nome_2}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch">
 			<textField evaluationTime="Report">
@@ -126,7 +134,4 @@ www.unioeste.br]]></text>
 			</textField>
 		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
