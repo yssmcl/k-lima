@@ -85,10 +85,6 @@ public class UploadServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-		// TODO: tirar daqui
-		String diretorioAtual = System.getProperty("user.dir");
-		diretorioAtual = diretorioAtual.split("k-lima")[0];
-		new File(diretorioAtual + "k-lima/Code/K-lima/build/web/data/").mkdir();
 
 		// Check that we have a file upload request
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
