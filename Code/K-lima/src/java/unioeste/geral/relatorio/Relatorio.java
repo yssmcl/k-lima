@@ -45,31 +45,31 @@ public class Relatorio {
 			Multimap<String, Object> condicaoAND = HashMultimap.create();
 			condicaoAND.put("situacaoAtual", "Cancelado");
 			condicaoAND.put(nomeAtributoCurso, curso);
-			List<Aluno> alunosCancelados = new AlunoManager().recuperarAlunosPorAtributosMultimap(condicaoAND, null);
+			Long qtdAlunosCancelados = new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, null);
 
 			condicaoAND.clear();
 			condicaoAND.put("situacaoAtual", "Cancelado Por Abandono");
 			condicaoAND.put(nomeAtributoCurso, curso);
-			List<Aluno> alunosCanceladosPorAbandono = new AlunoManager().recuperarAlunosPorAtributosMultimap(condicaoAND, null);
+			Long qtdAlunosCanceladosPorAbandono = new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, null);
 
 			condicaoAND.clear();
 			condicaoAND.put("situacaoAtual", "Transferido");
 			condicaoAND.put(nomeAtributoCurso, curso);
-			List<Aluno> alunosTransferidos = new AlunoManager().recuperarAlunosPorAtributosMultimap(condicaoAND, null);
+			Long qtdAlunosTransferidos = new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, null);
 
 			Map parametros = new HashMap();
 			parametros.put("Curso", nomeCurso);
 			parametros.put("LogoUnioeste", caminhoLogoUnioeste);
 			parametros.put("LogoGoverno", caminhoLogoGoverno);
-			parametros.put("Cancelados", alunosCancelados.size());
-			parametros.put("CanceladosPorAbandono", alunosCanceladosPorAbandono.size());
-			parametros.put("Transferidos", alunosTransferidos.size());
-			parametros.put("Total", alunosCancelados.size() + alunosCanceladosPorAbandono.size() + alunosTransferidos.size());
+			parametros.put("Cancelados", qtdAlunosCancelados);
+			parametros.put("CanceladosPorAbandono", qtdAlunosCanceladosPorAbandono);
+			parametros.put("Transferidos", qtdAlunosTransferidos);
+			parametros.put("Total", qtdAlunosCancelados + qtdAlunosCanceladosPorAbandono + qtdAlunosTransferidos);
 
 			JasperReport jasperReport = JasperCompileManager.compileReport(arquivoTemplate);
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, new JREmptyDataSource());
 			JasperExportManager.exportReportToPdfFile(jasperPrint, arquivoDestino);
-			JasperViewer.viewReport(jasperPrint);
+//			JasperViewer.viewReport(jasperPrint);
 		} catch (JRException e) {
 			e.printStackTrace();
 		}

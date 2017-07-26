@@ -6,10 +6,10 @@
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
-	<parameter name="Total" class="java.lang.Integer"/>
-	<parameter name="Cancelados" class="java.lang.Integer"/>
-	<parameter name="CanceladosPorAbandono" class="java.lang.Integer"/>
-	<parameter name="Transferidos" class="java.lang.Integer"/>
+	<parameter name="Total" class="java.lang.Long"/>
+	<parameter name="Cancelados" class="java.lang.Long"/>
+	<parameter name="CanceladosPorAbandono" class="java.lang.Long"/>
+	<parameter name="Transferidos" class="java.lang.Long"/>
 	<parameter name="Curso" class="java.lang.String"/>
 	<parameter name="LogoUnioeste" class="Object" isForPrompting="false"/>
 	<parameter name="LogoGoverno" class="Object" isForPrompting="false"/>
