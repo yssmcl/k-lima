@@ -47,7 +47,7 @@ Contributor(s):
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password"/>
 		<property name="hibernate.show_sql">true</property>
-		<property name="hibernate.format_sql">false</property>
+		<property name="hibernate.format_sql">true</property>
 		<property name="hibernate.current_session_context_class">thread</property>
 		<property name="hibernate.query.factory_class">org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
@@ -57,5 +57,8 @@ Contributor(s):
 		<mapping class="unioeste.geral.bo.Campus"/>
 		<mapping class="unioeste.geral.bo.Centro"/>
 		<mapping class="unioeste.geral.bo.Curso"/>
+		<mapping class="unioeste.geral.bo.AnoDisciplina"/>
+		<mapping class="unioeste.geral.bo.Disciplina"/>
+		<mapping class="unioeste.geral.bo.Formulario"/>
 	</session-factory>
 </hibernate-configuration>
