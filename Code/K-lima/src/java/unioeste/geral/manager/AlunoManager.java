@@ -112,10 +112,6 @@ public class AlunoManager {
 		new AlunoDAO().atualizarAluno(aluno);
 	}
 
-	public void removerAluno(Aluno aluno) {
-		new AlunoDAO().deletarAluno(aluno);
-	}
-
 	public void removerTodosAlunos() {
 		new AlunoDAO().deletarTodosAlunos();
 	}
