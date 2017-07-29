@@ -110,8 +110,7 @@ public class UploadServlet extends HttpServlet {
 		factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
 
 		// constructs the folder where uploaded file will be stored
-		String uploadFolder = getServletContext().getRealPath("")
-			+ File.separator + DATA_DIRECTORY;
+		String uploadFolder = getServletContext().getRealPath("") + DATA_DIRECTORY;
 
 		// Create a new file upload handler
 		ServletFileUpload upload = new ServletFileUpload(factory);
@@ -130,7 +129,6 @@ public class UploadServlet extends HttpServlet {
 					String fileName = new File(item.getName()).getName();
 					String filePath = uploadFolder + File.separator + fileName;
 					File uploadedFile = new File(filePath);
-					System.out.println(filePath);
 					// saves the file to upload directory
 					item.write(uploadedFile);
 
