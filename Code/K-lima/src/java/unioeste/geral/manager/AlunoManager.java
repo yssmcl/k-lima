@@ -88,7 +88,7 @@ public class AlunoManager {
 	}
 
 	public Long recuperarQtdAlunosPorAtributos(Multimap<String, Object> condicaoAND,
-											   Multimap<String, Object> condicaoOR) {
+		Multimap<String, Object> condicaoOR) {
 		condicaoAND = substituirChaves(condicaoAND);
 		condicaoOR = substituirChaves(condicaoOR);
 		return new AlunoDAO().buscarQtdAlunosPorAtributos(condicaoAND, condicaoOR);
@@ -175,30 +175,4 @@ public class AlunoManager {
 		}
 
 	}
-
-	//Verifica a linha para evitar que não tenha valores faltantes
-	public String padronizarLinhaCSV(String linha) {
-
-		char pontoVirgula = ';';
-
-		while (linha.contains("  ")) {
-			linha = linha.replaceAll("  ", " ");
-		}
-
-		while (linha.contains("; ;")) {
-			linha = linha.replaceAll("; ;", ";0;");
-		}
-
-		while (linha.contains(";;")) {
-			linha = linha.replaceAll(";;", ";0;");
-		}
-
-		char ultimo_char = linha.charAt(linha.length() - 1);
-		if (ultimo_char == pontoVirgula) {
-			linha = linha + "0";
-		}
-
-		return linha;
-	}
-
 }

@@ -41,7 +41,11 @@
                     <a href="index.jsp">Home</a>
                   </li>
                   <li>
-                    <a href="tabela_evasao.jsp">Tabela</a>
+                    <a href="#">Tabela</a>
+                    <ul class="menu">
+                      <li><a href="tabela_evasao.jsp">Alunos</a></li>
+                      <li><a href="totais_evasao.jsp">Totais</a></li>
+                    </ul>
                   </li>
                   <li>
                     <a href="#">Gráficos</a>
