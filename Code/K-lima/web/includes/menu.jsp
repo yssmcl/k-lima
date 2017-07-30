@@ -56,8 +56,14 @@
                   <li>
                     <a href="upload_csv_evasao.jsp">Atualizar Dados</a>
                   </li>
-				  <li>
+                  <li>
                     <a href="relatorio.jsp">Relatórios</a>
+                  </li>
+                  <li>
+                    <a href="#">Aprovação</a>
+                    <ul class="menu">
+                      <li><a href="apr_repr_mecanica.jsp">Engenharia Mecânica</a></li>
+                    </ul>
                   </li>
                   <li>
                     <a href="ajuda.jsp">Ajuda</a>
