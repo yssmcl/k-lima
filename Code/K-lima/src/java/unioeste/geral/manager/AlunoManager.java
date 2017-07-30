@@ -88,7 +88,7 @@ public class AlunoManager {
 	}
 
 	public Long recuperarQtdAlunosPorAtributos(Multimap<String, Object> condicaoAND,
-		Multimap<String, Object> condicaoOR) {
+											   Multimap<String, Object> condicaoOR) {
 		condicaoAND = substituirChaves(condicaoAND);
 		condicaoOR = substituirChaves(condicaoOR);
 		return new AlunoDAO().buscarQtdAlunosPorAtributos(condicaoAND, condicaoOR);
@@ -145,12 +145,12 @@ public class AlunoManager {
 
 					Aluno aluno = new Aluno();
 					aluno.setNome(campos[0]);
-					aluno.setAnoEntrada(campos[5]);
-					aluno.setAnoAtual(campos[6]);
+					aluno.setAnoEntrada(Integer.valueOf(campos[5]));
+					aluno.setAnoAtual(Integer.valueOf(campos[6]));
 					aluno.setSituacaoAtual(campos[7]);
 					aluno.setCep(campos[8]);
 					aluno.setRua(campos[9]);
-					aluno.setNumero(campos[10]);
+					aluno.setNumero(Integer.valueOf(campos[10]));
 					aluno.setBairro(campos[11]);
 					aluno.setCidade(campos[12]);
 					aluno.setUnidadeFederativa(campos[13]);
