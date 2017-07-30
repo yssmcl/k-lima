@@ -16,6 +16,8 @@ public class Aluno {
 
 	private String anoEntrada;
 
+	private String anoSaida;
+
 	private String anoAtual;
 
 	private String situacaoAtual;
@@ -68,20 +70,28 @@ public class Aluno {
 		this.nome = nome;
 	}
 
+	public String getAnoEntrada() {
+		return anoEntrada;
+	}
+
+	public void setAnoEntrada(String anoEntrada) {
+		this.anoEntrada = anoEntrada;
+	}
+
+	public String getAnoSaida() {
+		return anoSaida;
+	}
+
+	public void setAnoSaida(String anoSaida) {
+		this.anoSaida = anoSaida;
+	}
+
 	public String getAnoAtual() {
 		return anoAtual;
 	}
 
 	public void setAnoAtual(String anoAtual) {
 		this.anoAtual = anoAtual;
-	}
-
-	public String getUnidadeFederativa() {
-		return unidadeFederativa;
-	}
-
-	public void setUnidadeFederativa(String unidadeFederativa) {
-		this.unidadeFederativa = unidadeFederativa;
 	}
 
 	public String getSituacaoAtual() {
@@ -132,12 +142,28 @@ public class Aluno {
 		this.cidade = cidade;
 	}
 
-	public String getAnoEntrada() {
-		return anoEntrada;
+	public String getUnidadeFederativa() {
+		return unidadeFederativa;
 	}
 
-	public void setAnoEntrada(String anoEntrada) {
-		this.anoEntrada = anoEntrada;
+	public void setUnidadeFederativa(String unidadeFederativa) {
+		this.unidadeFederativa = unidadeFederativa;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 
 	public Curso getCurso() {
@@ -162,22 +188,6 @@ public class Aluno {
 
 	public void setCampus(Campus campus) {
 		this.campus = campus;
-	}
-
-	public Double getLatitude() {
-		return latitude;
-	}
-
-	public void setLatitude(Double latitude) {
-		this.latitude = latitude;
-	}
-
-	public Double getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(Double longitude) {
-		this.longitude = longitude;
 	}
 
 }
