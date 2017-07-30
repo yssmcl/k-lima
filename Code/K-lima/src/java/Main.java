@@ -1,9 +1,7 @@
 
 import com.google.common.collect.HashMultimap;
 import unioeste.geral.bo.Disciplina;
-import unioeste.geral.bo.Formulario;
 import unioeste.geral.manager.DisciplinaManager;
-import unioeste.geral.manager.FormularioManager;
 
 public class Main {
 
@@ -23,12 +21,10 @@ public class Main {
 		condicao.put("id", 1);
 		Disciplina disciplina = new DisciplinaManager().recuperarDisciplinas(condicao, null).get(0);
 
-		condicao.clear();
+//		condicao.clear();
 //		condicao.put("disciplina", disciplina);
-//		condicao.put("anoDisciplina", 1);
-		Formulario formulario = new FormularioManager().recuperarFormularios(condicao, null).get(0);
-		System.out.println(formulario.getAnoDisciplina().getAno());
-
+//		Formulario formulario = new FormularioManager().recuperarFormularios(condicao, null).get(0);
+//		System.out.println(formulario.getAnoDisciplina().getAno());
 //		AnoDisciplina anoDisciplina = new AnoDisciplina();
 //		anoDisciplina.setAno(2003);
 //		anoDisciplina.setDisciplina(disciplina);
