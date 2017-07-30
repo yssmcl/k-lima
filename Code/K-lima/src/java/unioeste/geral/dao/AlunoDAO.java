@@ -67,17 +67,12 @@ public class AlunoDAO {
 	public List<Aluno> buscarAlunosPorAtributosMultimap(Multimap<String, Object> condicaoAND,
 														Multimap<String, Object> condicaoOR) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-//		Transaction transaction = null;
 		List<Aluno> alunos = null;
 
 		try {
-//			transaction = session.beginTransaction();
-
 			Criteria criteria = session.createCriteria(Aluno.class);
 			if (condicaoAND != null) {
 				for (Map.Entry entry : condicaoAND.entries()) {
-//					System.out.println("============================= key: " + entry.getKey());
-//					System.out.println("============================= value: " + entry.getValue());
 					if (entry.getValue().getClass() == Long.class) {
 						criteria.add(
 							Restrictions.eq((String) entry.getKey(), entry.getValue())
@@ -108,11 +103,7 @@ public class AlunoDAO {
 
 			alunos = (List<Aluno>) criteria.list();
 
-//			transaction.commit();
 		} catch (HibernateException e) {
-//			if (transaction != null) {
-//				transaction.rollback();
-//			}
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -130,8 +121,6 @@ public class AlunoDAO {
 			Criteria criteria = session.createCriteria(Aluno.class);
 			if (condicaoAND != null) {
 				for (Map.Entry entry : condicaoAND.entries()) {
-					System.out.println("============================= key: " + entry.getKey());
-					System.out.println("============================= value: " + entry.getValue());
 					if (entry.getValue().getClass() == Long.class) {
 						criteria.add(
 							Restrictions.eq((String) entry.getKey(), entry.getValue())
@@ -147,8 +136,6 @@ public class AlunoDAO {
 			Disjunction disjunction = Restrictions.disjunction();
 			if (condicaoOR != null) {
 				for (Map.Entry entry : condicaoOR.entries()) {
-					System.out.println("============================= key: " + entry.getKey());
-					System.out.println("============================= value: " + entry.getValue());
 					if (entry.getValue().getClass() == Long.class) {
 						disjunction.add(
 							Restrictions.eq((String) entry.getKey(), entry.getValue())
@@ -217,25 +204,6 @@ public class AlunoDAO {
 		}
 
 		return aluno;
-	}
-
-	public void deletarAluno(Aluno aluno) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = null;
-		try {
-			transaction = session.beginTransaction();
-
-			session.delete(aluno);
-
-			transaction.commit();
-		} catch (HibernateException e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
 	}
 
 	public void deletarTodosAlunos() {

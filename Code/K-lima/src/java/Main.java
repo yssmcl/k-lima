@@ -1,36 +1,47 @@
 
 import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import unioeste.geral.bo.Curso;
-import unioeste.geral.manager.AlunoManager;
-import unioeste.geral.manager.CursoManager;
+import unioeste.geral.bo.Disciplina;
+import unioeste.geral.manager.DisciplinaManager;
 
 public class Main {
 
 	public static void main(String[] args) {
-//		Multimap<String, Object> condicaoAND = HashMultimap.create();
+//		HashMultimap<String, Object> condicaoAND = HashMultimap.create();
 //		Curso curso = new CursoManager().recuperarCursosPorAtributo("nome", "Ciência da Computação").get(0);
 //		condicaoAND.put("curso", curso);
 //
-//		Multimap<String, Object> condicaoOR = HashMultimap.create();
+//		HashMultimap<String, Object> condicaoOR = HashMultimap.create();
 //		condicaoOR.put("situacaoAtual", "Cancelado Por Abandono");
 //		condicaoOR.put("situacaoAtual", "Cancelado");
 //		condicaoOR.put("situacaoAtual", "Transferido");
 //		Long qtdAlunos = new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, condicaoOR);
 //		System.out.println("=========================== " + qtdAlunos);
 
-		/* Teste de conexão */
-		try {
-			Connection connection;
-			Class.forName("org.mariadb.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/db_klima", "root", "");
-			System.out.println(connection.isValid(0));
-		} catch (ClassNotFoundException | SQLException ex) {
-			System.out.println("Deu merda");
-		}
+		HashMultimap<String, Object> condicao = HashMultimap.create();
+		condicao.put("id", 1);
+		Disciplina disciplina = new DisciplinaManager().recuperarDisciplinas(condicao, null).get(0);
+
+//		condicao.clear();
+//		condicao.put("disciplina", disciplina);
+//		Formulario formulario = new FormularioManager().recuperarFormularios(condicao, null).get(0);
+//		System.out.println(formulario.getAnoDisciplina().getAno());
+//		AnoDisciplina anoDisciplina = new AnoDisciplina();
+//		anoDisciplina.setAno(2003);
+//		anoDisciplina.setDisciplina(disciplina);
+//		Formulario formulario = new Formulario();
+//		formulario.setAnoDisciplina(anoDisciplina);
+//		formulario.setNumeroAprovacoes(12);
+//		formulario.setNumeroReprovacoes(13);
+//		new FormularioDAO().inserirFormulario(formulario);
+
+		/* Teste de conexão */ //		try {
+		//			Connection connection;
+		//			Class.forName("org.mariadb.jdbc.Driver");
+		//			connection = DriverManager.getConnection("jdbc:mysql://localhost/db_klima", "root", "");
+		//			System.out.println(connection.isValid(0));
+		//		} catch (ClassNotFoundException | SQLException ex) {
+		//			System.out.println("Deu merda");
+		//		}
 	}
 
 }

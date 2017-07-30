@@ -85,6 +85,10 @@ public class UploadServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
+		// mkdir 'k-lima/Code/K-lima/build/web/data/'
+		String diretorioAtual = System.getProperty("user.dir");
+		diretorioAtual = diretorioAtual.split("k-lima")[0];
+		new File(diretorioAtual + "k-lima/Code/K-lima/build/web/data/").mkdir();
 
 		// Check that we have a file upload request
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
@@ -106,8 +110,7 @@ public class UploadServlet extends HttpServlet {
 		factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
 
 		// constructs the folder where uploaded file will be stored
-		String uploadFolder = getServletContext().getRealPath("")
-			+ File.separator + DATA_DIRECTORY;
+		String uploadFolder = getServletContext().getRealPath("") + DATA_DIRECTORY;
 
 		// Create a new file upload handler
 		ServletFileUpload upload = new ServletFileUpload(factory);
@@ -126,19 +129,16 @@ public class UploadServlet extends HttpServlet {
 					String fileName = new File(item.getName()).getName();
 					String filePath = uploadFolder + File.separator + fileName;
 					File uploadedFile = new File(filePath);
-					System.out.println(filePath);
 					// saves the file to upload directory
 					item.write(uploadedFile);
 
 					//inseri no banco estes dados
-					AlunoManager alunoMana = new AlunoManager();
-					alunoMana.carregarCSV(uploadedFile);
+					new AlunoManager().carregarCSV(uploadedFile);
 				}
 			}
 
 			// displays done.jsp page after upload finished
-			getServletContext().getRequestDispatcher("/tabela_evasao.jsp").forward(
-				request, response);
+			getServletContext().getRequestDispatcher("/tabela_evasao.jsp").forward(request, response);
 
 		} catch (FileUploadException ex) {
 			throw new ServletException(ex);

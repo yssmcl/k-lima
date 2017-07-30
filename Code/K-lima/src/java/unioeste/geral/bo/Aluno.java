@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "Aluno")
 public class Aluno {
 
 	@Id
@@ -31,10 +31,10 @@ public class Aluno {
 	private String cidade;
 
 	private String unidadeFederativa;
-        
-        private Double latitude;
-        
-        private Double longitude;
+
+	private Double latitude;
+
+	private Double longitude;
 
 	@ManyToOne
 	private Curso curso;
@@ -164,20 +164,20 @@ public class Aluno {
 		this.campus = campus;
 	}
 
-        public Double getLatitude() {
-            return latitude;
-        }
+	public Double getLatitude() {
+		return latitude;
+	}
 
-        public void setLatitude(Double latitude) {
-            this.latitude = latitude;
-        }
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
 
-        public Double getLongitude() {
-            return longitude;
-        }
+	public Double getLongitude() {
+		return longitude;
+	}
 
-        public void setLongitude(Double longitude) {
-            this.longitude = longitude;
-        }
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
 
 }
