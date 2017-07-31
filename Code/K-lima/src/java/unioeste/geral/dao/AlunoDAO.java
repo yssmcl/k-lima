@@ -73,7 +73,8 @@ public class AlunoDAO {
 			Criteria criteria = session.createCriteria(Aluno.class);
 			if (condicaoAND != null) {
 				for (Map.Entry entry : condicaoAND.entries()) {
-					if (entry.getValue().getClass() == Long.class) {
+					if (entry.getValue().getClass() == Long.class ||
+                                            entry.getValue().getClass() == Integer.class) {
 						criteria.add(
 							Restrictions.eq((String) entry.getKey(), entry.getValue())
 						);
@@ -121,7 +122,11 @@ public class AlunoDAO {
 			Criteria criteria = session.createCriteria(Aluno.class);
 			if (condicaoAND != null) {
 				for (Map.Entry entry : condicaoAND.entries()) {
-					if (entry.getValue().getClass() == Long.class) {
+//                                    System.out.println("================== " + entry.getKey());
+//                                    System.out.println("================== " + entry.getValue());
+					if (entry.getValue().getClass() == Long.class ||
+                                            entry.getValue().getClass() == Integer.class) {
+//                                                System.out.println("================== é número");
 						criteria.add(
 							Restrictions.eq((String) entry.getKey(), entry.getValue())
 						);

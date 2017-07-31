@@ -88,7 +88,7 @@ public class Relatorio {
 			JasperReport jasperReport = JasperCompileManager.compileReport(arquivoTemplate);
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, new JREmptyDataSource());
 			JasperExportManager.exportReportToPdfFile(jasperPrint, arquivoDestino);
-//			
+			//JasperViewer.viewReport(jasperPrint);
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -115,19 +115,15 @@ public class Relatorio {
 			Map<String, Object> parametros = new HashMap<>();
 			JRDataSource arquivo = new JRBeanCollectionDataSource(alunos);
 			JasperPrint jp = JasperFillManager.fillReport(jr, parametros, arquivo);
-                       JasperExportManager.exportReportToPdfFile(jp, arquivoDestino);
+                        JasperExportManager.exportReportToPdfFile(jp, arquivoDestino);
                     	JasperViewer.viewReport(jp);
 		} catch (JRException e) {
-			System.out.println("Erro fatal na geração do relatório");
+			e.printStackTrace();
 		}
 	}
 
-
     public static void main(String[] args) {
-		Multimap<String, Object> condicaoAND = HashMultimap.create();
-		condicaoAND.put("situacaoAtual", "Cancelado");
-		List<Aluno> alunosCancelados = new AlunoManager().recuperarAlunosPorAtributosMultimap(condicaoAND, null);
-		new Relatorio().gerarRelatorioGeral(alunosCancelados);
+		new Relatorio().gerarRelatorioEvasaoPorCurso(null);
 	}
 
 }
