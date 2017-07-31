@@ -47,7 +47,7 @@
 
           <div class="row centralizado">
             <div class="medium-12 columns" style="text-align: center;">
-                <h1>Alunos</h1>
+                <h1>Histórico de Evasão</h1>
             </div>
           </div>
           
@@ -95,8 +95,8 @@
                     %>
                         <tr>
                             <td><%= ano %></td>
-                            <td><%= qtdAbandono %></td>
                             <td><%= qtdCancelado %></td>
+                            <td><%= qtdAbandono %></td>
                             <td><%= qtdTransferido %></td>
                         </tr>
                     <%
