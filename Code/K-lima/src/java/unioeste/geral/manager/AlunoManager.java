@@ -148,12 +148,13 @@ public class AlunoManager {
 					aluno.setAnoEntrada(Integer.valueOf(campos[5]));
 					aluno.setAnoAtual(Integer.valueOf(campos[6]));
 					aluno.setSituacaoAtual(campos[7]);
-					aluno.setCep(campos[8]);
-					aluno.setRua(campos[9]);
-					aluno.setNumero(Integer.valueOf(campos[10]));
-					aluno.setBairro(campos[11]);
-					aluno.setCidade(campos[12]);
-					aluno.setUnidadeFederativa(campos[13]);
+                                        aluno.setAnoSaida(Integer.valueOf(campos[8]));
+					aluno.setCep(campos[9]);
+					aluno.setRua(campos[10]);
+					aluno.setNumero(Integer.valueOf(campos[11]));
+					aluno.setBairro(campos[12]);
+					aluno.setCidade(campos[13]);
+					aluno.setUnidadeFederativa(campos[14]);
 
 					//recupera a IDs de curso, centro e campus
 					Campus campus = campusMana.recuperarCampiPorAtributo("nome", campos[3]).get(0);

@@ -1,11 +1,9 @@
 <%-- 
-    Document   : totais_evasao
-    Created on : 30/07/2017, 13:52:36
+    Document   : historico_aprovacao
+    Created on : 30/07/2017, 18:58:23
     Author     : Leandro Ensina
 --%>
-
-
-<%@page import="com.google.common.collect.HashMultimap"%>
+<%@page import="com.google.common.collect.Multimap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="unioeste.geral.bo.Aluno"%>
@@ -57,52 +55,23 @@
             <table id="example" class="display">
               <thead>
                   <tr>
-                      <th>Ano</th>
-                      <th>Cancelado</th>
-                      <th>Cancelado por Abandono</th>
-                      <th>Transferido</th>
+                      <th>Disciplinas</th>
+                      <th>2008</th>
+                      <th>2009</th>
+                      <th>2010</th>
+                      <th>2011</th>
+                      <th>2012</th>
+                      <th>2013</th>
+                      <th>2014</th>
+                      <th>2015</th>
+                      <th>2016</th>
+                      <th>Média</th>
                   </tr>
               </thead>
               <tbody>
-                    <%
-                    AlunoManager manager = new AlunoManager();
-                    HashMultimap<String, Object> condicaoAbandono;
-                    HashMultimap<String, Object> condicaoCancelamento;
-                    HashMultimap<String, Object> condicaoTransferido;
-                    int ano = 2003;
-                    Long qtdAbandono;
-                    Long qtdCancelado;
-                    Long qtdTransferido;
-
-                    while(ano < 2017){
-                        condicaoAbandono = HashMultimap.create();
-                        condicaoAbandono.put("anoSaida", ano);
-                        condicaoAbandono.put("situacaoAtual", "Cancelado Por Abandono");
-                        
-                        condicaoCancelamento = HashMultimap.create();
-                        condicaoCancelamento.put("anoSaida", ano);
-                        condicaoCancelamento.put("situacaoAtual", "Cancelado");
-                        
-                        condicaoTransferido = HashMultimap.create();
-                        condicaoTransferido.put("anoSaida", ano);
-                        condicaoTransferido.put("situacaoAtual", "Transferido");
-                        
-                        qtdAbandono = manager.recuperarQtdAlunosPorAtributos(condicaoAbandono, null);
-                        qtdCancelado = manager.recuperarQtdAlunosPorAtributos(condicaoCancelamento, null);
-                        qtdTransferido = manager.recuperarQtdAlunosPorAtributos(condicaoTransferido, null);
-                        
-                        
-                    %>
                         <tr>
-                            <td><%= ano %></td>
-                            <td><%= qtdAbandono %></td>
-                            <td><%= qtdCancelado %></td>
-                            <td><%= qtdTransferido %></td>
+                            
                         </tr>
-                    <%
-                        ano++;
-                    }
-                    %>
                 </tbody>
             </table>
           </div>          

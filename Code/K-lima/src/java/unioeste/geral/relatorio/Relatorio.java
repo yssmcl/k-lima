@@ -90,7 +90,7 @@ public class Relatorio {
 			JasperExportManager.exportReportToPdfFile(jasperPrint, arquivoDestino);
 //			
 		} catch (JRException e) {
-			System.out.println("Erro fatal na geração do relatório");
+			e.printStackTrace();
 		}
 	}
 

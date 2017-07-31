@@ -35,7 +35,7 @@ public class FormularioDAO {
 	}
 
 	public List<Formulario> buscarFormularios(Multimap<String, Object> condicaoAND,
-											  Multimap<String, Object> condicaoOR) {
+		  Multimap<String, Object> condicaoOR) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Formulario> formularios = null;
 
