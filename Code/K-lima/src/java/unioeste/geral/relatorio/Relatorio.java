@@ -20,7 +20,30 @@ import unioeste.geral.bo.Aluno;
 import unioeste.geral.bo.Curso;
 import unioeste.geral.manager.AlunoManager;
 
+/**
+ * 
+ * Classe utilizada para gerar relatórios do sistema.
+ * 
+ *Os métodos dessa classe permitem construir relatórios e exporta-los para o 
+ * formato PDF.
+ * 
+ */
 public class Relatorio {
+/*
+    
+    
+    */
+
+    /**gerarRelatorioEvasaoPorCurso.
+     * 
+     * 
+     * Gera o relatório de evasão de um determinado curso, utilizando um 
+     * modelo de relatório de formato jrxml.
+     * O parâmetro de entrada é um objeto do tipo Curso.
+     * 
+     * @see   Curso
+     * @param curso
+     */
 
 	public void gerarRelatorioEvasaoPorCurso(Curso curso) {
 		try {
@@ -46,17 +69,14 @@ public class Relatorio {
 			condicaoAND.put("situacaoAtual", "Cancelado");
 			condicaoAND.put(nomeAtributoCurso, curso);
 			Long qtdAlunosCancelados = new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, null);
-
 			condicaoAND.clear();
 			condicaoAND.put("situacaoAtual", "Cancelado Por Abandono");
 			condicaoAND.put(nomeAtributoCurso, curso);
 			Long qtdAlunosCanceladosPorAbandono = new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, null);
-
 			condicaoAND.clear();
 			condicaoAND.put("situacaoAtual", "Transferido");
 			condicaoAND.put(nomeAtributoCurso, curso);
 			Long qtdAlunosTransferidos = new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, null);
-
 			Map parametros = new HashMap();
 			parametros.put("Curso", nomeCurso);
 			parametros.put("LogoUnioeste", caminhoLogoUnioeste);
@@ -65,17 +85,24 @@ public class Relatorio {
 			parametros.put("CanceladosPorAbandono", qtdAlunosCanceladosPorAbandono);
 			parametros.put("Transferidos", qtdAlunosTransferidos);
 			parametros.put("Total", qtdAlunosCancelados + qtdAlunosCanceladosPorAbandono + qtdAlunosTransferidos);
-
 			JasperReport jasperReport = JasperCompileManager.compileReport(arquivoTemplate);
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, new JREmptyDataSource());
 			JasperExportManager.exportReportToPdfFile(jasperPrint, arquivoDestino);
-//			JasperViewer.viewReport(jasperPrint);
+//			
 		} catch (JRException e) {
-			e.printStackTrace();
+			System.out.println("Erro fatal na geração do relatório");
 		}
 	}
 
-	public void gerarRelatorioGeral(List<Aluno> alunos) {
+    /**gerarRelatorioGeral.
+     *
+     * Gera  o relatório apartir de uma lista do objeto Aluno e um modelo de 
+     * relatório de formato jrxml.
+     * O parâmetro de entrada é uma lista de elementos do tipo Aluno;
+     * @see Aluno
+     * @param alunos
+     */
+    public void gerarRelatorioGeral(List<Aluno> alunos) {
 		try {
 			String diretorioAtual = System.getProperty("user.dir");
 			diretorioAtual = diretorioAtual.split("k-lima")[0];
@@ -95,7 +122,8 @@ public class Relatorio {
 		}
 	}
 
-	public static void main(String[] args) {
+
+    public static void main(String[] args) {
 		Multimap<String, Object> condicaoAND = HashMultimap.create();
 		condicaoAND.put("situacaoAtual", "Cancelado");
 		List<Aluno> alunosCancelados = new AlunoManager().recuperarAlunosPorAtributosMultimap(condicaoAND, null);
