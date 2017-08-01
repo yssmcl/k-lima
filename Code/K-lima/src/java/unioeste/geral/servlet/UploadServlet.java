@@ -88,7 +88,7 @@ public class UploadServlet extends HttpServlet {
 		// mkdir 'k-lima/Code/K-lima/build/web/data/'
 		String diretorioAtual = System.getProperty("user.dir");
 		diretorioAtual = diretorioAtual.split("k-lima")[0];
-		new File(diretorioAtual + "k-lima/Code/K-lima/build/web/data/").mkdir();
+		new File(diretorioAtual + "k-lima/Code/K-lima/build/web/data").mkdir();
 
 		// Check that we have a file upload request
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
