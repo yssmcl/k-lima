@@ -22,7 +22,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAG - Sistema de Apoio ao Gestor</title>
+    <title>Tutoria</title>
 
 
     <link rel="stylesheet" type="text/css" href="<%=caminho%>/css/datatables.min.css"/>
