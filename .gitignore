@@ -34,7 +34,7 @@ hs_err_pid*
 /Code/K-lima/build/
 /Code/K-lima/dist/
 
-/lib/apache-tomcat-8.5.15/conf/Catalina/localhost/
+!/lib/apache-tomcat-8.5.15/conf/Catalina/localhost/*.xml
 /lib/apache-tomcat-8.5.15/logs/
 /lib/apache-tomcat-8.5.15/work/
 /lib/apache-tomcat-8.5.15/temp/
