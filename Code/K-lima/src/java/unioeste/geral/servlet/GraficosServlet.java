@@ -25,41 +25,41 @@ import unioeste.geral.manager.CursoManager;
 @WebServlet(name = "GraficosServlet", urlPatterns = {"/GraficosServlet"})
 public class GraficosServlet extends HttpServlet{
 
-    private HashMap<String, Object> condicao;
+    
     private AlunoManager aluno = new AlunoManager();
-    private List<Aluno> alunos;
+    
     private String cursoEscolhido;
     
-    public Long carregaDadosSituacaoAnoAtual(Object ano, Object situacao){        
+    public Long carregaDadosSituacaoAnoAtual(Object ano, Object situacao, Object curso){        
                  
         Multimap<String, Object> condicaoAND = HashMultimap.create();
-		Curso curso = new CursoManager().recuperarCursosPorAtributo("nome", cursoEscolhido).get(0);
+		
 		condicaoAND.put("curso", curso);
 		condicaoAND.put("situacaoAtual" , situacao);
 		condicaoAND.put("anoAtual" , ano);
-                Multimap<String, Object> condicaoOR = HashMultimap.create();
-         return  new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, condicaoOR);
+                
+         return  new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, null);
         
     }
     
-     public Long carregaDadosAnoAtual(Object ano){                         
+     public Long carregaDadosAnoAtual(Object ano, Object curso){                         
         
         Multimap<String, Object> condicaoAND = HashMultimap.create();
-            Curso curso = new CursoManager().recuperarCursosPorAtributo("nome", cursoEscolhido).get(0);
+            
             condicaoAND.put("curso", curso);		
             condicaoAND.put("anoAtual" , ano);
-            Multimap<String, Object> condicaoOR = HashMultimap.create();
-        return  new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, condicaoOR);
+            
+        return  new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, null);
         
     }
      
-    public Long carregaDadosSituacaoAtual( Object situacao){        
+    public Long carregaDadosSituacaoAtual( Object situacao, Object curso){        
         Multimap<String, Object> condicaoAND = HashMultimap.create();
         Multimap<String, Object> condicaoOR = HashMultimap.create();
         
-            Curso curso = new CursoManager().recuperarCursosPorAtributo("nome", cursoEscolhido).get(0);
             condicaoAND.put("curso", curso);
-            if(situacao.equals("All")){
+            
+            if(situacao.equals("AllSituacao")){
                 condicaoOR.put("situacaoAtual" , "Cancelado");               
                 condicaoOR.put("situacaoAtual", "Cancelado Por Abandono");		
 		condicaoOR.put("situacaoAtual", "Transferido");
@@ -68,6 +68,57 @@ public class GraficosServlet extends HttpServlet{
         return  new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, condicaoOR);
     }
 
+    String criarGraficoDinamico(List<Long> constantesX){
+        String grafico=
+        "    <script> "
+            + "Highcharts.chart( 'grafico', { "
+            + "           chart:{"
+            + "                type: graficoSelecionado.options[graficoSelecionado.selectedIndex].value"
+            + "           },"
+            + "            title:{"
+            + "                text: document.getElementById(tituloSelect.id).value"
+            + "            },"
+            + "        xAxis: {"
+            + "            categories: ['1 ano', '2 ano', '3 ano', '4 ano'],"
+            + "            title: {"
+            + "                text: null"
+            + "            }"
+            + "        },"
+            + "        yAxis: {"
+            + "            min: 0,"
+            + "            title: {"
+            + "                text: 'quantidade de alunos do curso de: '"
+            + "            }"
+            + "        },"
+            + "        tooltip: {"
+            + "            headerFormat: '<span style=\"font-size:10px\">{point.key}</span><table>',"
+            + "            pointFormat: '<tr><td style=\"color:{series.color};padding:0\">{series.name}: </td>' +"
+            + "                '<td style=\"padding:0\"><b>{point.y}</b></td></tr>',"
+            + "            footerFormat: '</table>',"
+            + "            shared: true,"
+            + "            useHTML: true"
+            + "        },"
+            + "        plotOptions: {"
+            + "            column: {"
+            + "                pointPadding: 0.2,"
+            + "                borderWidth: 0"
+            + "            }"
+            + "        },"
+            + "        series: [{name: 'Alunos evadidos',"     ;
+        String dados="                data: [";
+        for(int i=0;i<constantesX.size();i++){
+            dados.concat(constantesX.get(i)+" ");
+            if(i<constantesX.size()-1)dados.concat(", ");
+        }
+        
+        String fim="] "
+            + " }]});"
+            + "</script>";   
+        grafico.concat(dados);
+        grafico.concat(fim);
+        return grafico;
+    }
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -78,86 +129,42 @@ public class GraficosServlet extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        AlunoManager alunoMana = new AlunoManager();
-        CursoManager cursoMana = new CursoManager();
-        List<Aluno> alunos = new ArrayList<>();
-        List<Aluno> alunos_total = new ArrayList<>();
-        List<Curso> cursos = new ArrayList<>();
-        List<Long> totais = new ArrayList<>();
-        
-        Long alunosCancelados = null;
-        Long alunosCanceladosAbandono = null;
-        Long alunosTransferidos = null;
-        Long alunosFormados = null;
-        Long alunosCursando = null;
        
-        //List<Integer> alunosCursando= new ArrayList<>();
-        List<Integer> alunosCursandoAnoCancelados= new ArrayList<>();
-        List<Integer> alunosCursandoAnoCanceladosAbandono= new ArrayList<>();
+        CursoManager cursoMana = new CursoManager();
         
-        try{            
-            String curso = request.getParameter("cursoSelecionado");            
+        List<String> filtrosEixoX = new ArrayList<>();
+        String filtrosEixoy = new String();
+        String filtroX = new String();
+        List<Long> constantesX = new ArrayList<>();
+        
+      
+        
+        try{    
+            filtroX=request.getParameter("FiltroX");
+            filtrosEixoy = request.getParameter("FiltroY");            
             //String anoEntrada = request.getParameter("anoEntrada");
             String anoAtual = request.getParameter("anoSelecionado");
             String situacaoAtual = request.getParameter("situacaoSelecionada");
-            System.out.println(curso+" asdasd"+anoAtual+" "+situacaoAtual);
+            
             Multimap<String, Object> condicaoAND = null;
             Multimap<String, Object> condicaoOR = null;
             
-            if(curso.equals("All")){
-                cursos = cursoMana.recuperarCursosPorAtributo("nome", "%%");
-                cursoEscolhido = "Engenharia Elétrica";
-            } else {
-                cursos = cursoMana.recuperarCursosPorAtributo("nome", "%"+curso+"%");
-                cursoEscolhido = cursos.get(0).getNome();
-            }System.out.println("Curso: "+cursoEscolhido);
-            if(curso.equals("All")){ // se não faz diferença o curso
-                if(anoAtual.equals("All")){               
-                    if(situacaoAtual.equals("All")){               
-                        alunosCancelados= carregaDadosSituacaoAtual(situacaoAtual);
-                         System.out.println(alunosCancelados+" alunos cancelados");
-                    } else if (situacaoAtual.equals("Formado")){
-                        alunosFormados= carregaDadosSituacaoAtual(situacaoAtual);
-                         System.out.println(alunosFormados);
-                    } else if (situacaoAtual.equals("Cancelado")){
-                        alunosCancelados= carregaDadosSituacaoAtual(situacaoAtual);
-                        System.out.println(alunosCancelados);
-                    } else if (situacaoAtual.equals("Cancelado Por Abandono")){
-                        alunosCanceladosAbandono= carregaDadosSituacaoAtual(situacaoAtual);
-                        System.out.println(alunosCancelados);
-                    } else if (situacaoAtual.equals("Cursando")){
-                        alunosCursando= carregaDadosSituacaoAtual(situacaoAtual);
-                        System.out.println();
-                    } else if (situacaoAtual.equals("Transferido")){
-                        alunosTransferidos= carregaDadosSituacaoAtual(situacaoAtual);
-                        System.out.println();
-                    }
-                } else  { // recupera se selecionou por ano
-                    if(situacaoAtual.equals("All")){               
-                        alunosCancelados= carregaDadosSituacaoAnoAtual(anoAtual,situacaoAtual);
-                    } else if (situacaoAtual.equals("Formado")){
-                        alunosFormados= carregaDadosSituacaoAnoAtual(anoAtual,situacaoAtual);
-                    } else if (situacaoAtual.equals("Cancelado")){
-                        alunosCancelados= carregaDadosSituacaoAnoAtual(anoAtual,situacaoAtual);
-                    } else if (situacaoAtual.equals("Cancelado Por Abandono")){
-                        alunosCancelados= carregaDadosSituacaoAnoAtual(anoAtual,situacaoAtual);
-                    } else if (situacaoAtual.equals("Cursando")){
-                        alunosCursando= carregaDadosSituacaoAnoAtual(anoAtual,situacaoAtual);
-                    } else if (situacaoAtual.equals("Transferido")){
-                        alunosTransferidos= carregaDadosSituacaoAnoAtual(anoAtual,situacaoAtual);
-                    }
+            if(filtroX.equals("Allcurso")){
+               
+                List<Curso> listaCursos = cursoMana.recuperarCursosPorAtributo("nome", "%%");
+                for(int i=0; i<listaCursos.size(); i++){
+                    filtrosEixoX.add(listaCursos.get(i).getNome());
+                    constantesX.add(carregaDadosSituacaoAtual(filtrosEixoy,filtrosEixoX.get(i)));
                 }
-            } 
-             
-            request.setAttribute("alunosCancelados", alunosCancelados);
-            request.setAttribute("alunosFormados", alunosFormados);
-            request.setAttribute("alunosCanceladosAbandono", alunosCanceladosAbandono);
-            request.setAttribute("alunosTransferidos",alunosTransferidos);
-            request.setAttribute("alunosCursando",alunosCursando);
-            request.setAttribute("alunosCursandoAnoCancelados",alunosCursandoAnoCancelados);
-            request.setAttribute("alunosCursandoAnoCanceladosAbandono",alunosCursandoAnoCanceladosAbandono);
-            request.setAttribute("situacao",situacaoAtual);
-            request.setAttribute("anos",anoAtual);
+                
+            } else { } 
+            
+               request.setAttribute("filtroEixoX", filtrosEixoX);
+               request.setAttribute("constantesX", constantesX);
+               request.setAttribute("baseX", filtroX);               
+               request.setAttribute("filtrosEixoy", filtrosEixoy);
+               request.setAttribute("grafico", criarGraficoDinamico(constantesX));
+               
             request.getRequestDispatcher("graficos_dinamicos.jsp").forward(request, response);
         }catch(Exception e){
             System.out.println(e.getMessage());
