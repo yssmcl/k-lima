@@ -22,7 +22,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>K-Lima</title>
+    <title>Tutoria</title>
     
   </head>
 <body>
@@ -60,7 +60,7 @@
         <div class="row"> 
             <div class="medium-3 columns">  
                 <label>Titulo do Gráfico:</label> 
-                <input id="tituloEscolhido" name="titulo">
+                <input id=tituloEscolhido name="titulo">
             </div>             
          
             <div class="medium-2 columns">
@@ -72,72 +72,45 @@
                   </select>
             </div>
             
-            
-            <div class="medium-3 columns">  
-                <label>Filtro Base(eixo X):</label>                
-                <select id="FiltrosSelecionado" name="FiltroX">
-                    <option value="AllAno">Todos os periodos</option>
-                    <option value="AllCurso">Todos os Cursos</option>
-                    <option value="AllSituacao">Todas as Situações</option>
-                    <option value="AllEvacao">Todos os evadidos</option>
-                    <%
-                        for(int i= 0; i<listaCurso.size(); i++){%>
-                            <option value="<%out.print(listaCurso.get(i).getNome());%>">
-                            <%out.print(listaCurso.get(i).getNome());%></option>                                
-                    <% } %>
-                </select>
+            <div class="medium-6 columns">  
+                <label>Tipos de Filtros para X:</label>                
+                <select id=TiposDeFiltrosX name="TipoFiltroX" 
+                        onclick="limpaCombo(FiltroSelecionadoX);
+                            preencheFiltroX(TiposDeFiltrosX,FiltroSelecionadoX);
+                        limpaCombo(FiltroSelecionadoY);
+                            preencheFiltroY(TiposDeFiltrosX,FiltroSelecionadoY);">
+                    <option value="TfiltroPeriodos">Periodos</option>
+                    <option value="TfiltroCursos" >Cursos</option>
+                    <option value="TfiltroSituacao">Situações</option>
+                </select >
               </div>
-            <div class="medium-3 columns">  
-                <label>Filtro eixo Y:</label>                
-                <select id="FiltrosSelecionadoY" name="FiltroY">
-                    <option value="AllAno">Todos os periodos</option>
-                    <option value="AllSituacao">Todas as Situações</option>
-                    <option value="AllEvacao">Todos os evadidos</option>
-                    <%
-                        for(int i= 0; i<listaCurso.size(); i++){%>
-                            <option value="<%out.print(listaCurso.get(i).getNome());%>">
-                            <%out.print(listaCurso.get(i).getNome());%></option>                                
-                    <% } %>
-                </select>
-              </div>
-                
-                
                 
         </div>
+        
+        <div class="row">
+        <div class="medium-6 columns">  
+                <label>Filtro Base(eixo X):</label>                
+                <select id=FiltroSelecionadoX name="FiltroX" >
+                
+                </select>
+              </div>
+            <div class="medium-6 columns">  
+                <label>Filtro eixo Y:</label>                
+                <select id=FiltroSelecionadoY name="FiltroY" 
+                        onclick="limpaCombo(filtrosAuxiliar);
+                            preencheFiltroAuxiliar(FiltroSelecionadoY, filtrosAuxiliar, TiposDeFiltrosX);">
+                    
+                </select>
+              </div>
+        </div>
+        
         <div class="row">
             
-            <div class="medium-3 columns">  
-                <label>Curso:</label>
-                  <select id="cursoSelecionado" name="cursoSelecionado">                     
-                      <option id="AllCursos" value="All">Todos</option>
-                    <%
-                        for(int i= 0; i<listaCurso.size(); i++){%>
-                            <option  value="<%out.print(listaCurso.get(i).getNome());%>">
-                                <%out.print(listaCurso.get(i).getNome());%></option>                                
-                       <% } %>
-                  </select>
-            </div>
-              <div class="medium-2 columns">  
-                <label>Ano Atual:</label>
-                  <select name="anoSelecionado" id="anoSelecionado">
-                      <option value="All">Todos</option>
-                      <option value="1">Primeiro</option>
-                      <option value="2">Segundo</option>
-                      <option value="3">Terceiro</option>
-                      <option value="4">Quarto</option>
-                      <option value="5">Quinto</option>
-                  </select>
-            </div>
-                  
+                           
           <div class="medium-3 columns">  
-                <label>Situação Atual:</label>
-                  <select name="situacaoSelecionada" id="situacaoSelecionada">
-                      <option value="All">Todas</option>
-                      <option value="Cancelado por Abandono">Cancelado por Abandono</option>
-                      <option value="Cursando">Cursando</option>
-                      <option value="Cancelado">Cancelado</option>
-                      <option value="Formado">Formado</option>
-                      <option value="Transferido">Transferido</option>
+                <label id="filtrosAuxiliarName" >Filtros Auxiliares:</label>
+                  <select id="filtrosAuxiliar" name="auxiliaresSelecionada">
+                      
                   </select>
           </div>               
                   
@@ -154,22 +127,271 @@
           
     <br/>    <br/>    <br/>    <br/>    <br/>
     
-    <div id="grafico" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+    <div id=grafico style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
     <br><br><br> 
     
 
     
     <script>
-        function carregaGrafico(){
-        <%  //Long alunosCancelados = ( Long) request.getAttribute("alunosCancelados");
-            //Long alunosCanceladosAbandono = ( Long) request.getAttribute("alunosCanceladosAbandono");
-            List<String> filtrosEixoX = (List<String>)request.getAttribute("filtrosEixoX");
-            String filtrosEixoy = (String) request.getAttribute("filtrosEixoy");
-            String baseEixoX = (String) request.getAttribute("baseX");
-            List<Long> constantesX = (List<Long>) request.getAttribute("constantesX");
-            String criarGraficoDinamico = (String) request.getAttribute("criarGraficoDinamico");
-            out.print(criarGraficoDinamico);
-        %>
+        function limpaCombo(elemento1){
+            comboboxNome = document.getElementById(elemento1.id);
+            while(comboboxNome.options.length>0){
+                comboboxNome.remove(0);
+            }
+        }      
+        
+        function preencheFiltroX(elemento1, elemento2){
+        var dropSelecionadoX = document.getElementById(elemento1.id);
+        var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
+        var optionsDoDrop=document.getElementById(elemento2.id);
+        
+            if( filtroEscolhidoParaX.valueOf()==="TfiltroCursos"){   
+                var opt = document.createElement('option');              
+                opt.value="AllCursos";
+                opt.text = "Todos os Cursos";                
+                optionsDoDrop.add(opt);
+                var opt = document.createElement('option');   
+                <% for(int i= 0; i<listaCurso.size(); i++){
+                    
+                    out.println("opt.value= '"+listaCurso.get(i).getNome()+"';");
+                    //out.println("opt.name= \""+listaCurso.get(i).getNome()+"\";"); TODO verificar como colocar name no option
+                    out.println("opt.text = '"+listaCurso.get(i).getNome()+"';");
+                    out.println("optionsDoDrop.add(opt);");
+                    out.println("opt = document.createElement('option');");
+                 } %>
+
+            }
+            else if( filtroEscolhidoParaX.valueOf()==="TfiltroPeriodos"){   
+                var opt = document.createElement('option');
+                    opt.value= 'AllAnos';
+                    opt.text = 'Todos os Anos';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= '1';
+                    opt.text = 'Primeiro Ano';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= '2';
+                    opt.text = 'Segundo Ano';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= '3';
+                    opt.text = 'primeiro Ano';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= '4';
+                    opt.text = 'primeiro Ano';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= '5';
+                    opt.text = 'primeiro Ano';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    
+                    // TODO, quando tiver os anos no BD deixar dinamicos com os Cursos
+
+            } 
+            else if( filtroEscolhidoParaX.valueOf()==="TfiltroSituacao"){   
+                var opt = document.createElement('option');
+                    opt.value= 'AllSituacao';
+                    opt.text = 'Todas Situações';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= 'Cancelado por Abandono';
+                    opt.text = 'Cancelado por Abandono';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= 'Cancelado';
+                    opt.text = 'Cancelado';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= 'Transferido';
+                    opt.text = 'Transferido';
+                    optionsDoDrop.add(opt);
+                
+                opt = document.createElement('option');
+                    opt.value= 'Formado';
+                    opt.text = 'Formado';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= 'Cursando';
+                    opt.text = 'Cursando';
+                    optionsDoDrop.add(opt);
+                
+            }
+ 
+            
+            
+        }
+        
+        function preencheFiltroY(elemento1, elemento2){
+        var dropSelecionadoX = document.getElementById(elemento1.id);
+        var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
+        var optionsDoDrop=document.getElementById(elemento2.id);
+        
+            if( filtroEscolhidoParaX.valueOf()!=="TfiltroCursos"){   
+                var opt = document.createElement('option');              
+                opt.value="AllCursos";
+                opt.text = "Todos os Cursos";                
+                optionsDoDrop.add(opt);
+                var opt = document.createElement('option');   
+                <% for(int i= 0; i<listaCurso.size(); i++){
+                    
+                    out.println("opt.value= '"+listaCurso.get(i).getNome()+"';");
+                    //out.println("opt.name= \""+listaCurso.get(i).getNome()+"\";"); TODO verificar como colocar name no option
+                    out.println("opt.text = '"+listaCurso.get(i).getNome()+"';");
+                    out.println("optionsDoDrop.add(opt);");
+                    out.println("opt = document.createElement('option');");
+                 } %>
+
+            }
+            if( filtroEscolhidoParaX.valueOf()!=="TfiltroPeriodos"){   
+                var opt = document.createElement('option');
+                    opt.value= 'AllAnos';
+                    opt.text = 'Todos os Anos';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= '1';
+                    opt.text = 'Primeiro Ano';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= '2';
+                    opt.text = 'Segundo Ano';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= '3';
+                    opt.text = 'primeiro Ano';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= '4';
+                    opt.text = 'primeiro Ano';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= '5';
+                    opt.text = 'primeiro Ano';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    
+                    // TODO, quando tiver os anos no BD deixar dinamicos com os Cursos
+
+            } 
+            if( filtroEscolhidoParaX.valueOf()!=="TfiltroSituacao"){   
+                var opt = document.createElement('option');
+                    opt.value= 'AllSituacao';
+                    opt.text = 'Todas Situações';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= 'Cancelado por Abandono';
+                    opt.text = 'Cancelado por Abandono';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= 'Cancelado';
+                    opt.text = 'Cancelado';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= 'Transferido';
+                    opt.text = 'Transferido';
+                    optionsDoDrop.add(opt);
+                
+                opt = document.createElement('option');
+                    opt.value= 'Formado';
+                    opt.text = 'Formado';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= 'Cursando';
+                    opt.text = 'Cursando';
+                    optionsDoDrop.add(opt);
+                
+            }
+ 
+            
+            
+        }
+        
+        function preencheFiltroAuxiliar(elemento1, elemento2, elemento3){
+        var dropSelecionadoX = document.getElementById(elemento3.id);
+        var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
+        var dropSelecionadoY = document.getElementById(elemento1.id);
+        var filtroEscolhidoParaY = dropSelecionadoY.options[dropSelecionadoY.selectedIndex].value;
+        var optionsDoDrop=document.getElementById(elemento2.id);
+        
+        
+            if( filtroEscolhidoParaY.valueOf()!=="AllCursos" && filtroEscolhidoParaX.valueOf()!=="TfiltroCursos"){
+                var opt = document.createElement('option');              
+                opt.value="AllCursos";
+                opt.text = "Todos os Cursos";                
+                optionsDoDrop.add(opt);
+                var opt = document.createElement('option');   
+                <% for(int i= 0; i<listaCurso.size(); i++){
+                    
+                    out.println("opt.value= '"+listaCurso.get(i).getNome()+"';");
+                    //out.println("opt.name= \""+listaCurso.get(i).getNome()+"\";"); TODO verificar como colocar name no option
+                    out.println("opt.text = '"+listaCurso.get(i).getNome()+"';");
+                    out.println("optionsDoDrop.add(opt);");
+                    out.println("opt = document.createElement('option');");
+                 } %>
+
+            }
+            if( filtroEscolhidoParaY.valueOf()!=="AllAnos" && filtroEscolhidoParaX.valueOf()!=="TfiltroPeriodos"){ 
+                var opt = document.createElement('option');
+                    opt.value= 'AllAnos';
+                    opt.text = 'Todos os Anos';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= '1';
+                    opt.text = 'Primeiro Ano';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= '2';
+                    opt.text = 'Segundo Ano';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= '3';
+                    opt.text = 'primeiro Ano';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= '4';
+                    opt.text = 'primeiro Ano';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= '5';
+                    opt.text = 'primeiro Ano';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    
+                    // TODO, quando tiver os anos no BD deixar dinamicos com os Cursos
+
+            } 
+            if( filtroEscolhidoParaY.valueOf()!=="AllSituacao"&& filtroEscolhidoParaX.valueOf()!=="TfiltroSituacao"){ 
+                var opt = document.createElement('option');
+                    opt.value= 'AllSituacao';
+                    opt.text = 'Todas Situações';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= 'Cancelado por Abandono';
+                    opt.text = 'Cancelado por Abandono';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= 'Cancelado';
+                    opt.text = 'Cancelado';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= 'Transferido';
+                    opt.text = 'Transferido';
+                    optionsDoDrop.add(opt);
+                
+                opt = document.createElement('option');
+                    opt.value= 'Formado';
+                    opt.text = 'Formado';
+                    optionsDoDrop.add(opt);
+                opt = document.createElement('option');
+                    opt.value= 'Cursando';
+                    opt.text = 'Cursando';
+                    optionsDoDrop.add(opt);
+                
+            }
+ 
+            
             
         }
     </script>

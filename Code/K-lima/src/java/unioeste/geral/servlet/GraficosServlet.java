@@ -21,15 +21,31 @@ import unioeste.geral.bo.Aluno;
 import unioeste.geral.bo.Curso;
 import unioeste.geral.manager.AlunoManager;
 import unioeste.geral.manager.CursoManager;
+import com.google.gson.*;
 
 @WebServlet(name = "GraficosServlet", urlPatterns = {"/GraficosServlet"})
 public class GraficosServlet extends HttpServlet{
 
     
     private AlunoManager aluno = new AlunoManager();
-    
+    private CursoManager cursoMana = new CursoManager();
     private String cursoEscolhido;
+  
     
+    public  List<String> carregaDadosNomeCurso(Object filtroX){        
+    List<String> filtrosEixoX = new ArrayList<>();
+        if(filtroX.equals("Allcurso")){ //todos os cursos selecionados
+
+                List<Curso> listaCursos = cursoMana.recuperarCursosPorAtributo("nome", "%%");
+                for(int i=0; i<listaCursos.size(); i++){
+                    filtrosEixoX.add(listaCursos.get(i).getNome());
+                }
+        } else { // somente um curso selecionado
+            filtrosEixoX.add(cursoMana.recuperarCursosPorAtributo("nome", filtroX).get(0).getNome());
+        } 
+        
+        return filtrosEixoX;
+    }
     public Long carregaDadosSituacaoAnoAtual(Object ano, Object situacao, Object curso){        
                  
         Multimap<String, Object> condicaoAND = HashMultimap.create();
@@ -68,56 +84,6 @@ public class GraficosServlet extends HttpServlet{
         return  new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, condicaoOR);
     }
 
-    String criarGraficoDinamico(List<Long> constantesX){
-        String grafico=
-        "    <script> "
-            + "Highcharts.chart( 'grafico', { "
-            + "           chart:{"
-            + "                type: graficoSelecionado.options[graficoSelecionado.selectedIndex].value"
-            + "           },"
-            + "            title:{"
-            + "                text: document.getElementById(tituloSelect.id).value"
-            + "            },"
-            + "        xAxis: {"
-            + "            categories: ['1 ano', '2 ano', '3 ano', '4 ano'],"
-            + "            title: {"
-            + "                text: null"
-            + "            }"
-            + "        },"
-            + "        yAxis: {"
-            + "            min: 0,"
-            + "            title: {"
-            + "                text: 'quantidade de alunos do curso de: '"
-            + "            }"
-            + "        },"
-            + "        tooltip: {"
-            + "            headerFormat: '<span style=\"font-size:10px\">{point.key}</span><table>',"
-            + "            pointFormat: '<tr><td style=\"color:{series.color};padding:0\">{series.name}: </td>' +"
-            + "                '<td style=\"padding:0\"><b>{point.y}</b></td></tr>',"
-            + "            footerFormat: '</table>',"
-            + "            shared: true,"
-            + "            useHTML: true"
-            + "        },"
-            + "        plotOptions: {"
-            + "            column: {"
-            + "                pointPadding: 0.2,"
-            + "                borderWidth: 0"
-            + "            }"
-            + "        },"
-            + "        series: [{name: 'Alunos evadidos',"     ;
-        String dados="                data: [";
-        for(int i=0;i<constantesX.size();i++){
-            dados.concat(constantesX.get(i)+" ");
-            if(i<constantesX.size()-1)dados.concat(", ");
-        }
-        
-        String fim="] "
-            + " }]});"
-            + "</script>";   
-        grafico.concat(dados);
-        grafico.concat(fim);
-        return grafico;
-    }
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -134,6 +100,8 @@ public class GraficosServlet extends HttpServlet{
         
         List<String> filtrosEixoX = new ArrayList<>();
         String filtrosEixoy = new String();
+        String tipoFiltroX = new String();
+        String tipoFiltroY = new String();
         String filtroX = new String();
         List<Long> constantesX = new ArrayList<>();
         
@@ -141,32 +109,29 @@ public class GraficosServlet extends HttpServlet{
         
         try{    
             filtroX=request.getParameter("FiltroX");
+            tipoFiltroX= request.getParameter("TipoFiltroX");
             filtrosEixoy = request.getParameter("FiltroY");            
             //String anoEntrada = request.getParameter("anoEntrada");
             String anoAtual = request.getParameter("anoSelecionado");
             String situacaoAtual = request.getParameter("situacaoSelecionada");
-            
+                        
+              JsonObject objJson= new JsonObject();
+              JsonArray data= new JsonArray();
+              
+             // data.add();
+              
             Multimap<String, Object> condicaoAND = null;
             Multimap<String, Object> condicaoOR = null;
+        
+            if(tipoFiltroX.equals("TfiltroCursos"))
+                filtrosEixoX = carregaDadosNomeCurso(filtroX); // carrega dados se curso selecionado para x
             
-            if(filtroX.equals("Allcurso")){
-               
-                List<Curso> listaCursos = cursoMana.recuperarCursosPorAtributo("nome", "%%");
-                for(int i=0; i<listaCursos.size(); i++){
-                    filtrosEixoX.add(listaCursos.get(i).getNome());
-                    constantesX.add(carregaDadosSituacaoAtual(filtrosEixoy,filtrosEixoX.get(i)));
-                }
-                
-            } else { } 
             
-               request.setAttribute("filtroEixoX", filtrosEixoX);
-               request.setAttribute("constantesX", constantesX);
-               request.setAttribute("baseX", filtroX);               
-               request.setAttribute("filtrosEixoy", filtrosEixoy);
-               request.setAttribute("grafico", criarGraficoDinamico(constantesX));
-               
+            
+            
             request.getRequestDispatcher("graficos_dinamicos.jsp").forward(request, response);
         }catch(Exception e){
+            e.printStackTrace(); // faz sentido isso aqui?
             System.out.println(e.getMessage());
         }
         
