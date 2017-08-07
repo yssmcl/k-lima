@@ -46,6 +46,7 @@ public class GraficosServlet extends HttpServlet{
         
         return filtrosEixoX;
     }
+   
     public Long carregaDadosSituacaoAnoAtual(Object ano, Object situacao, Object curso){        
                  
         Multimap<String, Object> condicaoAND = HashMultimap.create();
@@ -58,7 +59,7 @@ public class GraficosServlet extends HttpServlet{
         
     }
     
-     public Long carregaDadosAnoAtual(Object ano, Object curso){                         
+     public long carregaDadosAnoAtual(Object ano, Object curso){                         
         
         Multimap<String, Object> condicaoAND = HashMultimap.create();
             
@@ -99,16 +100,18 @@ public class GraficosServlet extends HttpServlet{
         CursoManager cursoMana = new CursoManager();
         
         List<String> filtrosEixoX = new ArrayList<>();
+        List<Long> filtrosEixoY = new ArrayList<>();
         String filtrosEixoy = new String();
         String tipoFiltroX = new String();
         String tipoFiltroY = new String();
         String filtroX = new String();
-        List<Long> constantesX = new ArrayList<>();
+       
         
       
         
         try{    
             filtroX=request.getParameter("FiltroX");
+            tipoFiltroY=request.getParameter("FiltroSelecionadoY");
             tipoFiltroX= request.getParameter("TipoFiltroX");
             filtrosEixoy = request.getParameter("FiltroY");            
             //String anoEntrada = request.getParameter("anoEntrada");
@@ -123,11 +126,36 @@ public class GraficosServlet extends HttpServlet{
             Multimap<String, Object> condicaoAND = null;
             Multimap<String, Object> condicaoOR = null;
         
-            if(tipoFiltroX.equals("TfiltroCursos"))
+            if(tipoFiltroX.equals("AllCursos")){
                 filtrosEixoX = carregaDadosNomeCurso(filtroX); // carrega dados se curso selecionado para x
-            
-            
-            
+                if(tipoFiltroY.equals("AllAnos")){
+                    for(int i=0; i<filtrosEixoX.size();i++){
+                        filtrosEixoY.add(carregaDadosAnoAtual("%%",filtrosEixoX.get(i)));
+                    }
+                } else {
+                    for(int i=0; i<filtrosEixoX.size();i++){
+                        filtrosEixoY.add(carregaDadosAnoAtual(tipoFiltroY,filtrosEixoX.get(i)));
+                    }
+                }
+            }
+            if(tipoFiltroX.equals("AllAnos")){
+                filtrosEixoX.add("Primeiro Ano"); // carrega dados se curso selecionado para x
+                filtrosEixoX.add("Segundo Ano");
+                filtrosEixoX.add("Terceiro Ano");
+                filtrosEixoX.add("Quarto Ano");                
+                filtrosEixoX.add("Quinto Ano");
+                if(tipoFiltroY.equals("AllCursos")){
+                    for(int i=0; i<filtrosEixoX.size();i++){
+                        filtrosEixoY.add(carregaDadosAnoAtual("%%",filtrosEixoX.get(i)));
+                    }
+                } else {
+                    for(int i=0; i<filtrosEixoX.size();i++){
+                         filtrosEixoY.add(carregaDadosAnoAtual(tipoFiltroY,filtrosEixoX.get(i)));
+                    }               
+                }    
+            }
+        
+                
             
             request.getRequestDispatcher("graficos_dinamicos.jsp").forward(request, response);
         }catch(Exception e){

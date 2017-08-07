@@ -176,15 +176,15 @@
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     opt.value= '3';
-                    opt.text = 'primeiro Ano';
+                    opt.text = 'Terceiro Ano';
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     opt.value= '4';
-                    opt.text = 'primeiro Ano';
+                    opt.text = 'Quarto Ano';
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     opt.value= '5';
-                    opt.text = 'primeiro Ano';
+                    opt.text = 'Quinto Ano';
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     
@@ -260,15 +260,15 @@
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     opt.value= '3';
-                    opt.text = 'primeiro Ano';
+                    opt.text = 'Terceiro Ano';
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     opt.value= '4';
-                    opt.text = 'primeiro Ano';
+                    opt.text = 'Quarto Ano';
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     opt.value= '5';
-                    opt.text = 'primeiro Ano';
+                    opt.text = 'Quinto Ano';
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     
@@ -347,15 +347,15 @@
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     opt.value= '3';
-                    opt.text = 'primeiro Ano';
+                    opt.text = 'Terceiro Ano';
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     opt.value= '4';
-                    opt.text = 'primeiro Ano';
+                    opt.text = 'Quarto Ano';
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     opt.value= '5';
-                    opt.text = 'primeiro Ano';
+                    opt.text = 'Quinto Ano';
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     
