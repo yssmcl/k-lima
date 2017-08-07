@@ -148,7 +148,6 @@ public class GraficosServlet extends HttpServlet{
             Multimap<String, Object> condicaoOR = null;
         
             if(filtroX.equals("AllCursos")||filtroX.equals("AllAnos")||filtroX.equals("AllSituacao")){
-                
                 if(tipoFiltroX.equals("AllCursos"))valoresDoEixoX = carregaDadosNomeCurso(filtroX);//;
                 else if(tipoFiltroX.equals("AllAnos"))valoresDoEixoX = periodos;
                 else if(tipoFiltroX.equals("AllSituacao"))valoresDoEixoX = situacoes;
@@ -157,32 +156,24 @@ public class GraficosServlet extends HttpServlet{
                 valoresDoEixoX.add(tipoFiltroX);             
             } // dados de x carregado
             
+            
             if(valoresDoEixoX.size()==1){
-                if(tipoFiltroX.equals("TfiltroPeriodos")){
-                    condicaoAND.put("anoAtual", valoresDoEixoX.get(0));
-                } else if(tipoFiltroX.equals("TfiltroCursos")){
-                    condicaoAND.put("curso", valoresDoEixoX.get(0));
-                } else if(tipoFiltroX.equals("TfiltroSituacao")){
-                    condicaoAND.put("situacaoAtual", valoresDoEixoX.get(0));
-                }
+                condicaoAND.put(tipoFiltroX, valoresDoEixoX.get(0));  // tipoFiltroX tem o nome da tabela e valroesDoEixoX o nome do atributo ex.: Curso, Matemática 
+                
             } else {
-                for(int i=0; i<valoresDoEixoX.size();i++){
-                    if(tipoFiltroX.equals("TfiltroPeriodos")){
-                        condicaoAND.put("anoAtual", valoresDoEixoX.get(i));
-                    } else if(tipoFiltroX.equals("TfiltroCursos")){
-                        condicaoAND.put("curso", valoresDoEixoX.get(i));
-                    } else if(tipoFiltroX.equals("TfiltroSituacao")){
-                        condicaoAND.put("situacaoAtual", valoresDoEixoX.get(i));
-                    }
-                    if(filtrosEixoY.equals("AllCursos")){
-                        condicaoAND.put("curso", "%%");
-                    } else if(filtrosEixoY.equals("AllAnos")){
-                        condicaoAND.put("anoAtual", "%%");
-                    } else if(filtrosEixoY.equals("AllSituacao")){
-                        condicaoAND.put("situacaoAtual", "%%");
-                    }
+                if(filtrosEixoY.equals("AllAnos") || filtrosEixoY.equals("AllCursos") || filtrosEixoY.equals("AllSituacao") )
+                filtrosEixoY="%%";
+                if(filtroAuxiliar.equals("AllAnos") || filtroAuxiliar.equals("AllCursos") || filtroAuxiliar.equals("AllSituacao") )
+                    filtroAuxiliar="%%";
+                for(int i=0; i<valoresDoEixoX.size();i++){                    
+                    condicaoAND.put(tipoFiltroX, valoresDoEixoX.get(i));
+                    condicaoAND.put(tipoFiltroX, filtrosEixoY);
+                    condicaoAND.put(tipoFiltroAuxiliar, filtroAuxiliar);
+                    valoresDoEixoY.add(carregaDados(condicaoAND,null));
                 }
+                            
             }
+            
 
             
             

@@ -79,9 +79,9 @@
                             preencheFiltroX(TiposDeFiltrosX,FiltroSelecionadoX);
                         
                            preencheFiltroSelecionadoY(TiposDeFiltrosX,TiposDeFiltrosY);">
-                    <option value="TfiltroPeriodos">Periodos</option>
-                    <option value="TfiltroCursos" >Cursos</option>
-                    <option value="TfiltroSituacao">Situações</option>
+                    <option value="anoAtual">Periodos</option>
+                    <option value="Cursos" >Cursos</option>
+                    <option value="SituacaoAtual">Situações</option>
                 </select >
               </div>
             <div class="medium-3 columns">  
@@ -161,33 +161,33 @@
             var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
             var optionsDoDrop=document.getElementById(elemento2.id);
 
-            if( filtroEscolhidoParaX.valueOf()==="TfiltroCursos"){
+            if( filtroEscolhidoParaX.valueOf()==="Cursos"){
                 var opt = document.createElement('option');
-                    opt.value= 'TfiltroPeriodos';
+                    opt.value= 'anoAtual';
                     opt.text = 'Periodos';
                     optionsDoDrop.add(opt);
                 var opt = document.createElement('option');
-                    opt.value= 'TfiltroSituacao';
+                    opt.value= 'SituacaoAtual';
                     opt.text = 'Situações';
                     optionsDoDrop.add(opt);
             }
-            else if( filtroEscolhidoParaX.valueOf()==="TfiltroPeriodos"){
+            else if( filtroEscolhidoParaX.valueOf()==="anoAtual"){
                 var opt = document.createElement('option');
-                    opt.value= 'TfiltroSituacao';
+                    opt.value= 'SituacaoAtual';
                     opt.text = 'Situações';
                     optionsDoDrop.add(opt);
                 var opt = document.createElement('option');
-                    opt.value= 'TfiltroCursos';
+                    opt.value= 'Cursos';
                     opt.text = 'Cursos';
                     optionsDoDrop.add(opt);
             }
-            else if( filtroEscolhidoParaX.valueOf()==="TfiltroSituacao"){
+            else if( filtroEscolhidoParaX.valueOf()==="SituacaoAtual"){
                 var opt = document.createElement('option');
-                    opt.value= 'TfiltroCursos';
+                    opt.value= 'Cursos';
                     opt.text = 'Cursos';
                     optionsDoDrop.add(opt);
                 var opt = document.createElement('option');
-                    opt.value= 'TfiltroPeriodos';
+                    opt.value= 'anoAtual';
                     opt.text = 'Periodos';
                     optionsDoDrop.add(opt);
                     
@@ -199,7 +199,7 @@
             var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
             var optionsDoDrop=document.getElementById(elemento2.id);
         
-            if( filtroEscolhidoParaX.valueOf()==="TfiltroCursos"){   
+            if( filtroEscolhidoParaX.valueOf()==="Cursos"){   
                 var opt = document.createElement('option');              
                 opt.value="AllCursos";
                 opt.text = "Todos os Cursos";                
@@ -215,7 +215,7 @@
                  } %>
 
             }
-            else if( filtroEscolhidoParaX.valueOf()==="TfiltroPeriodos"){   
+            else if( filtroEscolhidoParaX.valueOf()==="anoAtual"){   
                 var opt = document.createElement('option');
                     opt.value= 'AllAnos';
                     opt.text = 'Todos os Anos';
@@ -245,7 +245,7 @@
                     // TODO, quando tiver os anos no BD deixar dinamicos com os Cursos
 
             } 
-            else if( filtroEscolhidoParaX.valueOf()==="TfiltroSituacao"){   
+            else if( filtroEscolhidoParaX.valueOf()==="SituacaoAtual"){   
                 var opt = document.createElement('option');
                     opt.value= 'AllSituacao';
                     opt.text = 'Todas Situações';
@@ -280,7 +280,7 @@
             var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
             var optionsDoDrop=document.getElementById(elemento2.id);
         
-            if( filtroEscolhidoParaX.valueOf()!=="TfiltroCursos"){   
+            if( filtroEscolhidoParaX.valueOf()!=="Cursos"){   
                 var opt = document.createElement('option');              
                 opt.value="AllCursos";
                 opt.text = "Todos os Cursos";                
@@ -296,7 +296,7 @@
                  } %>
 
             }
-            if( filtroEscolhidoParaX.valueOf()!=="TfiltroPeriodos"){   
+            if( filtroEscolhidoParaX.valueOf()!=="anoAtual"){   
                 var opt = document.createElement('option');
                     opt.value= 'AllAnos';
                     opt.text = 'Todos os Anos';
@@ -326,7 +326,7 @@
                     // TODO, quando tiver os anos no BD deixar dinamicos com os Cursos
 
             } 
-            if( filtroEscolhidoParaX.valueOf()!=="TfiltroSituacao"){   
+            if( filtroEscolhidoParaX.valueOf()!=="SituacaoAtual"){   
                 var opt = document.createElement('option');
                     opt.value= 'AllSituacao';
                     opt.text = 'Todas Situações';
@@ -367,7 +367,7 @@
         var optionsDoDrop=document.getElementById(elemento2.id);
         
         
-            if( filtroEscolhidoParaY.valueOf()!=="TfiltroCursos" && filtroEscolhidoParaX.valueOf()!=="TfiltroCursos"){
+            if( filtroEscolhidoParaY.valueOf()!=="Cursos" && filtroEscolhidoParaX.valueOf()!=="Cursos"){
                 var opt = document.createElement('option');              
                 opt.value="AllCursos";
                 opt.text = "Todos os Cursos";                
@@ -383,7 +383,7 @@
                  } %>
 
             }
-            if( filtroEscolhidoParaY.valueOf()!=="TfiltroPeriodos" && filtroEscolhidoParaX.valueOf()!=="TfiltroPeriodos"){ 
+            if( filtroEscolhidoParaY.valueOf()!=="anoAtual" && filtroEscolhidoParaX.valueOf()!=="anoAtual"){ 
                 var opt = document.createElement('option');
                     opt.value= 'AllAnos';
                     opt.text = 'Todos os Anos';
@@ -413,7 +413,7 @@
                     // TODO, quando tiver os anos no BD deixar dinamicos com os Cursos
 
             } 
-            if( filtroEscolhidoParaY.valueOf()!=="TfiltroSituacao"&& filtroEscolhidoParaX.valueOf()!=="TfiltroSituacao"){ 
+            if( filtroEscolhidoParaY.valueOf()!=="SituacaoAtual"&& filtroEscolhidoParaX.valueOf()!=="SituacaoAtual"){ 
                 var opt = document.createElement('option');
                     opt.value= 'AllSituacao';
                     opt.text = 'Todas Situações';
@@ -454,26 +454,26 @@
         var optionsDoDrop=document.getElementById(elemento2.id);
         
         
-            if( filtroEscolhidoParaY.valueOf()!=="TfiltroCursos" && filtroEscolhidoParaX.valueOf()!=="TfiltroCursos"){
+            if( filtroEscolhidoParaY.valueOf()!=="Cursos" && filtroEscolhidoParaX.valueOf()!=="Cursos"){
                 var opt = document.createElement('option');              
-                opt.value="TfiltroCursos";
+                opt.value="Cursos";
                 opt.text = "Cursos";                
                 optionsDoDrop.add(opt);
                 
 
             }
-            if( filtroEscolhidoParaY.valueOf()!=="TfiltroPeriodos" && filtroEscolhidoParaX.valueOf()!=="TfiltroPeriodos"){ 
+            if( filtroEscolhidoParaY.valueOf()!=="anoAtual" && filtroEscolhidoParaX.valueOf()!=="anoAtual"){ 
                 var opt = document.createElement('option');
-                    opt.value= 'TfiltroPeriodos';
+                    opt.value= 'anoAtual';
                     opt.text = 'Periodos';
                     optionsDoDrop.add(opt);
                     
                     // TODO, quando tiver os anos no BD deixar dinamicos com os Cursos
 
             } 
-            if( filtroEscolhidoParaY.valueOf()!=="TfiltroSituacao"&& filtroEscolhidoParaX.valueOf()!=="TfiltroSituacao"){ 
+            if( filtroEscolhidoParaY.valueOf()!=="SituacaoAtual"&& filtroEscolhidoParaX.valueOf()!=="SituacaoAtual"){ 
                 var opt = document.createElement('option');
-                    opt.value= 'TfiltroSituacao';
+                    opt.value= 'SituacaoAtual';
                     opt.text = 'Situações';
                     optionsDoDrop.add(opt);
                 
