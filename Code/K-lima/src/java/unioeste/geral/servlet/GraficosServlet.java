@@ -86,6 +86,11 @@ public class GraficosServlet extends HttpServlet{
     }
 
     
+    public long carregaDadosCursoAno(Object ano){
+        
+    }
+    
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -98,7 +103,7 @@ public class GraficosServlet extends HttpServlet{
         
        
         CursoManager cursoMana = new CursoManager();
-        
+        List<String> cursos = new ArrayList<>();
         List<String> filtrosEixoX = new ArrayList<>();
         List<Long> filtrosEixoY = new ArrayList<>();
         String filtrosEixoy = new String();
@@ -145,12 +150,13 @@ public class GraficosServlet extends HttpServlet{
                 filtrosEixoX.add("Quarto Ano");                
                 filtrosEixoX.add("Quinto Ano");
                 if(tipoFiltroY.equals("AllCursos")){
-                    for(int i=0; i<filtrosEixoX.size();i++){
-                        filtrosEixoY.add(carregaDadosAnoAtual("%%",filtrosEixoX.get(i)));
+                    cursos = carregaDadosNomeCurso(filtroX); // carrega dados se curso selecionado para x
+                    for(int i=0; i<cursos.size();i++){
+                        filtrosEixoY.add(carregaDadosAnoAtual("%%",cursos.get(i)));
                     }
                 } else {
                     for(int i=0; i<filtrosEixoX.size();i++){
-                         filtrosEixoY.add(carregaDadosAnoAtual(tipoFiltroY,filtrosEixoX.get(i)));
+                         filtrosEixoY.add(carregaDadosAnoAtual("%%",cursos.get(i)));
                     }               
                 }    
             }
