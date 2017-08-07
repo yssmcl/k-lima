@@ -72,19 +72,29 @@
                   </select>
             </div>
             
-            <div class="medium-6 columns">  
-                <label>Tipos de Filtros para X:</label>                
+            <div class="medium-3 columns">  
+                <label>Tipos de Filtros Base:</label>                
                 <select id=TiposDeFiltrosX name="TipoFiltroX" 
-                        onclick="limpaCombo(FiltroSelecionadoX);
+                        onclick="limpaCombo(FiltroSelecionadoX);limpaCombo(TiposDeFiltrosY);limpaCombo(FiltroSelecionadoY);
                             preencheFiltroX(TiposDeFiltrosX,FiltroSelecionadoX);
-                        limpaCombo(FiltroSelecionadoY);
-                            preencheFiltroY(TiposDeFiltrosX,FiltroSelecionadoY);">
+                        
+                           preencheFiltroSelecionadoY(TiposDeFiltrosX,TiposDeFiltrosY);">
                     <option value="TfiltroPeriodos">Periodos</option>
                     <option value="TfiltroCursos" >Cursos</option>
                     <option value="TfiltroSituacao">Situações</option>
                 </select >
               </div>
-                
+            <div class="medium-3 columns">  
+                <label>Tipos de Filtros para Y:</label>                
+                <select id=TiposDeFiltrosY name="TipoFiltroX" 
+                        onclick="
+                        limpaCombo(FiltroSelecionadoY);
+                             preencheFiltroX(TiposDeFiltrosY,FiltroSelecionadoY)
+                        limpaCombo(filtrosAuxiliar);
+                            preencheFiltroAuxiliar(TiposDeFiltrosY, filtrosAuxiliar, TiposDeFiltrosX);;">
+                    
+                </select >
+              </div>    
         </div>
         
         <div class="row">
@@ -96,9 +106,7 @@
               </div>
             <div class="medium-6 columns">  
                 <label>Filtro eixo Y:</label>                
-                <select id=FiltroSelecionadoY name="FiltroY" 
-                        onclick="limpaCombo(filtrosAuxiliar);
-                            preencheFiltroAuxiliar(FiltroSelecionadoY, filtrosAuxiliar, TiposDeFiltrosX);">
+                <select id=FiltroSelecionadoY name="FiltroY">
                     
                 </select>
               </div>
@@ -109,7 +117,7 @@
                            
           <div class="medium-3 columns">  
                 <label id="filtrosAuxiliarName" >Filtros Auxiliares:</label>
-                  <select id="filtrosAuxiliar" name="auxiliaresSelecionada">
+                  <select id="filtrosAuxiliar" name="auxiliaresSelecionado">
                       
                   </select>
           </div>               
@@ -140,10 +148,48 @@
             }
         }      
         
+        function preencheFiltroSelecionadoY(elemento1, elemento2){
+            var dropSelecionadoX = document.getElementById(elemento1.id);
+            var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
+            var optionsDoDrop=document.getElementById(elemento2.id);
+
+            if( filtroEscolhidoParaX.valueOf()==="TfiltroCursos"){
+                var opt = document.createElement('option');
+                    opt.value= 'TfiltroPeriodos';
+                    opt.text = 'Periodos';
+                    optionsDoDrop.add(opt);
+                var opt = document.createElement('option');
+                    opt.value= 'TfiltroSituacao';
+                    opt.text = 'Situações';
+                    optionsDoDrop.add(opt);
+            }
+            else if( filtroEscolhidoParaX.valueOf()==="TfiltroPeriodos"){
+                var opt = document.createElement('option');
+                    opt.value= 'TfiltroSituacao';
+                    opt.text = 'Situações';
+                    optionsDoDrop.add(opt);
+                var opt = document.createElement('option');
+                    opt.value= 'TfiltroCursos';
+                    opt.text = 'Cursos';
+                    optionsDoDrop.add(opt);
+            }
+            else if( filtroEscolhidoParaX.valueOf()==="TfiltroSituacao"){
+                var opt = document.createElement('option');
+                    opt.value= 'TfiltroCursos';
+                    opt.text = 'Cursos';
+                    optionsDoDrop.add(opt);
+                var opt = document.createElement('option');
+                    opt.value= 'TfiltroPeriodos';
+                    opt.text = 'Periodos';
+                    optionsDoDrop.add(opt);
+                    
+            }
+        }
+        
         function preencheFiltroX(elemento1, elemento2){
-        var dropSelecionadoX = document.getElementById(elemento1.id);
-        var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
-        var optionsDoDrop=document.getElementById(elemento2.id);
+            var dropSelecionadoX = document.getElementById(elemento1.id);
+            var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
+            var optionsDoDrop=document.getElementById(elemento2.id);
         
             if( filtroEscolhidoParaX.valueOf()==="TfiltroCursos"){   
                 var opt = document.createElement('option');              
@@ -219,15 +265,12 @@
                     optionsDoDrop.add(opt);
                 
             }
- 
-            
-            
         }
         
         function preencheFiltroY(elemento1, elemento2){
-        var dropSelecionadoX = document.getElementById(elemento1.id);
-        var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
-        var optionsDoDrop=document.getElementById(elemento2.id);
+            var dropSelecionadoX = document.getElementById(elemento1.id);
+            var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
+            var optionsDoDrop=document.getElementById(elemento2.id);
         
             if( filtroEscolhidoParaX.valueOf()!=="TfiltroCursos"){   
                 var opt = document.createElement('option');              
@@ -316,7 +359,7 @@
         var optionsDoDrop=document.getElementById(elemento2.id);
         
         
-            if( filtroEscolhidoParaY.valueOf()!=="AllCursos" && filtroEscolhidoParaX.valueOf()!=="TfiltroCursos"){
+            if( filtroEscolhidoParaY.valueOf()!=="TfiltroCursos" && filtroEscolhidoParaX.valueOf()!=="TfiltroCursos"){
                 var opt = document.createElement('option');              
                 opt.value="AllCursos";
                 opt.text = "Todos os Cursos";                
@@ -332,7 +375,7 @@
                  } %>
 
             }
-            if( filtroEscolhidoParaY.valueOf()!=="AllAnos" && filtroEscolhidoParaX.valueOf()!=="TfiltroPeriodos"){ 
+            if( filtroEscolhidoParaY.valueOf()!=="TfiltroPeriodos" && filtroEscolhidoParaX.valueOf()!=="TfiltroPeriodos"){ 
                 var opt = document.createElement('option');
                     opt.value= 'AllAnos';
                     opt.text = 'Todos os Anos';
@@ -362,7 +405,7 @@
                     // TODO, quando tiver os anos no BD deixar dinamicos com os Cursos
 
             } 
-            if( filtroEscolhidoParaY.valueOf()!=="AllSituacao"&& filtroEscolhidoParaX.valueOf()!=="TfiltroSituacao"){ 
+            if( filtroEscolhidoParaY.valueOf()!=="TfiltroSituacao"&& filtroEscolhidoParaX.valueOf()!=="TfiltroSituacao"){ 
                 var opt = document.createElement('option');
                     opt.value= 'AllSituacao';
                     opt.text = 'Todas Situações';
