@@ -131,10 +131,12 @@ public class GraficosServlet extends HttpServlet{
             List<String> situacoes = carregaSituacao();
             
             String tipoFiltroX = request.getParameter("TipoFiltroX");
+            String tipoFiltroY = request.getParameter("TipoFiltroY");
+            String tipoFiltroAuxiliar = request.getParameter("TipoFiltroAuxiliar");
             
             String filtrosEixoY = request.getParameter("FiltroY");  
             String filtroX = request.getParameter("FiltroX");
-            String tipoFiltroAuxiliar = request.getParameter("auxiliaresSelecionado");
+            String filtroAuxiliar = request.getParameter("auxiliaresSelecionado");
 
                         
               JsonObject objJson= new JsonObject();
@@ -179,7 +181,6 @@ public class GraficosServlet extends HttpServlet{
                     } else if(filtrosEixoY.equals("AllSituacao")){
                         condicaoAND.put("situacaoAtual", "%%");
                     }
-                    
                 }
             }
 
