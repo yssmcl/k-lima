@@ -975,19 +975,19 @@
                        </label>
                   </div>                          
               </div>
-              
+              <br />
               <div class="row">
                   <div class="medium-12 columns">
                     <input type="submit" value="Salvar" class="button" style="width: 150px;" />
                   </div>
               </div>
           </form>
+          
           <div class="row">
                <div class="medium-12 columns">
                    <input type="button" value="Cancelar" class="alert button" style="width: 150px;" onclick="cancelar_cadastro();" />
                </div>
           </div>
-          <hr />
         </div>
       </div>
     </div>
