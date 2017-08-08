@@ -78,7 +78,7 @@
                         onclick="limpaCombo(FiltroX);limpaCombo(TipoDeFiltrosY);limpaCombo(FiltroY);
                             preencheFiltroX(TipoDeFiltrosX,FiltroX);
                         limpaCombo(auxiliaresSelecionado);
-                           preencheFiltroY(TipoDeFiltrosX,TipoDeFiltrosY);">
+                           preencheTipoFiltroY(TipoDeFiltrosX,TipoDeFiltrosY);">
                     <option value="anoAtual">Periodos</option>
                     <option value="Cursos" >Cursos</option>
                     <option value="SituacaoAtual">Situações</option>
@@ -156,7 +156,7 @@
             }
         }      
         
-        function preencheFiltroY(elemento1, elemento2){
+        function preencheTipoFiltroY(elemento1, elemento2){
             var dropSelecionadoX = document.getElementById(elemento1.id);
             var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
             var optionsDoDrop=document.getElementById(elemento2.id);
