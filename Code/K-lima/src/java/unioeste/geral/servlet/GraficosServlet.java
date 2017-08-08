@@ -22,6 +22,7 @@ import unioeste.geral.bo.Curso;
 import unioeste.geral.manager.AlunoManager;
 import unioeste.geral.manager.CursoManager;
 import com.google.gson.*;
+import java.io.FileWriter;
 
 @WebServlet(name = "GraficosServlet", urlPatterns = {"/GraficosServlet"})
 public class GraficosServlet extends HttpServlet{
@@ -31,6 +32,15 @@ public class GraficosServlet extends HttpServlet{
     private CursoManager cursoMana = new CursoManager();
     private String cursoEscolhido;
   
+    
+    public void java2Json(Gson gson, String titulo, Object objeto) throws IOException{
+
+        String json = gson.toJson(objeto);
+        FileWriter writer = new FileWriter("../../jsonGraficos/"+titulo+".json");
+        writer.write(json);
+        writer.close();        
+    }
+    
     
     public  List<String> carregaDadosNomeCurso(Object filtroX){        
     List<String> filtrosEixoX = new ArrayList<>();
@@ -86,7 +96,7 @@ public class GraficosServlet extends HttpServlet{
     }
 
     
-    public long carregaDados( Multimap<String, Object> condicaoAND, Multimap<String, Object> condicaoOR){
+    public long carregaDados( Multimap<String, Object> condicaoAND, Multimap<String, Object> condicaoOR){ // achei que fica mais legivel, provavelmente não
             return new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, condicaoOR);
     }
     
@@ -97,8 +107,8 @@ public class GraficosServlet extends HttpServlet{
             filtrosEixoX.add("3");
             filtrosEixoX.add("4");                
             filtrosEixoX.add("5");
-        return filtrosEixoX; // TODO deixar Dinamico
-    }
+        return filtrosEixoX; 
+    } // TODO deixar Dinamico
     
     public List<String> carregaSituacao(){
         List<String> filtrosEixoX = new ArrayList<>();
@@ -107,8 +117,8 @@ public class GraficosServlet extends HttpServlet{
             filtrosEixoX.add("Cancelado por Abandono");
             filtrosEixoX.add("Cancelado");                
             filtrosEixoX.add("Transferido");
-        return filtrosEixoX;// TODO deixar Dinamico
-    }
+        return filtrosEixoX;
+    } // TODO deixar Dinamico
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -124,59 +134,88 @@ public class GraficosServlet extends HttpServlet{
 
             CursoManager cursoMana = new CursoManager();
             List<String> cursos = new ArrayList<>();
-            List<String> valoresDoEixoX = new ArrayList<>();
-            List<Long> valoresDoEixoY = new ArrayList<>();
+            List<String> valoresBase = new ArrayList<>();
+            List<Long> valoresEixoX = new ArrayList<>();
+            
             
             List<String> periodos = carregaPeriodos();
             List<String> situacoes = carregaSituacao();
             
-            String tipoFiltroX = request.getParameter("TipoFiltroX");
-            String tipoFiltroY = request.getParameter("TipoFiltroY");
-            String tipoFiltroAuxiliar = request.getParameter("TipoFiltroAuxiliar");
+            String tipoFiltroBase = request.getParameter("TipoFiltroX");
+            String tipoFiltroX = request.getParameter("TipoFiltroY");
+            String tipoFiltroY = request.getParameter("TipoFiltroAuxiliar");
             
-            String filtrosEixoY = request.getParameter("FiltroY");  
             String filtroX = request.getParameter("FiltroX");
+            String filtrosEixoY = request.getParameter("FiltroY");  
             String filtroAuxiliar = request.getParameter("auxiliaresSelecionado");
 
-                        
-              JsonObject objJson= new JsonObject();
-              JsonArray data= new JsonArray();
-              
+            
              // data.add();
               
             Multimap<String, Object> condicaoAND = null;
             Multimap<String, Object> condicaoOR = null;
         
             if(filtroX.equals("AllCursos")||filtroX.equals("AllAnos")||filtroX.equals("AllSituacao")){
-                if(tipoFiltroX.equals("AllCursos"))valoresDoEixoX = carregaDadosNomeCurso(filtroX);//;
-                else if(tipoFiltroX.equals("AllAnos"))valoresDoEixoX = periodos;
-                else if(tipoFiltroX.equals("AllSituacao"))valoresDoEixoX = situacoes;
-                
+                if(tipoFiltroBase.equals("AllCursos"))valoresBase = carregaDadosNomeCurso(filtroX);//;
+                else if(tipoFiltroBase.equals("AllAnos"))valoresBase = periodos;
+                else if(tipoFiltroBase.equals("AllSituacao"))valoresBase = situacoes;
+                else if(tipoFiltroBase.equals("Todos os Abandonos e transferidos")){
+                        valoresBase.add("Cancelado");
+                        valoresBase.add("Cancelado Por Abandono");
+                        valoresBase.add("Transferido");
             } else {                
-                valoresDoEixoX.add(tipoFiltroX);             
+                valoresBase.add(filtroX);             
             } // dados de x carregado
             
             
-            if(valoresDoEixoX.size()==1){
-                condicaoAND.put(tipoFiltroX, valoresDoEixoX.get(0));  // tipoFiltroX tem o nome da tabela e valroesDoEixoX o nome do atributo ex.: Curso, Matemática 
+            if(valoresBase.size()==1){
+                condicaoAND.put(tipoFiltroBase, valoresBase.get(0));  // tipoFiltroBase tem o nome da tabela e valroesDoEixoX o nome do atributo ex.: Curso, Matemática 
+                 if(filtrosEixoY.equals("Todos os Abandonos e transferidos")){
+                    condicaoOR.put(tipoFiltroX, "Cancelado");
+                    condicaoOR.put(tipoFiltroX, "Cancelado Por Abandono");
+                    condicaoOR.put(tipoFiltroX, "Transferido");
+                }else condicaoAND.put(tipoFiltroX, filtrosEixoY);
+                    
+                if(tipoFiltroY.equals("Todos os Abandonos e transferidos")){
+                    condicaoOR.put(tipoFiltroY, "Cancelado");
+                    condicaoOR.put(tipoFiltroY, "Cancelado Por Abandono");
+                    condicaoOR.put(tipoFiltroY, "Transferido");
+                }else condicaoAND.put(tipoFiltroY, filtroAuxiliar);
                 
             } else {
                 if(filtrosEixoY.equals("AllAnos") || filtrosEixoY.equals("AllCursos") || filtrosEixoY.equals("AllSituacao") )
                 filtrosEixoY="%%";
                 if(filtroAuxiliar.equals("AllAnos") || filtroAuxiliar.equals("AllCursos") || filtroAuxiliar.equals("AllSituacao") )
                     filtroAuxiliar="%%";
-                for(int i=0; i<valoresDoEixoX.size();i++){                    
-                    condicaoAND.put(tipoFiltroX, valoresDoEixoX.get(i));
-                    condicaoAND.put(tipoFiltroX, filtrosEixoY);
-                    condicaoAND.put(tipoFiltroAuxiliar, filtroAuxiliar);
-                    valoresDoEixoY.add(carregaDados(condicaoAND,null));
-                }
-                            
+                for(int i=0; i<valoresBase.size();i++){                    
+                    condicaoAND.put(tipoFiltroBase, valoresBase.get(i));
+                    if(filtrosEixoY.equals("Todos os Abandonos e transferidos")){
+                        condicaoOR.put(tipoFiltroX, "Cancelado");
+                        condicaoOR.put(tipoFiltroX, "Cancelado Por Abandono");
+                        condicaoOR.put(tipoFiltroX, "Transferido");
+                    }else condicaoAND.put(tipoFiltroX, filtrosEixoY);
+                    
+                    if(tipoFiltroY.equals("Todos os Abandonos e transferidos")){
+                        condicaoOR.put(tipoFiltroY, "Cancelado");
+                        condicaoOR.put(tipoFiltroY, "Cancelado Por Abandono");
+                        condicaoOR.put(tipoFiltroY, "Transferido");
+                    }else condicaoAND.put(tipoFiltroY, filtroAuxiliar);
+                    
+                    valoresEixoX.add(carregaDados(condicaoAND,condicaoOR));
+                }        
             }
+                // =============== criação do json:
+            Gson gson = new Gson();
             
-
+            JsonObject objJson= new JsonObject();
+            JsonArray data= new JsonArray();
+            if(valoresBase.size()==1){
+                data.add(valoresBase.get(0));
+            }
+            objJson.add("base", data);
             
             
+        }    
             request.getRequestDispatcher("graficos_dinamicos.jsp").forward(request, response);
         }catch(Exception e){
             e.printStackTrace(); // faz sentido isso aqui?

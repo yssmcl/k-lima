@@ -74,24 +74,24 @@
             
             <div class="medium-3 columns">  
                 <label>Tipos de Filtros Base:</label>                
-                <select id=TiposDeFiltrosX name="TipoFiltroX" 
-                        onclick="limpaCombo(FiltroSelecionadoX);limpaCombo(TiposDeFiltrosY);limpaCombo(FiltroSelecionadoY);
-                            preencheFiltroX(TiposDeFiltrosX,FiltroSelecionadoX);
-                        
-                           preencheFiltroSelecionadoY(TiposDeFiltrosX,TiposDeFiltrosY);">
+                <select id=TipoDeFiltrosX name="TipoFiltroX" 
+                        onclick="limpaCombo(FiltroX);limpaCombo(TipoDeFiltrosY);limpaCombo(FiltroY);
+                            preencheFiltroX(TipoDeFiltrosX,FiltroX);
+                        limpaCombo(auxiliaresSelecionado);
+                           preencheFiltroY(TipoDeFiltrosX,TipoDeFiltrosY);">
                     <option value="anoAtual">Periodos</option>
                     <option value="Cursos" >Cursos</option>
                     <option value="SituacaoAtual">Situações</option>
                 </select >
               </div>
             <div class="medium-3 columns">  
-                <label>Tipos de Filtros para Y:</label>                
-                <select id=TiposDeFiltrosY name="TipoFiltroX" 
-                        onclick="
-                        limpaCombo(FiltroSelecionadoY);
-                             preencheFiltroX(TiposDeFiltrosY,FiltroSelecionadoY)
-                        limpaCombo(TipoAuxiliar);
-                            preencheFiltroSelecionadoAuxiliar(TiposDeFiltrosY, TipoAuxiliar, TiposDeFiltrosX);;">
+                <label>Tipos de Filtros para X:</label>                
+                <select id=TipoDeFiltrosY name="TipoFiltroY" 
+                        onclick="limpaCombo(auxiliaresSelecionado);
+                        limpaCombo(FiltroY);
+                             preencheFiltroX(TipoDeFiltrosY,FiltroY)
+                        limpaCombo(TipoFiltroAuxiliar);
+                            preencheFiltroSelecionadoAuxiliar(TipoDeFiltrosY, TipoFiltroAuxiliar, TipoDeFiltrosX);;">
                     
                 </select >
               </div>    
@@ -99,14 +99,14 @@
         
         <div class="row">
         <div class="medium-6 columns">  
-                <label>Filtro Base(eixo X):</label>                
-                <select id=FiltroSelecionadoX name="FiltroX" >
+                <label>Filtro Base:</label>                
+                <select id=FiltroX name="FiltroX" >
                 
                 </select>
               </div>
             <div class="medium-6 columns">  
-                <label>Filtro eixo Y:</label>                
-                <select id=FiltroSelecionadoY name="FiltroY">
+                <label>Filtro dados do X:</label>                
+                <select id=FiltroY name="FiltroY">
                     
                 </select>
               </div>
@@ -115,17 +115,17 @@
         <div class="row">
             
           <div class="medium-4 columns">  
-                <label>Tipos de Filtros para Auxiliar:</label>                
-                <select id=TipoAuxiliar name="TipoFiltroAuxiliar" 
+                <label>Tipos de Filtros dados do Y:</label>                
+                <select id=TipoFiltroAuxiliar name="TipoFiltroAuxiliar" 
                         onclick="                        
-                        limpaCombo(filtrosAuxiliar);
-                            preencheFiltroAuxiliar(TiposDeFiltrosY, filtrosAuxiliar, TiposDeFiltrosX);">
+                        limpaCombo(auxiliaresSelecionado);
+                            preencheFiltroAuxiliar(TipoDeFiltrosY, auxiliaresSelecionado, TipoDeFiltrosX);">
                     
                 </select >
               </div>                    
           <div class="medium-4 columns">  
-                <label id="filtrosAuxiliarName" >Filtros Auxiliares:</label>
-                  <select id="filtrosAuxiliar" name="auxiliaresSelecionado">
+                <label id="auxiliaresSelecionadoName" >Filtros dados do Y</label>
+                  <select id="auxiliaresSelecionado" name="auxiliaresSelecionado">
                       
                   </select>
           </div>               
@@ -156,7 +156,7 @@
             }
         }      
         
-        function preencheFiltroSelecionadoY(elemento1, elemento2){
+        function preencheFiltroY(elemento1, elemento2){
             var dropSelecionadoX = document.getElementById(elemento1.id);
             var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
             var optionsDoDrop=document.getElementById(elemento2.id);
@@ -251,8 +251,8 @@
                     opt.text = 'Todas Situações';
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
-                    opt.value= 'Cancelado por Abandono';
-                    opt.text = 'Cancelado por Abandono';
+                    opt.value= 'Cancelado Por Abandono';
+                    opt.text = 'Cancelado Por Abandono';
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     opt.value= 'Cancelado';
@@ -262,7 +262,10 @@
                     opt.value= 'Transferido';
                     opt.text = 'Transferido';
                     optionsDoDrop.add(opt);
-                
+                opt = document.createElement('option');
+                    opt.value= 'Todos os Abandonos e transferidos';
+                    opt.text = 'Todos os Abandonos e transferidos';
+                    optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     opt.value= 'Formado';
                     opt.text = 'Formado';
@@ -332,8 +335,8 @@
                     opt.text = 'Todas Situações';
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
-                    opt.value= 'Cancelado por Abandono';
-                    opt.text = 'Cancelado por Abandono';
+                    opt.value= 'Cancelado Por Abandono';
+                    opt.text = 'Cancelado Por Abandono';
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     opt.value= 'Cancelado';
@@ -343,7 +346,10 @@
                     opt.value= 'Transferido';
                     opt.text = 'Transferido';
                     optionsDoDrop.add(opt);
-                
+                opt = document.createElement('option');
+                    opt.value= 'Todos os Abandonos';
+                    opt.text = 'Todos os Abandonos';
+                    optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     opt.value= 'Formado';
                     opt.text = 'Formado';
@@ -419,8 +425,8 @@
                     opt.text = 'Todas Situações';
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
-                    opt.value= 'Cancelado por Abandono';
-                    opt.text = 'Cancelado por Abandono';
+                    opt.value= 'Cancelado Por Abandono';
+                    opt.text = 'Cancelado Por Abandono';
                     optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     opt.value= 'Cancelado';
@@ -430,7 +436,10 @@
                     opt.value= 'Transferido';
                     opt.text = 'Transferido';
                     optionsDoDrop.add(opt);
-                
+                opt = document.createElement('option');
+                    opt.value= 'Todos os Abandonos';
+                    opt.text = 'Todos os Abandonos';
+                    optionsDoDrop.add(opt);
                 opt = document.createElement('option');
                     opt.value= 'Formado';
                     opt.text = 'Formado';
