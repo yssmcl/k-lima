@@ -41,32 +41,44 @@
                     <a href="index.jsp">Home</a>
                   </li>
                   <li>
-                    <a href="#">Tabela</a>
-                    <ul class="menu">
-                      <li><a href="tabela_evasao.jsp">Alunos</a></li>
-                      <li><a href="totais_evasao.jsp">Totais</a></li>
+                      <a href="#">Alunos</a>
+                      <ul class="menu">
+                      <li>
+                          <a href="#">Tabela</a>
+                          <ul class="menu">
+                              <li><a href="tabela_evasao.jsp">Alunos</a></li>
+                              <li><a href="totais_evasao.jsp">Evasão</a></li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a href="#">Gráficos</a>
+                          <ul class="menu">
+                              <li><a href="graficos.jsp">Estáticos</a></li>
+                              <li><a href="graficos_dinamicos.jsp">Dinâmicos</a></li>
+                          </ul>
+                      </li>
+                      <li>
+                        <a href="mapa_alunos.jsp">Mapa</a>
+                      </li>
+                      <li>
+                        <a href="relatorio.jsp">Relatórios</a>
+                      </li>
+                      <li>
+                        <a href="upload_csv_evasao.jsp">Atualizar Dados</a>
+                      </li>
                     </ul>
-                  </li>
+                  </li>  
                   <li>
-                    <a href="#">Gráficos</a>
+                    <a href="#">Repetência</a>
                     <ul class="menu">
-                      <li><a href="graficos.jsp">Estáticos</a></li>
-                      <li><a href="graficos_dinamicos.jsp">Dinâmicos</a></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a href="mapa_alunos.jsp">Mapa</a>
-                  </li>
-                  <li>
-                    <a href="upload_csv_evasao.jsp">Atualizar Dados</a>
-                  </li>
-                  <li>
-                    <a href="relatorio.jsp">Relatórios</a>
-                  </li>
-                  <li>
-                    <a href="#">Aprovação</a>
-                    <ul class="menu">
-                      <li><a href="apr_repr_mecanica.jsp">Engenharia Mecânica</a></li>
+                      <li><a href="apr_repr_mecanica.jsp">Cadastro</a></li>
+                      <li>
+                          <a href="#">Tabela</a>
+                          <ul class="menu">
+                              <li><a href="tabela_aprovacao.jsp">Aprovação</a></li>
+                              <li><a href="#">Reprovação</a></li>
+                          </ul>
+                      </li>
                     </ul>
                   </li>
                   <li>

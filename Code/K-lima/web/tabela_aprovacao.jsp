@@ -1,8 +1,11 @@
 <%-- 
-    Document   : historico_aprovacao
-    Created on : 30/07/2017, 18:58:23
+    Document   : tabela_aprovacao
+    Created on : 08/08/2017, 09:10:43
     Author     : Leandro Ensina
 --%>
+<%@page import="com.google.common.collect.HashMultimap"%>
+<%@page import="unioeste.geral.bo.Disciplina"%>
+<%@page import="unioeste.geral.manager.DisciplinaManager"%>
 <%@page import="com.google.common.collect.Multimap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -45,7 +48,7 @@
 
           <div class="row centralizado">
             <div class="medium-12 columns" style="text-align: center;">
-                <h1>Alunos</h1>
+                <h1>Aprovação</h1>
             </div>
           </div>
           
@@ -62,15 +65,21 @@
                       <th>2011</th>
                       <th>2012</th>
                       <th>2013</th>
-                      <th>2014</th>
-                      <th>2015</th>
-                      <th>2016</th>
-                      <th>Média</th>
                   </tr>
               </thead>
               <tbody>
+                  <%
+                  int serie = 1;
+                  DisciplinaManager manager = new DisciplinaManager();
+                  List<Disciplina> disciplinas = new ArrayList<>();
+                  HashMultimap<String, Object> condicaoSerie;
+                  
+                  condicaoSerie = HashMultimap.create();
+                  condicaoSerie.put("serie", serie);
+                  
+                  %>
                         <tr>
-                            
+                            <td></td>
                         </tr>
                 </tbody>
             </table>

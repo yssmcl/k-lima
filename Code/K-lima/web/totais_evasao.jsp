@@ -61,6 +61,7 @@
                       <th>Cancelado</th>
                       <th>Cancelado por Abandono</th>
                       <th>Transferido</th>
+                      <th>Total</th>
                   </tr>
               </thead>
               <tbody>
@@ -73,6 +74,10 @@
                     Long qtdAbandono;
                     Long qtdCancelado;
                     Long qtdTransferido;
+                    Long qtdAbandonoTotal = 0L;
+                    Long qtdCanceladoTotal = 0L;
+                    Long qtdTransferidoTotal = 0L;
+                    Long total;
 
                     while(ano < 2017){
                         condicaoAbandono = HashMultimap.create();
@@ -91,6 +96,9 @@
                         qtdCancelado = manager.recuperarQtdAlunosPorAtributos(condicaoCancelamento, null);
                         qtdTransferido = manager.recuperarQtdAlunosPorAtributos(condicaoTransferido, null);
                         
+                        qtdAbandonoTotal += qtdAbandono;
+                        qtdCanceladoTotal += qtdCancelado;
+                        qtdTransferidoTotal += qtdTransferido;
                         
                     %>
                         <tr>
@@ -98,11 +106,29 @@
                             <td><%= qtdCancelado %></td>
                             <td><%= qtdAbandono %></td>
                             <td><%= qtdTransferido %></td>
+                            <td><%= qtdCancelado + qtdAbandono + qtdTransferido %></td>
                         </tr>
                     <%
                         ano++;
                     }
+                    
+                    total = qtdCanceladoTotal + qtdAbandonoTotal + qtdTransferidoTotal;
+                        
                     %>
+                     <tr>
+                        <td><b>Total</b></td>
+                        <td><b><%= qtdCanceladoTotal %></b></td>
+                        <td><b><%= qtdAbandonoTotal %></b></td>
+                        <td><b><%= qtdTransferidoTotal %></b></td>
+                        <td><b><%= total %></b></td>
+                     </tr>
+                     <tr>
+                        <td><b>Total em %</b></td>
+                        <td><b><%= (100*qtdCanceladoTotal)/total %>%</b></td>
+                        <td><b><%= (100*qtdAbandonoTotal)/total %>%</b></td>
+                        <td><b><%= (100*qtdTransferidoTotal)/total %>%</b></td>
+                        <td>--</td>
+                     </tr>
                 </tbody>
             </table>
           </div>          
