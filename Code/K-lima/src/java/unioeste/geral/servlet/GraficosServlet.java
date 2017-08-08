@@ -31,12 +31,12 @@ public class GraficosServlet extends HttpServlet{
     
     private AlunoManager aluno = new AlunoManager();
     private CursoManager cursoMana = new CursoManager();
-    private String cursoEscolhido;
+    
   
     
     public void java2Json(String titulo, String objeto) throws IOException{
         
-        FileWriter writer = new FileWriter("E:/faculdade/4 ano"+titulo+".json");
+        FileWriter writer = new FileWriter("E:/faculdade/4 ano/"+titulo+".json");
         writer.write(objeto);
         writer.close();        
     }
@@ -157,7 +157,8 @@ public class GraficosServlet extends HttpServlet{
               
             Multimap<String, Object> condicaoAND = HashMultimap.create();;
             Multimap<String, Object> condicaoOR = HashMultimap.create();;
-        System.out.println("Antes do if");
+        
+            System.out.println("Antes do if");
             
             if(filtroX.equals("AllCursos")) valoresBase = carregaDadosNomeCurso().stream().collect(Collectors.toList());//;
             else if(filtroX.equals("AllAnos")) valoresBase = periodos.stream().collect(Collectors.toList());
@@ -171,7 +172,7 @@ public class GraficosServlet extends HttpServlet{
                 valoresBase.add(filtroX);
   
             if(valoresBase.size()==1){
-                if(tipoFiltroBase.equals("Curso")) {
+                if(tipoFiltroBase.equals("curso")) {
                     Curso curso = new CursoManager().recuperarCursosPorAtributo("nome", filtroX).get(0);
                     condicaoAND.put("curso",curso);
                 }
@@ -195,7 +196,6 @@ public class GraficosServlet extends HttpServlet{
                 if(filtroAuxiliar.equals("AllAnos") || filtroAuxiliar.equals("AllCursos") || filtroAuxiliar.equals("AllSituacao") )
                     filtroAuxiliar="%%";
                 
-
                 if(filtrosEixoY.equals("Todos os Abandonos e transferidos")){
                    condicaoOR.put(tipoFiltroX, "Cancelado");
                    condicaoOR.put(tipoFiltroX, "Cancelado Por Abandono");
@@ -208,7 +208,7 @@ public class GraficosServlet extends HttpServlet{
                    condicaoOR.put(tipoFiltroY, "Transferido");
                }else condicaoAND.put(tipoFiltroY, filtroAuxiliar);
                 for(int i=0; i<valoresBase.size();i++){                    
-                    if(tipoFiltroBase.equals("Curso")) {
+                    if(tipoFiltroBase.equals("curso")) {
                         Curso curso = new CursoManager().recuperarCursosPorAtributo("nome", valoresBase.get(i)).get(0);
                         condicaoAND.put("curso",curso);
                         System.out.println(curso.getNome());
@@ -216,9 +216,6 @@ public class GraficosServlet extends HttpServlet{
                     valoresEixoX.add(carregaDados(condicaoAND,condicaoOR));  
                 }
             }
-            System.out.println("depois do if");
-                      
-            System.out.println("Resultado da busca: "+valoresBase.get(0)+" total: "+valoresEixoX.get(0));
                 // =============== criação do json:          
             
             JsonParser jsonParser = new JsonParser();
@@ -226,34 +223,34 @@ public class GraficosServlet extends HttpServlet{
             String dados=new String();          
             
             if(valoresBase.size()==1){
-                dados.concat("{"+tipoFiltroBase.toString()+":["+valoresBase.get(0).toString()+"],");
+                dados = dados.concat("{"+tipoFiltroBase.toString()+":["+valoresBase.get(0).toString()+"],");
             } else{
-                dados.concat(tipoFiltroBase);
-                dados.concat(":[\""+valoresBase.get(0).toString());
+                dados = dados.concat("{"+tipoFiltroBase);
+                dados = dados.concat(":[\""+valoresBase.get(0).toString()+"\"");
                 for(int i=1; i<valoresBase.size(); i++){
-                    dados.concat(",\""+valoresBase.get(i).toString());
+                    dados = dados.concat(",\""+valoresBase.get(i).toString()+"\"");
                 } 
-                dados.concat("],");
+                dados = dados.concat("],");
             }
            
             if(valoresEixoX.size()==1){
-                dados.concat(tipoFiltroX.toString()+":[\""+valoresEixoX.get(0).toString()+"\"],");
+                dados = dados.concat(tipoFiltroX+":[\""+valoresEixoX.get(0)+"\"],");
             }else{
-                dados.concat(tipoFiltroBase.toString());
-                dados.concat(":[\""+valoresEixoX.get(0).toString());
+                dados = dados.concat(tipoFiltroBase.toString());
+                dados = dados.concat(":[\""+valoresEixoX.get(0)+"\"");
                 for(int i=1; i<valoresBase.size(); i++){
-                    dados.concat(",\""+valoresEixoX.get(i).toString());
+                    dados = dados.concat(",\""+valoresEixoX.get(i)+"\"");
                 } 
-                dados.concat("],");
+                dados = dados.concat("],");
             }
-            dados.concat(tipoFiltroY+":[\""+tipoFiltroY+"\"]}");
+            dados = dados.concat(tipoFiltroY+":[\""+filtroAuxiliar+"\"]}");
             
-            objeto = jsonParser.parse(dados);
+            
+            System.out.println("dados: "+dados);
+            
+            //objeto = jsonParser.parse(dados);
            
             java2Json(filtroX,dados);
-            System.out.println("dados: "+dados);
-            System.out.println("Resultado da busca: "+valoresBase.get(0)+" total: "+valoresEixoX.get(0));
-            
             request.getRequestDispatcher("graficos_dinamicos.jsp").forward(request, response);
         }catch(Exception e){
             e.printStackTrace(); // faz sentido isso aqui?

@@ -41,7 +41,7 @@
         CursoManager curso= new CursoManager();
         List<Curso> listaCurso = curso.recuperarCursosPorAtributo("nome","%");
            
-        String cursoEscolhido = "Matemática";
+        String cursoEscolhido = "Engenharia Mecânica";
         
         
         HashMap<String, Object> condicao;
@@ -181,7 +181,7 @@
 <br />
           <br />
           <br />
-     <label>Curso:</label>
+<!--     <label>Curso:</label>
                   <select id="cursoSelecionado">                     
                       <option value="All">Todos</option>
                     <%
@@ -190,7 +190,7 @@
                                 <%out.print(listaCurso.get(i).getNome());%></option>                                
                        <% } %>
                   </select>      
-          
+    -->      
 <div id="colunasLaterais" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>  
 <br><br><br>
 

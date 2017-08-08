@@ -60,7 +60,7 @@
         <div class="row"> 
             <div class="medium-3 columns">  
                 <label>Titulo do Gráfico:</label> 
-                <input id=tituloEscolhido name="titulo">
+                <input id=tituloEscolhido name="tituloEscolhido">
             </div>             
          
             <div class="medium-2 columns">
@@ -133,20 +133,36 @@
         </div>  
             <div class="row">
                 <div class="medium-12 columns">
-                  <input type="submit" value="Gerar" class="button" style="width: 150px;" onclick=
-                            "carregaGrafico();" />         
+                  <input type="submit" value="Gerar" class="button" style="width: 150px;" />         
                 </div>
             </div>
     </form>
-
+          <button  onclick="updateMe();"> Carrega Grafico </button>
+          
           
           
     <br/>    <br/>    <br/>    <br/>    <br/>
     
     <div id=grafico style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
     <br><br><br> 
-    
 
+     <script type="text/javascript" src="file://E:\faculdade\AllCursos.json"></script>
+             <script type="text/javascript">
+        function updateMe(){
+          var x = 0;
+          var activity=jsonstr;
+          activity.forEach(lalal());
+             
+          
+        }
+        
+        function lalal(){
+            date = document.getElementById(i.date).innerHTML = activity.date;
+             event = document.getElementById(i.event).innerHTML = activity.event;
+         }
+      </script>
+    
+    
     
     <script>
         function limpaCombo(elemento1){
