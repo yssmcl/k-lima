@@ -43,13 +43,13 @@ public class DisciplinaDAO {
 			Criteria criteria = session.createCriteria(Disciplina.class);
 			if (condicaoAND != null) {
 				for (Map.Entry entry : condicaoAND.entries()) {
-					if (entry.getValue().getClass() == Long.class) {
-						criteria.add(
-							Restrictions.eq((String) entry.getKey(), entry.getValue())
-						);
-					} else if (entry.getValue().getClass() == String.class) {
+					if (entry.getValue().getClass() == String.class) {
 						criteria.add(
 							Restrictions.ilike((String) entry.getKey(), entry.getValue())
+						);
+					} else {
+						criteria.add(
+							Restrictions.eq((String) entry.getKey(), entry.getValue())
 						);
 					}
 				}

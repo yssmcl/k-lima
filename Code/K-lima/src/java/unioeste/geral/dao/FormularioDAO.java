@@ -35,7 +35,7 @@ public class FormularioDAO {
 	}
 
 	public List<Formulario> buscarFormularios(Multimap<String, Object> condicaoAND,
-		  Multimap<String, Object> condicaoOR) {
+											  Multimap<String, Object> condicaoOR) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Formulario> formularios = null;
 
@@ -43,16 +43,12 @@ public class FormularioDAO {
 			Criteria criteria = session.createCriteria(Formulario.class);
 			if (condicaoAND != null) {
 				for (Map.Entry entry : condicaoAND.entries()) {
-					System.out.println("================ " + entry.getKey());
-					System.out.println("================ " + entry.getValue());
-					if (entry.getValue().getClass() == Long.class
-						|| entry.getValue().getClass() == Integer.class) {
-						System.out.println("================ é número");
+					if (entry.getValue().getClass() == Long.class ||
+						entry.getValue().getClass() == Integer.class) {
 						criteria.add(
 							Restrictions.eq((String) entry.getKey(), entry.getValue())
 						);
 					} else if (entry.getValue().getClass() == String.class) {
-						System.out.println("================ é String");
 						criteria.add(
 							Restrictions.ilike((String) entry.getKey(), entry.getValue())
 						);
@@ -63,7 +59,8 @@ public class FormularioDAO {
 			Disjunction disjunction = Restrictions.disjunction();
 			if (condicaoOR != null) {
 				for (Map.Entry entry : condicaoOR.entries()) {
-					if (entry.getValue().getClass() == Long.class) {
+					if (entry.getValue().getClass() == Long.class ||
+						entry.getValue().getClass() == Integer.class) {
 						disjunction.add(
 							Restrictions.eq((String) entry.getKey(), entry.getValue())
 						);

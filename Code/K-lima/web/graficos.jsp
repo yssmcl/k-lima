@@ -41,7 +41,7 @@
         CursoManager curso= new CursoManager();
         List<Curso> listaCurso = curso.recuperarCursosPorAtributo("nome","%");
            
-        String cursoEscolhido = "Engenharia Elétrica";
+        String cursoEscolhido = "Matemática";
         
         
         HashMap<String, Object> condicao;

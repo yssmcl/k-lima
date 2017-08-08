@@ -1,6 +1,8 @@
 
-import unioeste.geral.bo.Aluno;
-import unioeste.geral.manager.AlunoManager;
+import com.google.common.collect.HashMultimap;
+import java.util.List;
+import unioeste.geral.bo.Formulario;
+import unioeste.geral.manager.FormularioManager;
 
 public class Main {
 
@@ -16,10 +18,6 @@ public class Main {
 //		Long qtdAlunos = new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, condicaoOR);
 //		System.out.println("=========================== " + qtdAlunos);
 
-		Aluno aluno = new Aluno();
-		aluno.setAnoAtual("2017");
-		new AlunoManager().salvarAluno(aluno);
-
 //		condicao.clear();
 //		condicao.put("disciplina", disciplina);
 //		Formulario formulario = new FormularioManager().recuperarFormularios(condicao, null).get(0);
@@ -32,14 +30,21 @@ public class Main {
 //		formulario.setNumeroAprovacoes(12);
 //		formulario.setNumeroReprovacoes(13);
 //		new FormularioDAO().inserirFormulario(formulario);
+		HashMultimap<String, Object> condicaoAND = HashMultimap.create();
+		HashMultimap<String, Object> condicaoOR = HashMultimap.create();
+		condicaoAND.put("numeroAprovacoes", 12);
+		condicaoOR.put("numeroReprovacoes", 23);
+		List<Formulario> lista = new FormularioManager().recuperarFormularios(condicaoAND, condicaoOR);
+		System.out.println(lista.size());
 
-		/* Teste de conexão */ //		try {
+		/* Teste de conexão */
+		//		try {
 		//			Connection connection;
 		//			Class.forName("org.mariadb.jdbc.Driver");
 		//			connection = DriverManager.getConnection("jdbc:mysql://localhost/db_klima", "root", "");
 		//			System.out.println(connection.isValid(0));
 		//		} catch (ClassNotFoundException | SQLException ex) {
-		//			System.out.println("Deu merda");
+		//			ex.printStackTrace();
 		//		}
 	}
 

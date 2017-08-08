@@ -80,8 +80,8 @@
                         limpaCombo(auxiliaresSelecionado);
                            preencheTipoFiltroY(TipoDeFiltrosX,TipoDeFiltrosY);">
                     <option value="anoAtual">Periodos</option>
-                    <option value="Cursos" >Cursos</option>
-                    <option value="SituacaoAtual">Situações</option>
+                    <option value="Curso" >Cursos</option>
+                    <option value="situacaoAtual">Situações</option>
                 </select >
               </div>
             <div class="medium-3 columns">  
@@ -161,29 +161,29 @@
             var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
             var optionsDoDrop=document.getElementById(elemento2.id);
 
-            if( filtroEscolhidoParaX.valueOf()==="Cursos"){
+            if( filtroEscolhidoParaX.valueOf()==="Curso"){
                 var opt = document.createElement('option');
                     opt.value= 'anoAtual';
                     opt.text = 'Periodos';
                     optionsDoDrop.add(opt);
                 var opt = document.createElement('option');
-                    opt.value= 'SituacaoAtual';
+                    opt.value= 'situacaoAtual';
                     opt.text = 'Situações';
                     optionsDoDrop.add(opt);
             }
             else if( filtroEscolhidoParaX.valueOf()==="anoAtual"){
                 var opt = document.createElement('option');
-                    opt.value= 'SituacaoAtual';
+                    opt.value= 'situacaoAtual';
                     opt.text = 'Situações';
                     optionsDoDrop.add(opt);
                 var opt = document.createElement('option');
-                    opt.value= 'Cursos';
+                    opt.value= 'Curso';
                     opt.text = 'Cursos';
                     optionsDoDrop.add(opt);
             }
-            else if( filtroEscolhidoParaX.valueOf()==="SituacaoAtual"){
+            else if( filtroEscolhidoParaX.valueOf()==="situacaoAtual"){
                 var opt = document.createElement('option');
-                    opt.value= 'Cursos';
+                    opt.value= 'Curso';
                     opt.text = 'Cursos';
                     optionsDoDrop.add(opt);
                 var opt = document.createElement('option');
@@ -199,7 +199,7 @@
             var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
             var optionsDoDrop=document.getElementById(elemento2.id);
         
-            if( filtroEscolhidoParaX.valueOf()==="Cursos"){   
+            if( filtroEscolhidoParaX.valueOf()==="Curso"){   
                 var opt = document.createElement('option');              
                 opt.value="AllCursos";
                 opt.text = "Todos os Cursos";                
@@ -245,7 +245,7 @@
                     // TODO, quando tiver os anos no BD deixar dinamicos com os Cursos
 
             } 
-            else if( filtroEscolhidoParaX.valueOf()==="SituacaoAtual"){   
+            else if( filtroEscolhidoParaX.valueOf()==="situacaoAtual"){   
                 var opt = document.createElement('option');
                     opt.value= 'AllSituacao';
                     opt.text = 'Todas Situações';
@@ -283,7 +283,7 @@
             var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
             var optionsDoDrop=document.getElementById(elemento2.id);
         
-            if( filtroEscolhidoParaX.valueOf()!=="Cursos"){   
+            if( filtroEscolhidoParaX.valueOf()!=="Curso"){   
                 var opt = document.createElement('option');              
                 opt.value="AllCursos";
                 opt.text = "Todos os Cursos";                
@@ -329,7 +329,7 @@
                     // TODO, quando tiver os anos no BD deixar dinamicos com os Cursos
 
             } 
-            if( filtroEscolhidoParaX.valueOf()!=="SituacaoAtual"){   
+            if( filtroEscolhidoParaX.valueOf()!=="situacaoAtual"){   
                 var opt = document.createElement('option');
                     opt.value= 'AllSituacao';
                     opt.text = 'Todas Situações';
@@ -373,7 +373,7 @@
         var optionsDoDrop=document.getElementById(elemento2.id);
         
         
-            if( filtroEscolhidoParaY.valueOf()!=="Cursos" && filtroEscolhidoParaX.valueOf()!=="Cursos"){
+            if( filtroEscolhidoParaY.valueOf()!=="Curso" && filtroEscolhidoParaX.valueOf()!=="Curso"){
                 var opt = document.createElement('option');              
                 opt.value="AllCursos";
                 opt.text = "Todos os Cursos";                
@@ -419,7 +419,7 @@
                     // TODO, quando tiver os anos no BD deixar dinamicos com os Cursos
 
             } 
-            if( filtroEscolhidoParaY.valueOf()!=="SituacaoAtual"&& filtroEscolhidoParaX.valueOf()!=="SituacaoAtual"){ 
+            if( filtroEscolhidoParaY.valueOf()!=="situacaoAtual"&& filtroEscolhidoParaX.valueOf()!=="situacaoAtual"){ 
                 var opt = document.createElement('option');
                     opt.value= 'AllSituacao';
                     opt.text = 'Todas Situações';
@@ -463,9 +463,9 @@
         var optionsDoDrop=document.getElementById(elemento2.id);
         
         
-            if( filtroEscolhidoParaY.valueOf()!=="Cursos" && filtroEscolhidoParaX.valueOf()!=="Cursos"){
+            if( filtroEscolhidoParaY.valueOf()!=="Curso" && filtroEscolhidoParaX.valueOf()!=="Curso"){
                 var opt = document.createElement('option');              
-                opt.value="Cursos";
+                opt.value="Curso";
                 opt.text = "Cursos";                
                 optionsDoDrop.add(opt);
                 
@@ -480,9 +480,9 @@
                     // TODO, quando tiver os anos no BD deixar dinamicos com os Cursos
 
             } 
-            if( filtroEscolhidoParaY.valueOf()!=="SituacaoAtual"&& filtroEscolhidoParaX.valueOf()!=="SituacaoAtual"){ 
+            if( filtroEscolhidoParaY.valueOf()!=="situacaoAtual"&& filtroEscolhidoParaX.valueOf()!=="situacaoAtual"){ 
                 var opt = document.createElement('option');
-                    opt.value= 'SituacaoAtual';
+                    opt.value= 'situacaoAtual';
                     opt.text = 'Situações';
                     optionsDoDrop.add(opt);
                 

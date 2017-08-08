@@ -33,11 +33,10 @@ public class GraficosServlet extends HttpServlet{
     private String cursoEscolhido;
   
     
-    public void java2Json(Gson gson, String titulo, Object objeto) throws IOException{
-
-        String json = gson.toJson(objeto);
-        FileWriter writer = new FileWriter("../../jsonGraficos/"+titulo+".json");
-        writer.write(json);
+    public void java2Json(String titulo, String objeto) throws IOException{
+        
+        FileWriter writer = new FileWriter("E:/faculdade/4 ano"+titulo+".json");
+        writer.write(objeto);
         writer.close();        
     }
     
@@ -129,7 +128,7 @@ public class GraficosServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+                request.setCharacterEncoding("UTF-8"); // pega caracteres UTF-8 do JSP
         try{    
 
             CursoManager cursoMana = new CursoManager();
@@ -149,13 +148,20 @@ public class GraficosServlet extends HttpServlet{
             String filtrosEixoY = request.getParameter("FiltroY");  
             String filtroAuxiliar = request.getParameter("auxiliaresSelecionado");
 
+            System.out.println("unioeste.geral.servlet.GraficosServlet.doPost()");
+            System.out.println("TipoFiltroX: "+tipoFiltroBase);
+            System.out.println("TipoFiltroY: "+tipoFiltroX);
+            System.out.println("TipoFiltroAuxiliar: "+tipoFiltroY);
             
+            System.out.println("FiltroX: "+filtroX);
+            System.out.println("FiltroY: "+filtrosEixoY);
+            System.out.println("auxiliaresSelecionado: "+filtroAuxiliar);
              // data.add();
               
-            Multimap<String, Object> condicaoAND = null;
-            Multimap<String, Object> condicaoOR = null;
-        
-            if(filtroX.equals("AllCursos")||filtroX.equals("AllAnos")||filtroX.equals("AllSituacao")){
+            Multimap<String, Object> condicaoAND = HashMultimap.create();;
+            Multimap<String, Object> condicaoOR = HashMultimap.create();;
+        System.out.println("Antes do if");
+            if(filtroX.equals("AllCursos")||filtroX.equals("AllAnos")||filtroX.equals("AllSituacao")){                
                 if(tipoFiltroBase.equals("AllCursos"))valoresBase = carregaDadosNomeCurso(filtroX);//;
                 else if(tipoFiltroBase.equals("AllAnos"))valoresBase = periodos;
                 else if(tipoFiltroBase.equals("AllSituacao"))valoresBase = situacoes;
@@ -163,13 +169,19 @@ public class GraficosServlet extends HttpServlet{
                         valoresBase.add("Cancelado");
                         valoresBase.add("Cancelado Por Abandono");
                         valoresBase.add("Transferido");
+                }
             } else {                
-                valoresBase.add(filtroX);             
+                   
+                valoresBase.add(filtroX);
+                
             } // dados de x carregado
             
-            
             if(valoresBase.size()==1){
-                condicaoAND.put(tipoFiltroBase, valoresBase.get(0));  // tipoFiltroBase tem o nome da tabela e valroesDoEixoX o nome do atributo ex.: Curso, Matemática 
+                if(tipoFiltroBase.equals("curso")) {
+                    Curso curso = new CursoManager().recuperarCursosPorAtributo("nome", filtroX).get(0);
+                    condicaoAND.put("curso",curso);
+                }
+                else condicaoAND.put(tipoFiltroBase,filtroX);  // tipoFiltroBase tem o nome da tabela e valroesDoEixoX o nome do atributo ex.: Curso, Matemática 
                  if(filtrosEixoY.equals("Todos os Abandonos e transferidos")){
                     condicaoOR.put(tipoFiltroX, "Cancelado");
                     condicaoOR.put(tipoFiltroX, "Cancelado Por Abandono");
@@ -185,8 +197,10 @@ public class GraficosServlet extends HttpServlet{
             } else {
                 if(filtrosEixoY.equals("AllAnos") || filtrosEixoY.equals("AllCursos") || filtrosEixoY.equals("AllSituacao") )
                 filtrosEixoY="%%";
+                 
                 if(filtroAuxiliar.equals("AllAnos") || filtroAuxiliar.equals("AllCursos") || filtroAuxiliar.equals("AllSituacao") )
                     filtroAuxiliar="%%";
+                
                 for(int i=0; i<valoresBase.size();i++){                    
                     condicaoAND.put(tipoFiltroBase, valoresBase.get(i));
                     if(filtrosEixoY.equals("Todos os Abandonos e transferidos")){
@@ -200,13 +214,15 @@ public class GraficosServlet extends HttpServlet{
                         condicaoOR.put(tipoFiltroY, "Cancelado Por Abandono");
                         condicaoOR.put(tipoFiltroY, "Transferido");
                     }else condicaoAND.put(tipoFiltroY, filtroAuxiliar);
-                    
-                    valoresEixoX.add(carregaDados(condicaoAND,condicaoOR));
-                }        
+
+                }
+                
             }
+            System.out.println("depois do if");
+            valoresEixoX.add(carregaDados(condicaoAND,condicaoOR));            
+            System.out.println("Resultado da busca: "+valoresBase.get(0)+" total: "+valoresEixoX.get(0));
                 // =============== criação do json:          
-            JsonObject objJson= new JsonObject();
-            JsonArray dataArray= new JsonArray();
+            
             JsonParser jsonParser = new JsonParser();
             Object objeto= new Object();
             String dados=new String();          
@@ -233,10 +249,11 @@ public class GraficosServlet extends HttpServlet{
                 dados.concat("],");
             }
             dados.concat(tipoFiltroY+":[\""+tipoFiltroY+"\"]}");
-           
+           System.out.println(dados);
             objeto = jsonParser.parse(dados);
-            dataArray = (JsonArray) objeto;
-        }
+           
+            java2Json(filtroX,dados);
+        
             
             
             request.getRequestDispatcher("graficos_dinamicos.jsp").forward(request, response);

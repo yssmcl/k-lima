@@ -40,7 +40,8 @@ public class CursoDAO {
 			transaction = session.beginTransaction();
 
 			Criteria criteria = session.createCriteria(Curso.class);
-			if (valor.getClass() == Long.class) {
+			if (valor.getClass() == Long.class ||
+				valor.getClass() == Integer.class) {
 				criteria.add(
 					Restrictions.eq(atributo, valor)
 				);
