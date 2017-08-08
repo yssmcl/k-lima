@@ -1,5 +1,4 @@
 - Filtros dos gráficos dinâmicos não funcionam
 - Gráficos estáticos para cada curso
 - Colocar senha no BD
-- Mudar o nome de SAG para Tutoria
-- Arrumar página Atualizar Dados que está limpando o banco automaticamente
+- Arrumar alinhamentos do relatório
