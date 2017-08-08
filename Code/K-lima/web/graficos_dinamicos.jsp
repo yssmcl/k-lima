@@ -80,7 +80,7 @@
                         limpaCombo(auxiliaresSelecionado);
                            preencheTipoFiltroY(TipoDeFiltrosX,TipoDeFiltrosY);">
                     <option value="anoAtual">Periodos</option>
-                    <option value="Curso" >Cursos</option>
+                    <option value="curso" >Cursos</option>
                     <option value="situacaoAtual">Situações</option>
                 </select >
               </div>
@@ -161,7 +161,7 @@
             var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
             var optionsDoDrop=document.getElementById(elemento2.id);
 
-            if( filtroEscolhidoParaX.valueOf()==="Curso"){
+            if( filtroEscolhidoParaX.valueOf()==="curso"){
                 var opt = document.createElement('option');
                     opt.value= 'anoAtual';
                     opt.text = 'Periodos';
@@ -177,13 +177,13 @@
                     opt.text = 'Situações';
                     optionsDoDrop.add(opt);
                 var opt = document.createElement('option');
-                    opt.value= 'Curso';
+                    opt.value= 'curso';
                     opt.text = 'Cursos';
                     optionsDoDrop.add(opt);
             }
             else if( filtroEscolhidoParaX.valueOf()==="situacaoAtual"){
                 var opt = document.createElement('option');
-                    opt.value= 'Curso';
+                    opt.value= 'curso';
                     opt.text = 'Cursos';
                     optionsDoDrop.add(opt);
                 var opt = document.createElement('option');
@@ -199,7 +199,7 @@
             var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
             var optionsDoDrop=document.getElementById(elemento2.id);
         
-            if( filtroEscolhidoParaX.valueOf()==="Curso"){   
+            if( filtroEscolhidoParaX.valueOf()==="curso"){   
                 var opt = document.createElement('option');              
                 opt.value="AllCursos";
                 opt.text = "Todos os Cursos";                
@@ -283,7 +283,7 @@
             var filtroEscolhidoParaX = dropSelecionadoX.options[dropSelecionadoX.selectedIndex].value;
             var optionsDoDrop=document.getElementById(elemento2.id);
         
-            if( filtroEscolhidoParaX.valueOf()!=="Curso"){   
+            if( filtroEscolhidoParaX.valueOf()!=="curso"){   
                 var opt = document.createElement('option');              
                 opt.value="AllCursos";
                 opt.text = "Todos os Cursos";                
@@ -373,7 +373,7 @@
         var optionsDoDrop=document.getElementById(elemento2.id);
         
         
-            if( filtroEscolhidoParaY.valueOf()!=="Curso" && filtroEscolhidoParaX.valueOf()!=="Curso"){
+            if( filtroEscolhidoParaY.valueOf()!=="curso" && filtroEscolhidoParaX.valueOf()!=="curso"){
                 var opt = document.createElement('option');              
                 opt.value="AllCursos";
                 opt.text = "Todos os Cursos";                
@@ -463,9 +463,9 @@
         var optionsDoDrop=document.getElementById(elemento2.id);
         
         
-            if( filtroEscolhidoParaY.valueOf()!=="Curso" && filtroEscolhidoParaX.valueOf()!=="Curso"){
+            if( filtroEscolhidoParaY.valueOf()!=="curso" && filtroEscolhidoParaX.valueOf()!=="curso"){
                 var opt = document.createElement('option');              
-                opt.value="Curso";
+                opt.value="curso";
                 opt.text = "Cursos";                
                 optionsDoDrop.add(opt);
                 

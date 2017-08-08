@@ -23,6 +23,7 @@ import unioeste.geral.manager.AlunoManager;
 import unioeste.geral.manager.CursoManager;
 import com.google.gson.*;
 import java.io.FileWriter;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "GraficosServlet", urlPatterns = {"/GraficosServlet"})
 public class GraficosServlet extends HttpServlet{
@@ -41,19 +42,15 @@ public class GraficosServlet extends HttpServlet{
     }
     
     
-    public  List<String> carregaDadosNomeCurso(Object filtroX){        
-    List<String> filtrosEixoX = new ArrayList<>();
-        if(filtroX.equals("Allcurso")){ //todos os cursos selecionados
+    public  List<String> carregaDadosNomeCurso(){        
+    List<String> nomesDosCursos = new ArrayList<>();
 
-                List<Curso> listaCursos = cursoMana.recuperarCursosPorAtributo("nome", "%%");
-                for(int i=0; i<listaCursos.size(); i++){
-                    filtrosEixoX.add(listaCursos.get(i).getNome());
-                }
-        } else { // somente um curso selecionado
-            filtrosEixoX.add(cursoMana.recuperarCursosPorAtributo("nome", filtroX).get(0).getNome());
-        } 
-        
-        return filtrosEixoX;
+    List<Curso> listaCursos = new CursoManager().recuperarCursosPorAtributo("nome","%");
+    for(int i=0; i<listaCursos.size(); i++){
+        nomesDosCursos.add(listaCursos.get(i).getNome());
+    }
+
+        return nomesDosCursos;
     }
    
     public Long carregaDadosSituacaoAnoAtual(Object ano, Object situacao, Object curso){        
@@ -161,23 +158,20 @@ public class GraficosServlet extends HttpServlet{
             Multimap<String, Object> condicaoAND = HashMultimap.create();;
             Multimap<String, Object> condicaoOR = HashMultimap.create();;
         System.out.println("Antes do if");
-            if(filtroX.equals("AllCursos")||filtroX.equals("AllAnos")||filtroX.equals("AllSituacao")){                
-                if(tipoFiltroBase.equals("AllCursos"))valoresBase = carregaDadosNomeCurso(filtroX);//;
-                else if(tipoFiltroBase.equals("AllAnos"))valoresBase = periodos;
-                else if(tipoFiltroBase.equals("AllSituacao"))valoresBase = situacoes;
-                else if(tipoFiltroBase.equals("Todos os Abandonos e transferidos")){
-                        valoresBase.add("Cancelado");
-                        valoresBase.add("Cancelado Por Abandono");
-                        valoresBase.add("Transferido");
-                }
-            } else {                
-                   
-                valoresBase.add(filtroX);
-                
-            } // dados de x carregado
             
+            if(filtroX.equals("AllCursos")) valoresBase = carregaDadosNomeCurso().stream().collect(Collectors.toList());//;
+            else if(filtroX.equals("AllAnos")) valoresBase = periodos.stream().collect(Collectors.toList());
+            else if(filtroX.equals("AllSituacao")) valoresBase = situacoes.stream().collect(Collectors.toList());
+            else if(filtroX.equals("Todos os Abandonos e transferidos")){
+                    valoresBase.add("Cancelado");
+                    valoresBase.add("Cancelado Por Abandono");
+                    valoresBase.add("Transferido");
+            }
+            if(valoresBase.isEmpty())
+                valoresBase.add(filtroX);
+  
             if(valoresBase.size()==1){
-                if(tipoFiltroBase.equals("curso")) {
+                if(tipoFiltroBase.equals("Curso")) {
                     Curso curso = new CursoManager().recuperarCursosPorAtributo("nome", filtroX).get(0);
                     condicaoAND.put("curso",curso);
                 }
@@ -193,7 +187,7 @@ public class GraficosServlet extends HttpServlet{
                     condicaoOR.put(tipoFiltroY, "Cancelado Por Abandono");
                     condicaoOR.put(tipoFiltroY, "Transferido");
                 }else condicaoAND.put(tipoFiltroY, filtroAuxiliar);
-                
+                valoresEixoX.add(carregaDados(condicaoAND,condicaoOR));  
             } else {
                 if(filtrosEixoY.equals("AllAnos") || filtrosEixoY.equals("AllCursos") || filtrosEixoY.equals("AllSituacao") )
                 filtrosEixoY="%%";
@@ -201,25 +195,29 @@ public class GraficosServlet extends HttpServlet{
                 if(filtroAuxiliar.equals("AllAnos") || filtroAuxiliar.equals("AllCursos") || filtroAuxiliar.equals("AllSituacao") )
                     filtroAuxiliar="%%";
                 
-                for(int i=0; i<valoresBase.size();i++){                    
-                    condicaoAND.put(tipoFiltroBase, valoresBase.get(i));
-                    if(filtrosEixoY.equals("Todos os Abandonos e transferidos")){
-                        condicaoOR.put(tipoFiltroX, "Cancelado");
-                        condicaoOR.put(tipoFiltroX, "Cancelado Por Abandono");
-                        condicaoOR.put(tipoFiltroX, "Transferido");
-                    }else condicaoAND.put(tipoFiltroX, filtrosEixoY);
-                    
-                    if(tipoFiltroY.equals("Todos os Abandonos e transferidos")){
-                        condicaoOR.put(tipoFiltroY, "Cancelado");
-                        condicaoOR.put(tipoFiltroY, "Cancelado Por Abandono");
-                        condicaoOR.put(tipoFiltroY, "Transferido");
-                    }else condicaoAND.put(tipoFiltroY, filtroAuxiliar);
 
+                if(filtrosEixoY.equals("Todos os Abandonos e transferidos")){
+                   condicaoOR.put(tipoFiltroX, "Cancelado");
+                   condicaoOR.put(tipoFiltroX, "Cancelado Por Abandono");
+                   condicaoOR.put(tipoFiltroX, "Transferido");
+               }else condicaoAND.put(tipoFiltroX, filtrosEixoY);
+
+               if(tipoFiltroY.equals("Todos os Abandonos e transferidos")){
+                   condicaoOR.put(tipoFiltroY, "Cancelado");
+                   condicaoOR.put(tipoFiltroY, "Cancelado Por Abandono");
+                   condicaoOR.put(tipoFiltroY, "Transferido");
+               }else condicaoAND.put(tipoFiltroY, filtroAuxiliar);
+                for(int i=0; i<valoresBase.size();i++){                    
+                    if(tipoFiltroBase.equals("Curso")) {
+                        Curso curso = new CursoManager().recuperarCursosPorAtributo("nome", valoresBase.get(i)).get(0);
+                        condicaoAND.put("curso",curso);
+                        System.out.println(curso.getNome());
+                    } else condicaoAND.put(tipoFiltroBase, valoresBase.get(i));
+                    valoresEixoX.add(carregaDados(condicaoAND,condicaoOR));  
                 }
-                
             }
             System.out.println("depois do if");
-            valoresEixoX.add(carregaDados(condicaoAND,condicaoOR));            
+                      
             System.out.println("Resultado da busca: "+valoresBase.get(0)+" total: "+valoresEixoX.get(0));
                 // =============== criação do json:          
             
@@ -228,33 +226,33 @@ public class GraficosServlet extends HttpServlet{
             String dados=new String();          
             
             if(valoresBase.size()==1){
-                dados.concat("{"+tipoFiltroBase+":["+valoresBase.get(0)+"],");
+                dados.concat("{"+tipoFiltroBase.toString()+":["+valoresBase.get(0).toString()+"],");
             } else{
                 dados.concat(tipoFiltroBase);
-                dados.concat(":[\""+valoresBase.get(0));
+                dados.concat(":[\""+valoresBase.get(0).toString());
                 for(int i=1; i<valoresBase.size(); i++){
-                    dados.concat(",\""+valoresBase.get(i));
+                    dados.concat(",\""+valoresBase.get(i).toString());
                 } 
                 dados.concat("],");
             }
            
             if(valoresEixoX.size()==1){
-                dados.concat(tipoFiltroX+":[\""+valoresEixoX.get(0)+"\"],");
+                dados.concat(tipoFiltroX.toString()+":[\""+valoresEixoX.get(0).toString()+"\"],");
             }else{
-                dados.concat(tipoFiltroBase);
-                dados.concat(":[\""+valoresEixoX.get(0));
+                dados.concat(tipoFiltroBase.toString());
+                dados.concat(":[\""+valoresEixoX.get(0).toString());
                 for(int i=1; i<valoresBase.size(); i++){
-                    dados.concat(",\""+valoresEixoX.get(i));
+                    dados.concat(",\""+valoresEixoX.get(i).toString());
                 } 
                 dados.concat("],");
             }
             dados.concat(tipoFiltroY+":[\""+tipoFiltroY+"\"]}");
-           System.out.println(dados);
+            
             objeto = jsonParser.parse(dados);
            
             java2Json(filtroX,dados);
-        
-            
+            System.out.println("dados: "+dados);
+            System.out.println("Resultado da busca: "+valoresBase.get(0)+" total: "+valoresEixoX.get(0));
             
             request.getRequestDispatcher("graficos_dinamicos.jsp").forward(request, response);
         }catch(Exception e){
