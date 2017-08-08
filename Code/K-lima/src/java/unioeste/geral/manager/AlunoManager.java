@@ -145,13 +145,13 @@ public class AlunoManager {
 
 					Aluno aluno = new Aluno();
 					aluno.setNome(campos[0]);
-					aluno.setAnoEntrada(Integer.valueOf(campos[5]));
-					aluno.setAnoAtual(Integer.valueOf(campos[6]));
+					aluno.setAnoEntrada(campos[5]);
+					aluno.setAnoAtual(campos[6]);
 					aluno.setSituacaoAtual(campos[7]);
-                                        aluno.setAnoSaida(Integer.valueOf(campos[8]));
+					aluno.setAnoSaida(campos[8]);
 					aluno.setCep(campos[9]);
 					aluno.setRua(campos[10]);
-					aluno.setNumero(Integer.valueOf(campos[11]));
+					aluno.setNumero(campos[11]);
 					aluno.setBairro(campos[12]);
 					aluno.setCidade(campos[13]);
 					aluno.setUnidadeFederativa(campos[14]);

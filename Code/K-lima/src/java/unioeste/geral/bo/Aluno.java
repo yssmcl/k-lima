@@ -14,11 +14,11 @@ public class Aluno {
 
 	private String nome;
 
-	private int anoEntrada;
+	private String anoEntrada;
 
-	private int anoSaida;
+	private String anoSaida;
 
-	private int anoAtual;
+	private String anoAtual;
 
 	private String situacaoAtual;
 
@@ -26,7 +26,7 @@ public class Aluno {
 
 	private String rua;
 
-	private int numero;
+	private String numero;
 
 	private String bairro;
 
@@ -70,27 +70,27 @@ public class Aluno {
 		this.nome = nome;
 	}
 
-	public int getAnoEntrada() {
+	public String getAnoEntrada() {
 		return anoEntrada;
 	}
 
-	public void setAnoEntrada(int anoEntrada) {
+	public void setAnoEntrada(String anoEntrada) {
 		this.anoEntrada = anoEntrada;
 	}
 
-	public int getAnoSaida() {
+	public String getAnoSaida() {
 		return anoSaida;
 	}
 
-	public void setAnoSaida(int anoSaida) {
+	public void setAnoSaida(String anoSaida) {
 		this.anoSaida = anoSaida;
 	}
 
-	public int getAnoAtual() {
+	public String getAnoAtual() {
 		return anoAtual;
 	}
 
-	public void setAnoAtual(int anoAtual) {
+	public void setAnoAtual(String anoAtual) {
 		this.anoAtual = anoAtual;
 	}
 
@@ -118,11 +118,11 @@ public class Aluno {
 		this.rua = rua;
 	}
 
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 

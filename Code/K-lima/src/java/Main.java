@@ -1,6 +1,4 @@
 
-import java.util.HashMap;
-import java.util.List;
 import unioeste.geral.bo.Aluno;
 import unioeste.geral.manager.AlunoManager;
 
@@ -18,10 +16,9 @@ public class Main {
 //		Long qtdAlunos = new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, condicaoOR);
 //		System.out.println("=========================== " + qtdAlunos);
 
-		HashMap<String, Object> condicao = new HashMap<>();
-		condicao.put("anoEntrada", 2012);
-		List<Aluno> alunos = new AlunoManager().recuperarAlunosPorAtributos(condicao);
-		System.out.println(alunos.size());
+		Aluno aluno = new Aluno();
+		aluno.setAnoAtual("2017");
+		new AlunoManager().salvarAluno(aluno);
 
 //		condicao.clear();
 //		condicao.put("disciplina", disciplina);
