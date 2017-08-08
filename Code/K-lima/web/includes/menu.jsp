@@ -69,9 +69,16 @@
                     </ul>
                   </li>  
                   <li>
-                    <a href="#">Aprovação</a>
+                    <a href="#">Repetência</a>
                     <ul class="menu">
-                      <li><a href="apr_repr_mecanica.jsp">Engenharia Mecânica</a></li>
+                      <li><a href="apr_repr_mecanica.jsp">Cadastro</a></li>
+                      <li>
+                          <a href="#">Tabela</a>
+                          <ul class="menu">
+                              <li><a href="tabela_aprovacao.jsp">Aprovação</a></li>
+                              <li><a href="#">Reprovação</a></li>
+                          </ul>
+                      </li>
                     </ul>
                   </li>
                   <li>
