@@ -47,7 +47,16 @@ public class AlunoDAO {
 
 			Criteria criteria = session.createCriteria(Aluno.class);
 			for (Map.Entry<String, Object> entry : condicao.entrySet()) {
-				criteria.add(Restrictions.ilike(entry.getKey(), entry.getValue()));
+				if (entry.getValue().getClass() == Long.class
+					|| entry.getValue().getClass() == Integer.class) {
+					criteria.add(
+						Restrictions.eq((String) entry.getKey(), entry.getValue())
+					);
+				} else if (entry.getValue().getClass() == String.class) {
+					criteria.add(
+						Restrictions.ilike((String) entry.getKey(), entry.getValue())
+					);
+				}
 			}
 			alunos = (List<Aluno>) criteria.list();
 
@@ -73,8 +82,8 @@ public class AlunoDAO {
 			Criteria criteria = session.createCriteria(Aluno.class);
 			if (condicaoAND != null) {
 				for (Map.Entry entry : condicaoAND.entries()) {
-					if (entry.getValue().getClass() == Long.class ||
-                                            entry.getValue().getClass() == Integer.class) {
+					if (entry.getValue().getClass() == Long.class
+						|| entry.getValue().getClass() == Integer.class) {
 						criteria.add(
 							Restrictions.eq((String) entry.getKey(), entry.getValue())
 						);
@@ -122,11 +131,8 @@ public class AlunoDAO {
 			Criteria criteria = session.createCriteria(Aluno.class);
 			if (condicaoAND != null) {
 				for (Map.Entry entry : condicaoAND.entries()) {
-//                                    System.out.println("================== " + entry.getKey());
-//                                    System.out.println("================== " + entry.getValue());
-					if (entry.getValue().getClass() == Long.class ||
-                                            entry.getValue().getClass() == Integer.class) {
-//                                                System.out.println("================== é número");
+					if (entry.getValue().getClass() == Long.class
+						|| entry.getValue().getClass() == Integer.class) {
 						criteria.add(
 							Restrictions.eq((String) entry.getKey(), entry.getValue())
 						);

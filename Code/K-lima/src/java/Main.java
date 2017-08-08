@@ -1,9 +1,8 @@
 
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
-import unioeste.geral.bo.Disciplina;
+import java.util.HashMap;
+import java.util.List;
+import unioeste.geral.bo.Aluno;
 import unioeste.geral.manager.AlunoManager;
-import unioeste.geral.manager.DisciplinaManager;
 
 public class Main {
 
@@ -18,13 +17,12 @@ public class Main {
 //		condicaoOR.put("situacaoAtual", "Transferido");
 //		Long qtdAlunos = new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, condicaoOR);
 //		System.out.println("=========================== " + qtdAlunos);
-                
-                HashMultimap<String, Object> condicao = HashMultimap.create();
-                condicao.put("situacaoAtual", "Cancelado Por Abandono");
-                condicao.put("anoSaida", 1995);
-                Long qtdAbandono = new AlunoManager().recuperarQtdAlunosPorAtributos(condicao, null);
-                System.out.println(qtdAbandono);
-                                
+
+		HashMap<String, Object> condicao = new HashMap<>();
+		condicao.put("anoEntrada", 2012);
+		List<Aluno> alunos = new AlunoManager().recuperarAlunosPorAtributos(condicao);
+		System.out.println(alunos.size());
+
 //		condicao.clear();
 //		condicao.put("disciplina", disciplina);
 //		Formulario formulario = new FormularioManager().recuperarFormularios(condicao, null).get(0);
