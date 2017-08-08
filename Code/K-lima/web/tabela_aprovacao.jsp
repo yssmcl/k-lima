@@ -5,11 +5,13 @@
 --%>
 <%@page import="com.google.common.collect.HashMultimap"%>
 <%@page import="unioeste.geral.bo.Disciplina"%>
+<%@page import="unioeste.geral.bo.Formulario"%>
 <%@page import="unioeste.geral.manager.DisciplinaManager"%>
+<%@page import="unioeste.geral.manager.FormularioManager"%>
 <%@page import="com.google.common.collect.Multimap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="unioeste.geral.bo.Aluno"%>
+<%@page import="unioeste.geral.bo.Disciplina"%>
 <%@page import="unioeste.geral.manager.AlunoManager"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -48,13 +50,14 @@
 
           <div class="row centralizado">
             <div class="medium-12 columns" style="text-align: center;">
-                <h1>Aprovação</h1>
+                <h1>Histórico de Aprovação - Engenharia Mecânica</h1>
             </div>
           </div>
           
           <hr />
-
+          
           <div class="row">
+            <h1>1º ano</h1>
             <table id="example" class="display">
               <thead>
                   <tr>
@@ -71,16 +74,42 @@
                   <%
                   int serie = 1;
                   DisciplinaManager manager = new DisciplinaManager();
+                  FormularioManager managerForm = new FormularioManager();
                   List<Disciplina> disciplinas = new ArrayList<>();
+                  List<Formulario> formularios = new ArrayList<>();
                   HashMultimap<String, Object> condicaoSerie;
+                  HashMultimap<String, Object> condicaoNota;
                   
                   condicaoSerie = HashMultimap.create();
                   condicaoSerie.put("serie", serie);
                   
-                  %>
+                  disciplinas = manager.recuperarDisciplinas(condicaoSerie, null);
+                  
+                  for(Disciplina disciplina : disciplinas){%>
                         <tr>
-                            <td></td>
+                            <td><%= disciplina.getNome() %></td>
+                            <%
+                            int ano = 2008;
+                            while(ano < 2014){
+                                condicaoNota = HashMultimap.create();
+                                condicaoNota.put("ano", ano);
+                                Long aux = disciplina.getId();
+                                condicaoNota.put("disciplina_id", aux.intValue());
+                                
+                                formularios = managerForm.recuperarFormularios(condicaoNota, null);
+                                
+                                int media;
+                                if(formularios != null){
+                                    media = (100*formularios.get(0).getNumeroAprovacoes())/(formularios.get(0).getNumeroAprovacoes() + formularios.get(0).getNumeroAprovacoes());
+                            %>
+                                <td><%= media %></td>
+                            <%
+                                }
+                                ano++;
+                            }
+                            %>
                         </tr>
+                  <%}%>
                 </tbody>
             </table>
           </div>          

@@ -135,10 +135,7 @@
                             <td><%= aluno.getNome() %></td>
                             <td><%= aluno.getCurso().getNome() %></td>
                             <td><%= aluno.getCurso().getTurno() %></td>
-                            <%
-                            String anoEntrada = Integer.toString(aluno.getAnoEntrada());
-                            %>
-                            <td><%= anoEntrada %></td>                            
+                            <td><%= aluno.getAnoEntrada() %></td>                            
                             <td><%= aluno.getAnoAtual()%></td>
                             <td><%= aluno.getSituacaoAtual() %></td>
                         </tr>

@@ -81,15 +81,15 @@
 
                     while(ano < 2017){
                         condicaoAbandono = HashMultimap.create();
-                        condicaoAbandono.put("anoSaida", ano);
+                        condicaoAbandono.put("anoSaida", Integer.toString(ano));
                         condicaoAbandono.put("situacaoAtual", "Cancelado Por Abandono");
                         
                         condicaoCancelamento = HashMultimap.create();
-                        condicaoCancelamento.put("anoSaida", ano);
+                        condicaoCancelamento.put("anoSaida", Integer.toString(ano));
                         condicaoCancelamento.put("situacaoAtual", "Cancelado");
                         
                         condicaoTransferido = HashMultimap.create();
-                        condicaoTransferido.put("anoSaida", ano);
+                        condicaoTransferido.put("anoSaida", Integer.toString(ano));
                         condicaoTransferido.put("situacaoAtual", "Transferido");
                         
                         qtdAbandono = manager.recuperarQtdAlunosPorAtributos(condicaoAbandono, null);
