@@ -1,8 +1,8 @@
 
 import com.google.common.collect.HashMultimap;
 import java.util.List;
-import unioeste.geral.bo.Disciplina;
-import unioeste.geral.manager.DisciplinaManager;
+import unioeste.geral.bo.Formulario;
+import unioeste.geral.manager.FormularioManager;
 
 public class Main {
 
@@ -31,17 +31,20 @@ public class Main {
 //		formulario.setNumeroReprovacoes(13);
 //		new FormularioDAO().inserirFormulario(formulario);
 		HashMultimap<String, Object> condicaoAND = HashMultimap.create();
-		condicaoAND.put("serie", 1);
-		List<Disciplina> disciplinas = new DisciplinaManager().recuperarDisciplinas(condicaoAND, null);
-		System.out.println(disciplinas.size());
+		HashMultimap<String, Object> condicaoOR = HashMultimap.create();
+		condicaoAND.put("numeroAprovacoes", 12);
+		condicaoOR.put("numeroReprovacoes", 23);
+		List<Formulario> lista = new FormularioManager().recuperarFormularios(condicaoAND, condicaoOR);
+		System.out.println(lista.size());
 
-		/* Teste de conexão */ //		try {
+		/* Teste de conexão */
+		//		try {
 		//			Connection connection;
 		//			Class.forName("org.mariadb.jdbc.Driver");
 		//			connection = DriverManager.getConnection("jdbc:mysql://localhost/db_klima", "root", "");
 		//			System.out.println(connection.isValid(0));
 		//		} catch (ClassNotFoundException | SQLException ex) {
-		//			System.out.println("Deu merda");
+		//			ex.printStackTrace();
 		//		}
 	}
 
