@@ -69,7 +69,7 @@
                     HashMultimap<String, Object> condicaoAbandono;
                     HashMultimap<String, Object> condicaoCancelamento;
                     HashMultimap<String, Object> condicaoTransferido;
-                    Integer ano = 1990;
+                    Integer ano = 2003;
                     Long qtdAbandono;
                     Long qtdCancelado;
                     Long qtdTransferido;
