@@ -1,6 +1,8 @@
 
-import unioeste.geral.bo.Aluno;
-import unioeste.geral.manager.AlunoManager;
+import com.google.common.collect.HashMultimap;
+import java.util.List;
+import unioeste.geral.bo.Disciplina;
+import unioeste.geral.manager.DisciplinaManager;
 
 public class Main {
 
@@ -16,10 +18,6 @@ public class Main {
 //		Long qtdAlunos = new AlunoManager().recuperarQtdAlunosPorAtributos(condicaoAND, condicaoOR);
 //		System.out.println("=========================== " + qtdAlunos);
 
-		Aluno aluno = new Aluno();
-		aluno.setAnoAtual("2017");
-		new AlunoManager().salvarAluno(aluno);
-
 //		condicao.clear();
 //		condicao.put("disciplina", disciplina);
 //		Formulario formulario = new FormularioManager().recuperarFormularios(condicao, null).get(0);
@@ -32,6 +30,10 @@ public class Main {
 //		formulario.setNumeroAprovacoes(12);
 //		formulario.setNumeroReprovacoes(13);
 //		new FormularioDAO().inserirFormulario(formulario);
+		HashMultimap<String, Object> condicaoAND = HashMultimap.create();
+		condicaoAND.put("serie", 1);
+		List<Disciplina> disciplinas = new DisciplinaManager().recuperarDisciplinas(condicaoAND, null);
+		System.out.println(disciplinas.size());
 
 		/* Teste de conexão */ //		try {
 		//			Connection connection;
