@@ -48,7 +48,7 @@
           <hr />
           <div class="row">
               <p>Para que a importação dos dados de alunos para a aplicação seja feito de forma correta, siga o modelo da 
-                  template disposível <a href="<%=caminho%>/img/ajuda/template_SAG.xlsx">aqui</a>. 
+                  template disposível <a href="<%=caminho%>/img/ajuda/template_TUTORIA.xlsx">aqui</a>. 
                   A primeira linha do arquivo (Figura 1) indica quais informações cada coluna deve conter, 
                   e esta <b>não</b> deve ser apagada. Cada linha indica as informações de um aluno e, 
                   em caso de necessidade, <b>não</b> utilize ponto e vírgula (<b>;</b>) para separar partes de textos, 
