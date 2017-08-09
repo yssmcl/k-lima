@@ -52,7 +52,7 @@ public class HibernateUtil {
 		StandardServiceRegistryBuilder.destroy(sessionFactory.getSessionFactoryOptions().getServiceRegistry());
 	}
 
-	public void printDDL() {
+	public static void printDDL() {
 		Configuration configuration = new Configuration();
 		configuration.configure();
 		Dialect dialect = Dialect.getDialect(configuration.getProperties());
@@ -60,6 +60,10 @@ public class HibernateUtil {
 		for (int i = 0; i < ddl.length; i++) {
 			System.out.println(ddl[i]);
 		}
+	}
+
+	public static void main(String[] args) {
+		HibernateUtil.printDDL();
 	}
 
 }

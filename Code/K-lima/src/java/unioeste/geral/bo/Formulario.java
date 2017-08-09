@@ -1,20 +1,36 @@
 package unioeste.geral.bo;
 
 import java.io.Serializable;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "Formulario")
 public class Formulario implements Serializable {
 
-	@EmbeddedId
-	private AnoDisciplina anoDisciplina;
+	@Id
+	@GeneratedValue
+	private Long id;
 
 	private int numeroAprovacoes;
 
 	private int numeroReprovacoes;
 
+	private int ano;
+
+	@ManyToOne
+	private Disciplina disciplina;
+
 	public Formulario() {
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public int getNumeroAprovacoes() {
@@ -33,12 +49,20 @@ public class Formulario implements Serializable {
 		this.numeroReprovacoes = numeroReprovacoes;
 	}
 
-	public AnoDisciplina getAnoDisciplina() {
-		return anoDisciplina;
+	public int getAno() {
+		return ano;
 	}
 
-	public void setAnoDisciplina(AnoDisciplina anoDisciplina) {
-		this.anoDisciplina = anoDisciplina;
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 
 }

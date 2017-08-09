@@ -56,7 +56,6 @@ Contributor(s):
 		<mapping class="unioeste.geral.bo.Campus"/>
 		<mapping class="unioeste.geral.bo.Centro"/>
 		<mapping class="unioeste.geral.bo.Curso"/>
-		<mapping class="unioeste.geral.bo.AnoDisciplina"/>
 		<mapping class="unioeste.geral.bo.Disciplina"/>
 		<mapping class="unioeste.geral.bo.Formulario"/>
 	</session-factory>

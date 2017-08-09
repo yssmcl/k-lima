@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : tabela_aprovacao
     Created on : 08/08/2017, 09:10:43
     Author     : Leandro Ensina
@@ -53,9 +53,9 @@
                 <h1>Histórico de Aprovação - Engenharia Mecânica</h1>
             </div>
           </div>
-          
+
           <hr />
-          
+
           <div class="row">
             <h1>1º ano</h1>
             <table id="example" class="display">
@@ -79,40 +79,38 @@
                   List<Formulario> formularios = new ArrayList<>();
                   HashMultimap<String, Object> condicaoSerie;
                   HashMultimap<String, Object> condicaoNota;
-                  
+
                   condicaoSerie = HashMultimap.create();
                   condicaoSerie.put("serie", serie);
-                  
+
                   disciplinas = manager.recuperarDisciplinas(condicaoSerie, null);
-                  
+
                   for(Disciplina disciplina : disciplinas){%>
                         <tr>
                             <td><%= disciplina.getNome() %></td>
                             <%
-                            int ano = 2008;
-                            while(ano < 2014){
+                            for (int ano = 2008; ano < 2014; ano++){
                                 condicaoNota = HashMultimap.create();
                                 condicaoNota.put("ano", ano);
-                                Long aux = disciplina.getId();
-                                condicaoNota.put("disciplina_id", aux.intValue());
-                                
+                                condicaoNota.put("disciplina", disciplina);
+
                                 formularios = managerForm.recuperarFormularios(condicaoNota, null);
-                                
-                                int media;
-                                if(formularios != null){
+
+                                int media = 0;
+                                if (!formularios.isEmpty()) {
                                     media = (100*formularios.get(0).getNumeroAprovacoes())/(formularios.get(0).getNumeroAprovacoes() + formularios.get(0).getNumeroAprovacoes());
+									System.out.println("=================================================================================");
+								}
                             %>
                                 <td><%= media %></td>
                             <%
-                                }
-                                ano++;
                             }
                             %>
                         </tr>
                   <%}%>
                 </tbody>
             </table>
-          </div>          
+          </div>
         </div>
       </div>
     </div>

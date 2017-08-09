@@ -10,6 +10,10 @@ import unioeste.geral.dao.FormularioDAO;
 
 public class FormularioManager {
 
+	public void salvarFormulario(Formulario formulario) {
+		new FormularioDAO().inserirFormulario(formulario);
+	}
+
 	private Multimap<String, Object> substituirChaves(Multimap<String, Object> condicao) {
 		if (condicao != null) {
 			Multimap<String, Object> novaCondicao = HashMultimap.create();
@@ -17,7 +21,7 @@ public class FormularioManager {
 			for (Map.Entry entry : condicao.entries()) {
 				if (entry.getKey().equals("disciplina")) {
 					Disciplina disciplina = (Disciplina) entry.getValue();
-					novaCondicao.put(entry.getKey() + ".id", 1);
+					novaCondicao.put(entry.getKey() + ".id", disciplina.getId());
 				} else if (!entry.getKey().equals("")) {
 					novaCondicao.put((String) entry.getKey(), entry.getValue());
 				}
