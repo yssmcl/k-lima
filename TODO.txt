@@ -1,4 +1,4 @@
 - Filtros dos gráficos dinâmicos não funcionam
 - Gráficos estáticos para cada curso
 - Colocar senha no BD
-- Arrumar alinhamentos do relatório
+- Arrumar alinhamentos no template do relatório

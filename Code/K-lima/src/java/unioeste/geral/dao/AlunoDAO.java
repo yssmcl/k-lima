@@ -47,14 +47,13 @@ public class AlunoDAO {
 
 			Criteria criteria = session.createCriteria(Aluno.class);
 			for (Map.Entry<String, Object> entry : condicao.entrySet()) {
-				if (entry.getValue().getClass() == Long.class ||
-					entry.getValue().getClass() == Integer.class) {
-					criteria.add(
-						Restrictions.eq((String) entry.getKey(), entry.getValue())
-					);
-				} else if (entry.getValue().getClass() == String.class) {
+				if (entry.getValue().getClass() == String.class) {
 					criteria.add(
 						Restrictions.ilike((String) entry.getKey(), entry.getValue())
+					);
+				} else {
+					criteria.add(
+						Restrictions.eq((String) entry.getKey(), entry.getValue())
 					);
 				}
 			}
@@ -82,14 +81,13 @@ public class AlunoDAO {
 			Criteria criteria = session.createCriteria(Aluno.class);
 			if (condicaoAND != null) {
 				for (Map.Entry entry : condicaoAND.entries()) {
-					if (entry.getValue().getClass() == Long.class ||
-						entry.getValue().getClass() == Integer.class) {
-						criteria.add(
-							Restrictions.eq((String) entry.getKey(), entry.getValue())
-						);
-					} else if (entry.getValue().getClass() == String.class) {
+					if (entry.getValue().getClass() == String.class) {
 						criteria.add(
 							Restrictions.ilike((String) entry.getKey(), entry.getValue())
+						);
+					} else {
+						criteria.add(
+							Restrictions.eq((String) entry.getKey(), entry.getValue())
 						);
 					}
 				}
@@ -98,14 +96,13 @@ public class AlunoDAO {
 			Disjunction disjunction = Restrictions.disjunction();
 			if (condicaoOR != null) {
 				for (Map.Entry entry : condicaoOR.entries()) {
-					if (entry.getValue().getClass() == Long.class ||
-						entry.getValue().getClass() == Integer.class) {
-						disjunction.add(
-							Restrictions.eq((String) entry.getKey(), entry.getValue())
-						);
-					} else if (entry.getValue().getClass() == String.class) {
+					if (entry.getValue().getClass() == String.class) {
 						disjunction.add(
 							Restrictions.ilike((String) entry.getKey(), entry.getValue())
+						);
+					} else {
+						disjunction.add(
+							Restrictions.eq((String) entry.getKey(), entry.getValue())
 						);
 					}
 				}
@@ -132,14 +129,13 @@ public class AlunoDAO {
 			Criteria criteria = session.createCriteria(Aluno.class);
 			if (condicaoAND != null) {
 				for (Map.Entry entry : condicaoAND.entries()) {
-					if (entry.getValue().getClass() == Long.class
-						|| entry.getValue().getClass() == Integer.class) {
-						criteria.add(
-							Restrictions.eq((String) entry.getKey(), entry.getValue())
-						);
-					} else if (entry.getValue().getClass() == String.class) {
+					if (entry.getValue().getClass() == String.class) {
 						criteria.add(
 							Restrictions.ilike((String) entry.getKey(), entry.getValue())
+						);
+					} else {
+						criteria.add(
+							Restrictions.eq((String) entry.getKey(), entry.getValue())
 						);
 					}
 				}
@@ -148,14 +144,13 @@ public class AlunoDAO {
 			Disjunction disjunction = Restrictions.disjunction();
 			if (condicaoOR != null) {
 				for (Map.Entry entry : condicaoOR.entries()) {
-					if (entry.getValue().getClass() == Long.class
-						|| entry.getValue().getClass() == Integer.class) {
-						disjunction.add(
-							Restrictions.eq((String) entry.getKey(), entry.getValue())
-						);
-					} else if (entry.getValue().getClass() == String.class) {
+					if (entry.getValue().getClass() == String.class) {
 						disjunction.add(
 							Restrictions.ilike((String) entry.getKey(), entry.getValue())
+						);
+					} else {
+						disjunction.add(
+							Restrictions.eq((String) entry.getKey(), entry.getValue())
 						);
 					}
 				}

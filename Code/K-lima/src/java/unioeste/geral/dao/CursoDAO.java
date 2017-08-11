@@ -40,14 +40,13 @@ public class CursoDAO {
 			transaction = session.beginTransaction();
 
 			Criteria criteria = session.createCriteria(Curso.class);
-			if (valor.getClass() == Long.class ||
-				valor.getClass() == Integer.class) {
-				criteria.add(
-					Restrictions.eq(atributo, valor)
-				);
-			} else if (valor.getClass() == String.class) {
+			if (valor.getClass() == String.class) {
 				criteria.add(
 					Restrictions.ilike(atributo, valor)
+				);
+			} else {
+				criteria.add(
+					Restrictions.eq(atributo, valor)
 				);
 			}
 			cursos = (List<Curso>) criteria.list();
