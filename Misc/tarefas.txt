@@ -4,7 +4,7 @@
 4. Implementar mapas
 5. Estudar código fonte atual
 6. Criar ambiente de desenvolvimento
-7. Criar ambient de testes/homologação
+7. Criar ambiente de testes/homologação
 8. Avaliar servidor do laboratório do Pantaleão
 9. Criar projeto no GitHub
 10. Definir arquitetura de desenvolvimento (classes, DAOs, BD, nomenclatura)
