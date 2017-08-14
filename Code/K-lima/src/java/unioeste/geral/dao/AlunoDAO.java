@@ -39,13 +39,11 @@ public class AlunoDAO {
 
 	public List<Aluno> buscarAlunosPorAtributos(HashMap<String, Object> condicao) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = null;
 		List<Aluno> alunos = null;
 
 		try {
-			transaction = session.beginTransaction();
-
 			Criteria criteria = session.createCriteria(Aluno.class);
+
 			for (Map.Entry<String, Object> entry : condicao.entrySet()) {
 				if (entry.getValue().getClass() == String.class) {
 					criteria.add(
@@ -57,13 +55,9 @@ public class AlunoDAO {
 					);
 				}
 			}
-			alunos = (List<Aluno>) criteria.list();
 
-			transaction.commit();
+			alunos = (List<Aluno>) criteria.list();
 		} catch (HibernateException e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -171,19 +165,11 @@ public class AlunoDAO {
 
 	public List<Aluno> buscarTodosAlunos() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = null;
 		List<Aluno> alunos = null;
 
 		try {
-			transaction = session.beginTransaction();
-
 			alunos = session.createCriteria(Aluno.class).list();
-
-			transaction.commit();
 		} catch (HibernateException e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
 			e.printStackTrace();
 		} finally {
 			session.close();
