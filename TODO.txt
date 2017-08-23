@@ -1,4 +1,10 @@
 - Filtros dos gráficos dinâmicos não funcionam
 - Gráficos estáticos para cada curso
+- Gráficos dinâmicos
 - Colocar senha no BD
 - Arrumar alinhamentos no template do relatório
+- Arrumar todos os relatórios
+- Terminar tabela de evasão
+- Melhorar layout da pagina de índice de aprovação
+- Implementar histórico de aprovação
+- Colocar filtros de pesquisa no mapa (os mesmos da pagina inicial)
