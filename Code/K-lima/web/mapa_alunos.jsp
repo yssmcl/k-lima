@@ -81,17 +81,30 @@
                 <%
                 AlunoManager manager = new AlunoManager();
 
-                List<Aluno> alunos = (ArrayList<Aluno>) request.getAttribute("alunos");
+                String aluno = request.getParameter("aluno");
+                String curso = request.getParameter("curso");
+                String turno = request.getParameter("turno");
+                String anoEntrada = request.getParameter("anoEntrada");
+                String anoAtual = request.getParameter("anoAtual");
+                String situacaoAtual = request.getParameter("situacaoAtual");
 
-                if (alunos == null) { 
-                    alunos = manager.recuperarTodosAlunos();
-                }
+                System.out.println("================================"+aluno + " " +  curso + " " +  turno + " " +  anoEntrada + " " +  anoAtual + " " +  situacaoAtual);
                 
-                for(Aluno aluno : alunos){
-                    if (aluno.getLatitude() != null) {%>
+                HashMap<String, Object> condicao = new HashMap<>();
+
+                //recupera os alunos
+                condicao.put("nome", "%"+aluno+"%");            
+                condicao.put("anoEntrada", "%"+anoEntrada+"%");
+                condicao.put("anoAtual", "%"+anoAtual+"%");
+                condicao.put("situacaoAtual", "%"+situacaoAtual+"%");
+                
+                List<Aluno> alunos = manager.recuperarAlunosPorAtributos(condicao);
+                
+                for(Aluno a : alunos){
+                    if (a.getLatitude() != null) {%>
                         cluster.addMarker(new google.maps.Marker({
                             map: map,
-                            position: {lat:<%= aluno.getLatitude() %>, lng:<%= aluno.getLongitude() %>}
+                            position: {lat:<%= a.getLatitude() %>, lng:<%= a.getLongitude() %>}
                         }));
                     <%}
                 }%>

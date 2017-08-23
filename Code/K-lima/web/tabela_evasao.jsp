@@ -37,6 +37,18 @@
             document.getElementById("anoAtual").value = "";
             document.getElementById("situacaoAtual").value = "";
         }
+
+        function abrirMapa(){
+            url = "/tutoria/mapa_alunos.jsp?";
+            
+            url += "aluno=" + document.getElementById("aluno").value + "&";
+            url += "curso=" + document.getElementById("curso").value + "&";
+            url += "anoEntrada=" + document.getElementById("anoEntrada").value + "&";
+            url += "anoAtual=" + document.getElementById("anoAtual").value + "&";
+            url += "situacaoAtual=" + document.getElementById("situacaoAtual").value;
+            
+            window.location.replace(url);
+        }
     </script>
 
     <link rel="stylesheet" href="<%=caminho%>/css/foundation.css">
@@ -63,45 +75,48 @@
           <%-- </form> --%>
           <hr />
 
-          <form action="PesquisarAluno" method="post">
+          <form action="PesquisarAluno" method="get">
             <div class="row">
               <div class="medium-4 columns">
                   <label>Nome
-                      <input id="aluno" name="aluno" type="text" />
+                      <input id="aluno" name="aluno" type="text" value="<%= request.getParameter("aluno") != null ? request.getParameter("aluno") : "" %>"/>
                   </label>
               </div>
                 <div class="medium-4 columns">
                   <label>Curso
-                      <input id="curso" name="curso" type="text" />
+                      <input id="curso" name="curso" type="text" value="<%= request.getParameter("curso") != null ? request.getParameter("curso") : "" %>"/>
                   </label>
                 </div>
                 <div class="medium-4 columns">
                   <label>Turno
-                      <input id="turno" name="turno" type="text" />
+                      <input id="turno" name="turno" type="text" value="<%= request.getParameter("turno") != null ? request.getParameter("turno") : "" %>"/>
                   </label>
                 </div>
             </div>
             <div class="row">
                 <div class="medium-4 columns">
                   <label>Ano Entrada
-                      <input id="anoEntrada" name="anoEntrada" type="text" />
+                      <input id="anoEntrada" name="anoEntrada" type="text" value="<%= request.getParameter("anoEntrada") != null ? request.getParameter("anoEntrada") : "" %>"/>
                   </label>
                 </div>
                 <div class="medium-4 columns">
                   <label>Ano Atual
-                      <input id="anoAtual" name="anoAtual" type="text" />
+                      <input id="anoAtual" name="anoAtual" type="text" value="<%= request.getParameter("anoAtual") != null ? request.getParameter("anoAtual") : "" %>"/>
                   </label>
                 </div>
                 <div class="medium-4 columns">
                   <label>Situação Atual
-                      <input id="situacaoAtual" name="situacaoAtual" type="text" />
+                      <input id="situacaoAtual" name="situacaoAtual" type="text" value="<%= request.getParameter("situacaoAtual") != null ? request.getParameter("situacaoAtual") : "" %>"/>
                   </label>
                 </div>
             </div>
               <div class="row">
-                  <div class="medium-12 columns">
+                  <div class="medium-10 columns">
                     <input type="submit" value="Pesquisar" class="button" style="width: 150px;" />
                     <input type="button" value="Limpar Filtros" class="button" style="width: 150px;" onclick="limparFiltros()" />
+                  </div>
+                  <div class="medium-2 columns">
+                    <input type="button" value="Vizualizar Mapa" class="button" style="width: 150px;" onclick="abrirMapa()" />
                   </div>
               </div>
           </form>
